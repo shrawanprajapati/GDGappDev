@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
-import '../council_clubs_page.dart';
+
+// Common Pages
+import '../../common/settings_page.dart';
+import '../../common/terms_page.dart';
+
+// Profile & Projects
 import '../profile/profile_page.dart';
-import '../projects/find_project_page.dart'; // 👈 Import perfect hai
+import '../projects/find_project_page.dart';
 import '../workspace/my_projects_page.dart';
+
+// Clubs
+import '../council_clubs_page.dart';
+
+// Alumni & Misc
 import '../alumni/alumni_list_page.dart';
+import '../misc/alumni_talks_page.dart';
+import '../misc/internship_page.dart';
+import '../misc/companies_page.dart';
+import '../misc/scholarship_page.dart';
 
 class StudentDrawer extends StatelessWidget {
   const StudentDrawer({super.key});
@@ -17,7 +31,7 @@ class StudentDrawer extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
           children: [
-            // Header
+            // 1. Header
             Row(
               children: [
                 const CircleAvatar(
@@ -39,7 +53,7 @@ class StudentDrawer extends StatelessWidget {
             const SizedBox(height: 24),
             const Divider(color: Colors.white12, thickness: 1),
             
-            // 1. Profile
+            // 2. Main Options
             _drawerItem(
               context, 
               Icons.person_outline, 
@@ -49,8 +63,6 @@ class StudentDrawer extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
               }
             ),
-            
-            // 2. Find Project (Syntax Fixed)
             _drawerItem(
               context, 
               Icons.work_outline, 
@@ -111,32 +123,45 @@ class StudentDrawer extends StatelessWidget {
 
             // 4. Connect Alumni
             _drawerHeader('Connect Alumni'),
-            _drawerItem(context, Icons.mic_none_outlined, 'Talks'),
-            _drawerItem(
-              context, 
-              Icons.people_outline, 
-              'Know our Alumni',
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const AlumniListPage()));
-              }
-            ),
+            _drawerItem(context, Icons.mic_none_outlined, 'Talks', onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const AlumniTalksPage()));
+            }),
+            _drawerItem(context, Icons.people_outline, 'Know our Alumni', onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const AlumniListPage()));
+            }),
             _drawerItem(context, Icons.handshake_outlined, 'Request for Guidance'),
-            _drawerItem(context, Icons.work_history_outlined, 'Internship'),
+            _drawerItem(context, Icons.work_history_outlined, 'Internship', onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const InternshipPage()));
+            }),
 
             const Divider(color: Colors.white12, thickness: 1, height: 30),
 
             // 5. Placement
             _drawerHeader('Placement'),
-            _drawerItem(context, Icons.business_outlined, 'Know different companies'),
-            _drawerItem(context, Icons.school_outlined, 'Scholarship'),
+            _drawerItem(context, Icons.business_outlined, 'Know different companies', onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const CompaniesPage()));
+            }),
+            _drawerItem(context, Icons.school_outlined, 'Scholarship', onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const ScholarshipPage()));
+            }),
 
             const Divider(color: Colors.white12, thickness: 1, height: 30),
 
-            // 6. Others
+            // 6. Others (Common)
             _drawerItem(context, Icons.storefront_outlined, 'UniLoop MarketPlace'),
-            _drawerItem(context, Icons.settings_outlined, 'Settings'),
-            _drawerItem(context, Icons.description_outlined, 'Terms and conditions'),
+            _drawerItem(context, Icons.settings_outlined, 'Settings', onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage()));
+            }),
+            _drawerItem(context, Icons.description_outlined, 'Terms and conditions', onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const TermsPage()));
+            }),
             
             const SizedBox(height: 30),
           ],

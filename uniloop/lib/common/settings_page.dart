@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
+import 'logout_dialog.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -83,6 +84,14 @@ class _SettingsPageState extends State<SettingsPage> {
               color: AppColors.textSecondary,
             ),
             onTap: () {},
+          ),
+          ListTile(
+            title: const Text(
+              'Logout',
+              style: TextStyle(color: AppColors.textPrimary),
+            ),
+            leading: const Icon(Icons.logout, color: AppColors.accent),
+            onTap: () => LogoutDialog.show(context),
           ),
           ListTile(
             title: const Text(

@@ -19,6 +19,7 @@ import '../misc/alumni_talks_page.dart';
 import '../misc/internship_page.dart';
 import '../misc/companies_page.dart';
 import '../misc/scholarship_page.dart';
+import '../misc/campus_map_page.dart';
 import '../../common/logout_dialog.dart';
 
 class StudentDrawer extends StatelessWidget {
@@ -113,6 +114,18 @@ class StudentDrawer extends StatelessWidget {
               Icons.class_outlined,
               'Reminder (classroom type)',
               onTap: () => _showComingSoon(context, 'Classroom reminders'),
+            ),
+            _drawerItem(
+              context,
+              Icons.map_outlined,
+              'Campus Map',
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const CampusMapPage()),
+                );
+              },
             ),
 
             const Divider(color: Colors.white12, thickness: 1, height: 30),

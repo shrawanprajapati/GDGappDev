@@ -20,7 +20,7 @@ class _ClubDashboardState extends State<ClubDashboard> {
     const ClubHomeTab(),
     const ClubEventsTab(),
     const ClubProjectsTab(), // 3rd Tab
-    const ClubProfileTab(),  // 4th Tab
+    const ClubProfileTab(), // 4th Tab
   ];
 
   @override
@@ -30,12 +30,23 @@ class _ClubDashboardState extends State<ClubDashboard> {
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
-        title: const Text('Club Portal', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Club Portal',
+          style: TextStyle(
+            color: AppColors.textPrimary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.logout, color: AppColors.textPrimary), 
-            onPressed: () => Navigator.popUntil(context, (route) => route.isFirst)
-          )
+            icon: const Icon(Icons.search, color: AppColors.textPrimary),
+            onPressed: () => _showSearch(context),
+          ),
+          IconButton(
+            icon: const Icon(Icons.logout, color: AppColors.textPrimary),
+            onPressed: () =>
+                Navigator.popUntil(context, (route) => route.isFirst),
+          ),
         ],
       ),
       body: _tabs[_currentIndex],
@@ -55,4 +66,42 @@ class _ClubDashboardState extends State<ClubDashboard> {
       ),
     );
   }
+
+  void _showSearch(BuildContext context) {
+    showSearch(context: context, delegate: _ClubSearchDelegate());
+  }
+}
+
+class _ClubSearchDelegate extends SearchDelegate<String> {
+  @override
+  ThemeData appBarTheme(BuildContext context) => Theme.of(context).copyWith(
+    appBarTheme: const AppBarTheme(
+      backgroundColor: AppColors.surface,
+      iconTheme: IconThemeData(color: AppColors.textPrimary),
+    ),
+    inputDecorationTheme: const InputDecorationTheme(
+      hintStyle: TextStyle(color: AppColors.textSecondary),
+    ),
+  );
+  @override
+  List<Widget>? buildActions(BuildContext context) => [
+    IconButton(onPressed: () => query = '', icon: const Icon(Icons.clear)),
+  ];
+  @override
+  Widget buildLeading(BuildContext context) => IconButton(
+    onPressed: () => close(context, ''),
+    icon: const Icon(Icons.arrow_back),
+  );
+  @override
+  Widget buildResults(BuildContext context) => _result();
+  @override
+  Widget buildSuggestions(BuildContext context) => _result();
+  Widget _result() => Center(
+    child: Text(
+      query.isEmpty
+          ? 'Search projects, events, and members'
+          : 'Search results for "$query"',
+      style: const TextStyle(color: AppColors.textSecondary),
+    ),
+  );
 }

@@ -1,0 +1,24 @@
+2026-11-06 06:47:24.970: [INFO] CurrentProfilePath: C:\Users\shraw\AppData\Local\Temp\flutter_tools.31560d9\flutter_tools_chrome_device.7fb97ade\Default
+2026-11-06 06:47:24.971: [INFO] Profiles total count: 1
+2026-11-06 06:47:24.971: [INFO] Profile: name=Profile 1 path=C:\Users\shraw\AppData\Local\Temp\flutter_tools.31560d9\flutter_tools_chrome_device.7fb97ade\Default lastActive=null
+2026-11-06 06:47:24.971: [INFO] LastUsedProfileDir: C:\Users\shraw\AppData\Local\Temp\flutter_tools.31560d9\flutter_tools_chrome_device.7fb97ade\Default
+2026-11-06 06:47:24.971: [INFO] VisibilityChanged: 0
+2026-11-06 06:47:25.066: [INFO] BookmarkNodeAdded, ABU: 0
+2026-11-06 06:47:25.066: [INFO] BookmarkNodeAdded, ABU: 0
+2026-11-06 06:47:25.066: [INFO] BookmarkNodeAdded, ABU: 0
+2026-11-06 06:47:25.066: [INFO] OnDoneLoading sync enabled: 0
+2026-11-06 06:47:25.066: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-11-06 06:47:25.066: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-11-06 06:47:25.066: [INFO] BookmarksSnapshot Startup total=3 bar=3 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-11-06 06:47:25.074: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-11-06 06:47:28.094: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 0
+2026-11-06 06:47:28.101: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-11-06 06:47:28.108: [INFO] Primary account changed.
+2026-11-06 06:47:28.108: [INFO] OnPrimaryAccountChanged PrimaryAccountChangeEvent::Type::kSet
+2026-11-06 06:47:28.126: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-11-06 06:47:28.176: [INFO] RecordSyncInitDuration has_sync_been_enabled: 0 state: 3
+2026-11-06 06:47:41.608: [INFO] BookmarkNodeAdded, ABU: 0
+2026-11-06 06:47:41.608: [INFO] BookmarkNodeAdded, ABU: 0
+2026-11-06 06:47:41.609: [INFO] BookmarkNodeAdded, ABU: 0
+2026-11-06 06:47:54.803: [INFO] Sync initialization duration: 26475ms
+2026-11-06 07:15:45.539: [INFO] BookmarksSnapshot Shutdown total=6 bar=6 other=0 mobile=0 showBar=0 showBarNTP=1

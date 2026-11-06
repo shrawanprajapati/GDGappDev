@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import '../core/app_colors.dart';
+import '../core/app_routes.dart'; // Import add kiya
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -16,12 +17,7 @@ class _OnboardingPageState extends State<OnboardingPage>
   static const String _subtitle = 'CONNECT · DISCOVER · BELONG';
   static const String _ctaLabel = 'Get Started';
   static const String _skipLabel = 'Skip for now';
-  static const List<String> _chips = [
-    'Events',
-    'Clubs',
-    'Students',
-    'Professors',
-  ];
+  static const List<String> _chips = ['Events', 'Clubs', 'Students', 'Professors'];
 
   late final VideoPlayerController _video;
   late final AnimationController _anim;
@@ -29,7 +25,6 @@ class _OnboardingPageState extends State<OnboardingPage>
   @override
   void initState() {
     super.initState();
-
     _video = VideoPlayerController.asset('assets/videos/onboarding_video.mp4')
       ..initialize().then((_) {
         _video
@@ -55,22 +50,24 @@ class _OnboardingPageState extends State<OnboardingPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.background,
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // 1. Video background
+          // Video Background (Fixed Fit)
           if (_video.value.isInitialized)
-            FittedBox(
-              fit: BoxFit.cover,
-              child: SizedBox(
-                width: _video.value.size.width,
-                height: _video.value.size.height,
-                child: VideoPlayer(_video),
+            SizedBox.expand(
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: SizedBox(
+                  width: _video.value.size.width,
+                  height: _video.value.size.height,
+                  child: VideoPlayer(_video),
+                ),
               ),
             ),
 
-          // 2. Gradient scrim
+          // Gradient Scrim
           DecoratedBox(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -86,7 +83,7 @@ class _OnboardingPageState extends State<OnboardingPage>
             ),
           ),
 
-          // 3. Content
+          // Content
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(28, 20, 28, 28),
@@ -110,7 +107,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                         const Text(
                           _appName,
                           style: TextStyle(
-                            color: Colors.white,
+                            color: AppColors.textPrimary,
                             fontSize: 20,
                             fontWeight: FontWeight.w700,
                             letterSpacing: 1.5,
@@ -118,24 +115,18 @@ class _OnboardingPageState extends State<OnboardingPage>
                         ),
                       ],
                     ),
-
                     const Spacer(flex: 3),
-
                     // Slogan
                     const Text(
                       _slogan,
                       style: TextStyle(
                         fontSize: 44,
                         fontWeight: FontWeight.w800,
-                        color: Colors.white,
+                        color: AppColors.textPrimary,
                         height: 1.15,
                         letterSpacing: -0.5,
                         shadows: [
-                          Shadow(
-                            offset: Offset(0, 2),
-                            blurRadius: 12,
-                            color: Colors.black54,
-                          ),
+                          Shadow(offset: Offset(0, 2), blurRadius: 12, color: Colors.black54),
                         ],
                       ),
                     ),
@@ -148,21 +139,15 @@ class _OnboardingPageState extends State<OnboardingPage>
                         letterSpacing: 3.0,
                       ),
                     ),
-
                     const Spacer(flex: 2),
-
                     // Feature chips
                     Wrap(
                       spacing: 10,
                       runSpacing: 10,
-                      children: _chips
-                          .map((label) => _Chip(label: label))
-                          .toList(),
+                      children: _chips.map((label) => _Chip(label: label)).toList(),
                     ),
-
                     const SizedBox(height: 28),
-
-                    // Get Started
+                    // Get Started Button
                     SizedBox(
                       width: double.infinity,
                       height: 58,
@@ -182,7 +167,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                         ),
                         child: ElevatedButton(
                           onPressed: () {
-                            // TODO: navigate to login / home
+                            Navigator.pushReplacementNamed(context, AppRoutes.login);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.transparent,
@@ -202,18 +187,17 @@ class _OnboardingPageState extends State<OnboardingPage>
                         ),
                       ),
                     ),
-
                     // Skip
                     Center(
                       child: TextButton(
                         onPressed: () {
-                          // TODO: skip onboarding
+                          Navigator.pushReplacementNamed(context, AppRoutes.login);
                         },
                         child: Text(
                           _skipLabel,
                           style: TextStyle(
                             fontSize: 14,
-                            color: Colors.white.withValues(alpha: 0.6),
+                            color: AppColors.textPrimary.withValues(alpha: 0.6),
                           ),
                         ),
                       ),
@@ -238,11 +222,9 @@ class _Chip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.08),
+        color: AppColors.textPrimary.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(30),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.15),
-        ),
+        border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.15)),
       ),
       child: Text(
         label,

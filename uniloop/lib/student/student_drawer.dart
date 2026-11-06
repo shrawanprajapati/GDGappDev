@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
-import 'club_detail_page.dart'; // 👈 Import add karo
+import 'council_clubs_page.dart'; // 👈 Naya import
 
 class StudentDrawer extends StatelessWidget {
   const StudentDrawer({super.key});
@@ -13,7 +13,7 @@ class StudentDrawer extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
           children: [
-            // Header (Profile Info)
+            // Header
             Row(
               children: [
                 const CircleAvatar(
@@ -25,15 +25,9 @@ class StudentDrawer extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-                    Text(
-                      'Shrawan Prajapati',
-                      style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
+                    Text('Shrawan Prajapati', style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
                     SizedBox(height: 4),
-                    Text(
-                      'Student • CSE 2026',
-                      style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
-                    ),
+                    Text('Student • CSE 2026', style: TextStyle(color: AppColors.textSecondary, fontSize: 13)),
                   ],
                 ),
               ],
@@ -41,23 +35,60 @@ class StudentDrawer extends StatelessWidget {
             const SizedBox(height: 24),
             const Divider(color: Colors.white12, thickness: 1),
             
-            // 1. Profile & Reminders
             _drawerItem(Icons.person_outline, 'Profile'),
             _drawerItem(Icons.work_outline, 'Find Project'),
             _drawerItem(Icons.class_outlined, 'Reminder (classroom type)'),
             
             const Divider(color: Colors.white12, thickness: 1, height: 30),
 
-            // 2. College Clubs (Updated with navigation)
+            // College Clubs (Updated to open Council Pages)
             _drawerHeader('Know your College clubs'),
-            _buildClubItem(context, 'Technical Club', Icons.computer, Colors.blueAccent),
-            _buildClubItem(context, 'Cultural Club', Icons.music_note, Colors.pinkAccent),
-            _buildClubItem(context, 'Sports', Icons.sports_soccer, Colors.greenAccent),
-            _buildClubItem(context, 'Association', Icons.groups, Colors.orangeAccent),
+            _buildCouncilItem(
+              context, 
+              'Technical Club', 
+              Icons.computer, 
+              Colors.blueAccent,
+              [
+                {'name': 'Programming Club', 'icon': Icons.code, 'desc': 'Competitive coding & dev.'},
+                {'name': 'Robotics Club', 'icon': Icons.smart_toy, 'desc': 'Hardware & automation.'},
+                {'name': 'Astronomy Club', 'icon': Icons.public, 'desc': 'Space & stargazing.'},
+              ]
+            ),
+            _buildCouncilItem(
+              context, 
+              'Cultural Club', 
+              Icons.music_note, 
+              Colors.pinkAccent,
+              [
+                {'name': 'Music Club', 'icon': Icons.piano, 'desc': 'Singing & instruments.'},
+                {'name': 'Dance Club', 'icon': Icons.directions_run, 'desc': 'Choreography & street dance.'},
+                {'name': 'Drama Club', 'icon': Icons.theater_comedy, 'desc': 'Acting & theatre.'},
+              ]
+            ),
+            _buildCouncilItem(
+              context, 
+              'Sports', 
+              Icons.sports_soccer, 
+              Colors.greenAccent,
+              [
+                {'name': 'Cricket Team', 'icon': Icons.sports_cricket, 'desc': 'Institute cricket team.'},
+                {'name': 'Football Team', 'icon': Icons.sports_soccer, 'desc': 'Institute football team.'},
+                {'name': 'Athletics Team', 'icon': Icons.directions_run, 'desc': 'Track & field events.'},
+              ]
+            ),
+            _buildCouncilItem(
+              context, 
+              'Association', 
+              Icons.groups, 
+              Colors.orangeAccent,
+              [
+                {'name': 'Alumni Connect', 'icon': Icons.people, 'desc': 'Networking with alumni.'},
+                {'name': 'Counselling Cell', 'icon': Icons.psychology, 'desc': 'Mental health support.'},
+              ]
+            ),
 
             const Divider(color: Colors.white12, thickness: 1, height: 30),
 
-            // 3. Connect Alumni
             _drawerHeader('Connect Alumni'),
             _drawerItem(Icons.mic_none_outlined, 'Talks'),
             _drawerItem(Icons.people_outline, 'Know our Alumni'),
@@ -66,14 +97,12 @@ class StudentDrawer extends StatelessWidget {
 
             const Divider(color: Colors.white12, thickness: 1, height: 30),
 
-            // 4. Placement
             _drawerHeader('Placement'),
             _drawerItem(Icons.business_outlined, 'Know different companies'),
             _drawerItem(Icons.school_outlined, 'Scholarship'),
 
             const Divider(color: Colors.white12, thickness: 1, height: 30),
 
-            // 5. General
             _drawerItem(Icons.storefront_outlined, 'UniLoop MarketPlace'),
             _drawerItem(Icons.settings_outlined, 'Settings'),
             _drawerItem(Icons.description_outlined, 'Terms and conditions'),
@@ -91,14 +120,7 @@ class StudentDrawer extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            title,
-            style: const TextStyle(
-              color: AppColors.accent, 
-              fontSize: 16, 
-              fontWeight: FontWeight.bold
-            ),
-          ),
+          Text(title, style: const TextStyle(color: AppColors.accent, fontSize: 16, fontWeight: FontWeight.bold)),
           const Icon(Icons.chevron_right, color: AppColors.accent, size: 20),
         ],
       ),
@@ -109,39 +131,32 @@ class StudentDrawer extends StatelessWidget {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       leading: Icon(icon, color: AppColors.textSecondary, size: 22),
-      title: Text(
-        title,
-        style: const TextStyle(color: AppColors.textPrimary, fontSize: 15),
-      ),
+      title: Text(title, style: const TextStyle(color: AppColors.textPrimary, fontSize: 15)),
       onTap: () {},
     );
   }
 
-  // 👈 Naya function jo clubs ko ClubDetailPage se connect karega
-  Widget _buildClubItem(BuildContext context, String name, IconData icon, Color color) {
+  // 👈 Naya function jo Council Page kholta hai
+  Widget _buildCouncilItem(
+    BuildContext context, 
+    String name, 
+    IconData icon, 
+    Color color,
+    List<Map<String, dynamic>> clubs,
+  ) {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       leading: Icon(icon, color: color, size: 22),
-      title: Text(
-        name,
-        style: const TextStyle(color: AppColors.textPrimary, fontSize: 15),
-      ),
+      title: Text(name, style: const TextStyle(color: AppColors.textPrimary, fontSize: 15)),
       onTap: () {
-        // Drawer close karo
-        Navigator.pop(context); 
-        
-        // Fir ClubDetailPage open karo
+        Navigator.pop(context); // Close drawer
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ClubDetailPage(
-              clubData: {
-                'name': name,
-                'category': 'Club',
-                'members': 'Active Members',
-                'icon': icon,
-                'color': color,
-              },
+            builder: (context) => CouncilClubsPage(
+              councilName: name,
+              clubs: clubs,
+              themeColor: color,
             ),
           ),
         );

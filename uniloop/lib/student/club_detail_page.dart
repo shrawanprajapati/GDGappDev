@@ -7,34 +7,34 @@ class ClubDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String clubName = clubData['name'] ?? 'Club Name';
+    final String category = clubData['category'] ?? 'Category';
+    final String members = clubData['members'] ?? 'Members';
+    final IconData icon = clubData['icon'] ?? Icons.group;
+    final Color color = clubData['color'] ?? AppColors.primary;
+
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.share_outlined, color: AppColors.textPrimary),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 1. Header Section (Logo & Name)
+            // Header
             Row(
               children: [
                 Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: clubData['color'].withValues(alpha: 0.15),
+                    color: color.withValues(alpha: 0.15),
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(clubData['icon'], color: clubData['color'], size: 40),
+                  child: Icon(icon, color: color, size: 48),
                 ),
                 const SizedBox(width: 20),
                 Expanded(
@@ -42,17 +42,17 @@ class ClubDetailPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        clubData['name'],
+                        clubName,
                         style: const TextStyle(
                           color: AppColors.textPrimary,
-                          fontSize: 26,
+                          fontSize: 24,
                           fontWeight: FontWeight.w800,
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        '${clubData['category']} • ${clubData['members']}',
-                        style: const TextStyle(color: AppColors.textSecondary, fontSize: 14),
+                        '$category • $members',
+                        style: const TextStyle(color: AppColors.textSecondary, fontSize: 13),
                       ),
                     ],
                   ),
@@ -60,9 +60,64 @@ class ClubDetailPage extends StatelessWidget {
               ],
             ),
             
-            const SizedBox(height: 24),
+            const SizedBox(height: 30),
             
-            // 2. Common Highlights (Maintained by Club Head)
+            // Action Buttons (Join & Projects)
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: color,
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                    ),
+                    child: const Text('Join Club', style: TextStyle(fontWeight: FontWeight.bold)),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () {
+                      // TODO: Navigate to Projects Page
+                    },
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(color: color),
+                      foregroundColor: color,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                    ),
+                    child: const Text('Find Projects'),
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 30),
+
+            // Common Highlights
+            const Text(
+              'Common Highlights',
+              style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'The $clubName is a community of passionate individuals. We organize workshops, hackathons, and industry-level projects to help students grow beyond the classroom.',
+              style: const TextStyle(color: AppColors.textSecondary, fontSize: 14, height: 1.5),
+            ),
+
+            const SizedBox(height: 30),
+
+            // Projects & Inductions
+            const Text(
+              'Ongoing Projects & Inductions',
+              style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 12),
+            
+            // Project Card
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -70,117 +125,48 @@ class ClubDetailPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
               ),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(Icons.star, color: Colors.amber, size: 20),
-                      SizedBox(width: 8),
-                      Text(
-                        'Common Highlights',
-                        style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold, fontSize: 16),
+                      const Text(
+                        'Induction Project 2024',
+                        style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.w600),
                       ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(color: color.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(6)),
+                        child: Text('Open', style: TextStyle(color: color, fontSize: 12, fontWeight: FontWeight.bold)),
+                      )
                     ],
                   ),
-                  SizedBox(height: 8),
-                  Text(
-                    'We build projects, host hackathons, and help students get industry-ready.',
-                    style: TextStyle(color: AppColors.textSecondary, fontSize: 14, height: 1.5),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Build a real-world application to qualify for club membership.',
+                    style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
                   ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.background,
+                        foregroundColor: AppColors.textPrimary,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      ),
+                      child: const Text('View Details'),
+                    ),
+                  )
                 ],
               ),
-            ),
-
-            const SizedBox(height: 30),
-
-            // 3. Find Project Section
-            const Text(
-              'Explore Opportunities',
-              style: TextStyle(color: AppColors.textPrimary, fontSize: 20, fontWeight: FontWeight.w700),
-            ),
-            const SizedBox(height: 12),
-            
-            // Find Project Button (Based on screenshot)
-            InkWell(
-              onTap: () {
-                // TODO: Navigate to Project List Page
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [AppColors.primary.withValues(alpha: 0.8), AppColors.accent.withValues(alpha: 0.8)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.primary.withValues(alpha: 0.3),
-                      blurRadius: 15,
-                      offset: const Offset(0, 5),
-                    )
-                  ]
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Find Project', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
-                        SizedBox(height: 4),
-                        Text('Project for induction & Industrial', style: TextStyle(color: Colors.white70, fontSize: 13)),
-                      ],
-                    ),
-                    Icon(Icons.arrow_forward_ios, color: Colors.white, size: 18),
-                  ],
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 30),
-
-            // 4. Domains / Sub-Clubs (e.g., GDG, P Club)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Different Domains',
-                  style: TextStyle(color: AppColors.textPrimary, fontSize: 20, fontWeight: FontWeight.w700),
-                ),
-                Text('View all', style: TextStyle(color: AppColors.accent, fontSize: 14)),
-              ],
-            ),
-            const SizedBox(height: 12),
-            
-            Row(
-              children: [
-                _buildDomainChip('GDG'),
-                const SizedBox(width: 12),
-                _buildDomainChip('P Club'),
-              ],
             ),
 
             const SizedBox(height: 40),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildDomainChip(String title) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.1)),
-      ),
-      child: Text(
-        title,
-        style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w600),
       ),
     );
   }

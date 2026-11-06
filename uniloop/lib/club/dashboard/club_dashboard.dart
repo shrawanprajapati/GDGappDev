@@ -3,7 +3,7 @@ import '../../core/app_colors.dart';
 import '../home/club_home_tab.dart';
 import '../events/club_events_tab.dart';
 import '../profile/club_profile_tab.dart';
-import '../projects/club_projects_tab.dart'; // 👈 Naya Import
+import '../projects/club_projects_tab.dart';
 
 class ClubDashboard extends StatefulWidget {
   const ClubDashboard({super.key});
@@ -15,12 +15,12 @@ class ClubDashboard extends StatefulWidget {
 class _ClubDashboardState extends State<ClubDashboard> {
   int _currentIndex = 0;
 
-  // 👈 Naya Tab Add kiya
+  // Exact 4 tabs
   final List<Widget> _tabs = [
     const ClubHomeTab(),
     const ClubEventsTab(),
-    const ClubProjectsTab(), // Projects Tab
-    const ClubProfileTab(),
+    const ClubProjectsTab(), // 3rd Tab
+    const ClubProfileTab(),  // 4th Tab
   ];
 
   @override
@@ -32,7 +32,10 @@ class _ClubDashboardState extends State<ClubDashboard> {
         elevation: 0,
         title: const Text('Club Portal', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
         actions: [
-          IconButton(icon: const Icon(Icons.logout, color: AppColors.textPrimary), onPressed: () => Navigator.popUntil(context, (route) => route.isFirst))
+          IconButton(
+            icon: const Icon(Icons.logout, color: AppColors.textPrimary), 
+            onPressed: () => Navigator.popUntil(context, (route) => route.isFirst)
+          )
         ],
       ),
       body: _tabs[_currentIndex],
@@ -42,11 +45,11 @@ class _ClubDashboardState extends State<ClubDashboard> {
         backgroundColor: AppColors.surface,
         selectedItemColor: AppColors.accent,
         unselectedItemColor: AppColors.textSecondary,
-        type: BottomNavigationBarType.fixed, // 4 items ke liye zaruri hai
+        type: BottomNavigationBarType.fixed, // Ye 4 tabs ke liye zaruri hai
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.event), label: 'Events'),
-          BottomNavigationBarItem(icon: Icon(Icons.work), label: 'Projects'), // 👈 Naya
+          BottomNavigationBarItem(icon: Icon(Icons.work), label: 'Projects'),
           BottomNavigationBarItem(icon: Icon(Icons.group), label: 'My Club'),
         ],
       ),

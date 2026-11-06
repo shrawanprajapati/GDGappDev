@@ -23,7 +23,6 @@ class ClubProjectsTab extends StatelessWidget {
         ),
         const SizedBox(height: 20),
 
-        // Active Project
         _buildProjectCard(
           context,
           title: 'GDG Recruitment Task 2024',
@@ -87,7 +86,7 @@ class ClubProjectsTab extends StatelessWidget {
               if (isActive)
                 TextButton(
                   onPressed: () {
-                    // Yahan wahi Applicants wala bottom sheet khulega jo Events me tha
+                    // Applicants view
                   },
                   child: const Text('View Applicants', style: TextStyle(color: AppColors.primary, fontSize: 12)),
                 )

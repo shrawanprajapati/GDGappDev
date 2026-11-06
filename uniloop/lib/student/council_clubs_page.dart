@@ -24,7 +24,11 @@ class CouncilClubsPage extends StatelessWidget {
         iconTheme: const IconThemeData(color: AppColors.textPrimary),
         title: Text(
           councilName,
-          style: const TextStyle(color: AppColors.textPrimary, fontSize: 20, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            color: AppColors.textPrimary,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: ListView.builder(
@@ -40,7 +44,10 @@ class CouncilClubsPage extends StatelessWidget {
               border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
             ),
             child: ListTile(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 8,
+              ),
               leading: Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
@@ -51,13 +58,22 @@ class CouncilClubsPage extends StatelessWidget {
               ),
               title: Text(
                 club['name'],
-                style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w600),
+                style: const TextStyle(
+                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               subtitle: Text(
                 club['desc'] ?? 'Explore events and projects',
-                style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                style: const TextStyle(
+                  color: AppColors.textSecondary,
+                  fontSize: 12,
+                ),
               ),
-              trailing: const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+              trailing: const Icon(
+                Icons.chevron_right,
+                color: AppColors.textSecondary,
+              ),
               onTap: () {
                 // Direct Club Detail Page par le jao
                 Navigator.push(

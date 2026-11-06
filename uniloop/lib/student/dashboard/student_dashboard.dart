@@ -16,16 +16,26 @@ class StudentDashboard extends StatefulWidget {
 
 class _StudentDashboardState extends State<StudentDashboard> {
   int _currentIndex = 0;
-  
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>(); 
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final List<Widget> _tabs = [
     const StudentHomeTab(),
     const StudentTeamsTab(),
-    const MarketplaceTab(), 
+    const MarketplaceTab(),
     const LoopAiTab(),
-    const Center(child: Text('Marketplace coming soon', style: TextStyle(color: AppColors.textPrimary))),
-    const Center(child: Text('Loop AI coming soon', style: TextStyle(color: AppColors.textPrimary))),
+    const Center(
+      child: Text(
+        'Marketplace coming soon',
+        style: TextStyle(color: AppColors.textPrimary),
+      ),
+    ),
+    const Center(
+      child: Text(
+        'Loop AI coming soon',
+        style: TextStyle(color: AppColors.textPrimary),
+      ),
+    ),
   ];
 
   @override
@@ -40,7 +50,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.menu, color: AppColors.textPrimary),
-          onPressed: () => _scaffoldKey.currentState?.openDrawer(), 
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
         ),
         title: const Text(
           'UniLoop',
@@ -60,24 +70,39 @@ class _StudentDashboardState extends State<StudentDashboard> {
                 context: context,
                 backgroundColor: AppColors.surface,
                 isScrollControlled: true,
-                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                ),
                 builder: (context) {
                   return Padding(
-                    padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom, left: 20, right: 20, top: 20),
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom,
+                      left: 20,
+                      right: 20,
+                      top: 20,
+                    ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
-                          decoration: BoxDecoration(color: AppColors.background, borderRadius: BorderRadius.circular(12)),
+                          decoration: BoxDecoration(
+                            color: AppColors.background,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                           child: const TextField(
                             autofocus: true,
                             style: TextStyle(color: AppColors.textPrimary),
                             decoration: InputDecoration(
                               hintText: 'Search events, projects, clubs...',
-                              hintStyle: TextStyle(color: AppColors.textSecondary),
+                              hintStyle: TextStyle(
+                                color: AppColors.textSecondary,
+                              ),
                               border: InputBorder.none,
-                              icon: Icon(Icons.search, color: AppColors.textSecondary),
+                              icon: Icon(
+                                Icons.search,
+                                color: AppColors.textSecondary,
+                              ),
                             ),
                           ),
                         ),
@@ -89,14 +114,19 @@ class _StudentDashboardState extends State<StudentDashboard> {
               );
             },
           ),
-          
+
           // 👈 Notification Icon (Naya Page)
           IconButton(
-            icon: const Icon(Icons.notifications_outlined, color: AppColors.textPrimary),
+            icon: const Icon(
+              Icons.notifications_outlined,
+              color: AppColors.textPrimary,
+            ),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const NotificationPage()),
+                MaterialPageRoute(
+                  builder: (context) => const NotificationPage(),
+                ),
               );
             },
           ),
@@ -127,7 +157,10 @@ class _StudentDashboardState extends State<StudentDashboard> {
           unselectedItemColor: AppColors.textSecondary,
           showSelectedLabels: true,
           showUnselectedLabels: true,
-          selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+          selectedLabelStyle: const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 12,
+          ),
           unselectedLabelStyle: const TextStyle(fontSize: 12),
           items: const [
             BottomNavigationBarItem(

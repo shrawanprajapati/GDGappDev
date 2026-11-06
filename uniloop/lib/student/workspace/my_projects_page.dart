@@ -44,7 +44,13 @@ class MyProjectsPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text('My Projects', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'My Projects',
+          style: TextStyle(
+            color: AppColors.textPrimary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(20),
@@ -59,13 +65,15 @@ class MyProjectsPage extends StatelessWidget {
 
   Widget _buildProjectCard(BuildContext context, Map<String, dynamic> project) {
     bool isRejected = project['status'] == 'Rejected';
-    
+
     return GestureDetector(
       onTap: () {
         if (!isRejected) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => WorkspacePage(projectData: project)),
+            MaterialPageRoute(
+              builder: (context) => WorkspacePage(projectData: project),
+            ),
           );
         }
       },
@@ -86,30 +94,48 @@ class MyProjectsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: project['color'].withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      project['role'], 
-                      style: TextStyle(color: project['color'], fontSize: 11, fontWeight: FontWeight.bold)
+                      project['role'],
+                      style: TextStyle(
+                        color: project['color'],
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   Text(
-                    project['status'], 
+                    project['status'],
                     style: TextStyle(
-                      color: isRejected ? Colors.redAccent : (project['status'] == 'In Progress' ? Colors.orangeAccent : AppColors.accent), 
-                      fontSize: 12, 
-                      fontWeight: FontWeight.bold
-                    )
+                      color: isRejected
+                          ? Colors.redAccent
+                          : (project['status'] == 'In Progress'
+                                ? Colors.orangeAccent
+                                : AppColors.accent),
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: 12),
-              Text(project['title'], style: const TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.w700)),
+              Text(
+                project['title'],
+                style: const TextStyle(
+                  color: AppColors.textPrimary,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               const SizedBox(height: 16),
-              
+
               if (!isRejected) ...[
                 // Progress Bar
                 Row(
@@ -126,7 +152,14 @@ class MyProjectsPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    Text('${(project['progress'] * 100).toInt()}%', style: const TextStyle(color: AppColors.textSecondary, fontSize: 12, fontWeight: FontWeight.bold)),
+                    Text(
+                      '${(project['progress'] * 100).toInt()}%',
+                      style: const TextStyle(
+                        color: AppColors.textSecondary,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 16),
@@ -135,17 +168,42 @@ class MyProjectsPage extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const Icon(Icons.people, size: 16, color: AppColors.textSecondary),
+                        const Icon(
+                          Icons.people,
+                          size: 16,
+                          color: AppColors.textSecondary,
+                        ),
                         const SizedBox(width: 4),
-                        Text('Team of ${project['teamSize']}', style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+                        Text(
+                          'Team of ${project['teamSize']}',
+                          style: const TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: 12,
+                          ),
+                        ),
                       ],
                     ),
-                    Text(project['deadline'], style: TextStyle(color: project['deadline'] == 'Completed' ? AppColors.accent : Colors.orangeAccent, fontSize: 12, fontWeight: FontWeight.bold)),
+                    Text(
+                      project['deadline'],
+                      style: TextStyle(
+                        color: project['deadline'] == 'Completed'
+                            ? AppColors.accent
+                            : Colors.orangeAccent,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
-                )
+                ),
               ] else ...[
-                const Text('Your application was not shortlisted.', style: TextStyle(color: AppColors.textSecondary, fontSize: 13)),
-              ]
+                const Text(
+                  'Your application was not shortlisted.',
+                  style: TextStyle(
+                    color: AppColors.textSecondary,
+                    fontSize: 13,
+                  ),
+                ),
+              ],
             ],
           ),
         ),

@@ -37,7 +37,12 @@ class MarketplaceTab extends StatelessWidget {
                 icon: Icons.work_outline,
                 color: AppColors.primary,
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const FindProjectPage()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const FindProjectPage(),
+                    ),
+                  );
                 },
               ),
               _buildCategoryCard(
@@ -60,13 +65,17 @@ class MarketplaceTab extends StatelessWidget {
               ),
             ],
           ),
-          
+
           const SizedBox(height: 30),
 
           // Featured Section
           const Text(
             'Featured Items',
-            style: TextStyle(color: AppColors.textPrimary, fontSize: 20, fontWeight: FontWeight.w700),
+            style: TextStyle(
+              color: AppColors.textPrimary,
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+            ),
           ),
           const SizedBox(height: 12),
 
@@ -114,7 +123,13 @@ class MarketplaceTab extends StatelessWidget {
     );
   }
 
-  Widget _buildCategoryCard(BuildContext context, {required String title, required IconData icon, required Color color, required VoidCallback onTap}) {
+  Widget _buildCategoryCard(
+    BuildContext context, {
+    required String title,
+    required IconData icon,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -129,14 +144,27 @@ class MarketplaceTab extends StatelessWidget {
           children: [
             Icon(icon, color: color, size: 28),
             const SizedBox(height: 8),
-            Text(title, style: const TextStyle(color: AppColors.textPrimary, fontSize: 13, fontWeight: FontWeight.w600)),
+            Text(
+              title,
+              style: const TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildMarketplaceCard({required String title, required String price, required String seller, required IconData icon, required Color color}) {
+  Widget _buildMarketplaceCard({
+    required String title,
+    required String price,
+    required String seller,
+    required IconData icon,
+    required Color color,
+  }) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -156,11 +184,33 @@ class MarketplaceTab extends StatelessWidget {
             child: Icon(icon, color: color, size: 28),
           ),
           const Spacer(),
-          Text(title, style: const TextStyle(color: AppColors.textPrimary, fontSize: 15, fontWeight: FontWeight.w700), maxLines: 2, overflow: TextOverflow.ellipsis),
+          Text(
+            title,
+            style: const TextStyle(
+              color: AppColors.textPrimary,
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
           const SizedBox(height: 4),
-          Text(seller, style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+          Text(
+            seller,
+            style: const TextStyle(
+              color: AppColors.textSecondary,
+              fontSize: 12,
+            ),
+          ),
           const SizedBox(height: 8),
-          Text(price, style: const TextStyle(color: AppColors.accent, fontSize: 16, fontWeight: FontWeight.bold)),
+          Text(
+            price,
+            style: const TextStyle(
+              color: AppColors.accent,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );

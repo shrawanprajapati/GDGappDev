@@ -12,14 +12,32 @@ class InternshipPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text('Internships', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Internships',
+          style: TextStyle(
+            color: AppColors.textPrimary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
-          _buildInternshipCard('Software Engineer Intern', 'Google', 'Stipend: ₹80k/month'),
-          _buildInternshipCard('Data Analyst Intern', 'Amazon', 'Stipend: ₹60k/month'),
-          _buildInternshipCard('Product Design Intern', 'Zomato', 'Stipend: ₹40k/month'),
+          _buildInternshipCard(
+            'Software Engineer Intern',
+            'Google',
+            'Stipend: ₹80k/month',
+          ),
+          _buildInternshipCard(
+            'Data Analyst Intern',
+            'Amazon',
+            'Stipend: ₹60k/month',
+          ),
+          _buildInternshipCard(
+            'Product Design Intern',
+            'Zomato',
+            'Stipend: ₹40k/month',
+          ),
         ],
       ),
     );
@@ -38,7 +56,10 @@ class InternshipPage extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(color: AppColors.primary.withValues(alpha: 0.15), shape: BoxShape.circle),
+            decoration: BoxDecoration(
+              color: AppColors.primary.withValues(alpha: 0.15),
+              shape: BoxShape.circle,
+            ),
             child: const Icon(Icons.work, color: AppColors.primary),
           ),
           const SizedBox(width: 16),
@@ -46,18 +67,37 @@ class InternshipPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(role, style: const TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
-                Text(company, style: const TextStyle(color: AppColors.accent, fontSize: 13)),
+                Text(
+                  role,
+                  style: const TextStyle(
+                    color: AppColors.textPrimary,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  company,
+                  style: const TextStyle(color: AppColors.accent, fontSize: 13),
+                ),
                 const SizedBox(height: 4),
-                Text(stipend, style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+                Text(
+                  stipend,
+                  style: const TextStyle(
+                    color: AppColors.textSecondary,
+                    fontSize: 12,
+                  ),
+                ),
               ],
             ),
           ),
           ElevatedButton(
             onPressed: () {},
-            style: ElevatedButton.styleFrom(backgroundColor: AppColors.surface, foregroundColor: AppColors.textPrimary),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.surface,
+              foregroundColor: AppColors.textPrimary,
+            ),
             child: const Text('Apply'),
-          )
+          ),
         ],
       ),
     );

@@ -10,16 +10,23 @@ class EditProfilePage extends StatefulWidget {
 
 class _EditProfilePageState extends State<EditProfilePage> {
   final _nameController = TextEditingController(text: 'Shrawan Prajapati');
-  final _bioController = TextEditingController(text: 'B.Tech CSE • 2nd Year • IIT Indore');
+  final _bioController = TextEditingController(
+    text: 'B.Tech CSE • 2nd Year • IIT Indore',
+  );
   final _githubController = TextEditingController(text: 'github.com/shrawan');
-  final _linkedinController = TextEditingController(text: 'linkedin.com/in/shrawan');
+  final _linkedinController = TextEditingController(
+    text: 'linkedin.com/in/shrawan',
+  );
 
   // Skills list (State)
   final List<String> _skills = ['Flutter', 'Dart', 'Python', 'UI/UX Design'];
   final _newSkillController = TextEditingController();
 
   // Interests list (State)
-  final List<String> _interests = ['Internship (Summer 2025)', 'Open Source Projects'];
+  final List<String> _interests = [
+    'Internship (Summer 2025)',
+    'Open Source Projects',
+  ];
   final _newInterestController = TextEditingController();
 
   @override
@@ -54,7 +61,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
   void _saveProfile() {
     // TODO: Save to Database/API
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Profile Updated Successfully!'), backgroundColor: AppColors.accent),
+      const SnackBar(
+        content: Text('Profile Updated Successfully!'),
+        backgroundColor: AppColors.accent,
+      ),
     );
     Navigator.pop(context); // Go back to Profile Page
   }
@@ -67,7 +77,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text('Edit Profile', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Edit Profile',
+          style: TextStyle(
+            color: AppColors.textPrimary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
@@ -99,11 +115,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),
-                        decoration: const BoxDecoration(color: AppColors.accent, shape: BoxShape.circle),
-                        child: const Icon(Icons.camera_alt, size: 18, color: Colors.black),
+                        decoration: const BoxDecoration(
+                          color: AppColors.accent,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.camera_alt,
+                          size: 18,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -113,15 +136,23 @@ class _EditProfilePageState extends State<EditProfilePage> {
             _buildSectionTitle('Basic Info'),
             _buildTextField(_nameController, 'Full Name', Icons.person_outline),
             const SizedBox(height: 12),
-            _buildTextField(_bioController, 'Bio (Course, Year, College)', Icons.info_outline),
-            
+            _buildTextField(
+              _bioController,
+              'Bio (Course, Year, College)',
+              Icons.info_outline,
+            ),
+
             const SizedBox(height: 24),
 
             // Social Links
             _buildSectionTitle('Social Links'),
             _buildTextField(_githubController, 'GitHub URL', Icons.code),
             const SizedBox(height: 12),
-            _buildTextField(_linkedinController, 'LinkedIn URL', Icons.work_outline),
+            _buildTextField(
+              _linkedinController,
+              'LinkedIn URL',
+              Icons.work_outline,
+            ),
 
             const SizedBox(height: 24),
 
@@ -130,7 +161,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: _skills.map((skill) => _buildEditableChip(skill, _skills)).toList(),
+              children: _skills
+                  .map((skill) => _buildEditableChip(skill, _skills))
+                  .toList(),
             ),
             const SizedBox(height: 12),
             _buildAddField(_newSkillController, 'Add new skill', _addSkill),
@@ -142,10 +175,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: _interests.map((interest) => _buildEditableChip(interest, _interests)).toList(),
+              children: _interests
+                  .map((interest) => _buildEditableChip(interest, _interests))
+                  .toList(),
             ),
             const SizedBox(height: 12),
-            _buildAddField(_newInterestController, 'Add new interest (e.g., Internship)', _addInterest),
+            _buildAddField(
+              _newInterestController,
+              'Add new interest (e.g., Internship)',
+              _addInterest,
+            ),
 
             const SizedBox(height: 40),
 
@@ -157,9 +196,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 onPressed: _saveProfile,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
-                child: const Text('Save Profile', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                child: const Text(
+                  'Save Profile',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -172,11 +220,22 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12.0),
-      child: Text(title, style: const TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.w700)),
+      child: Text(
+        title,
+        style: const TextStyle(
+          color: AppColors.textPrimary,
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
     );
   }
 
-  Widget _buildTextField(TextEditingController controller, String hint, IconData icon) {
+  Widget _buildTextField(
+    TextEditingController controller,
+    String hint,
+    IconData icon,
+  ) {
     return TextField(
       controller: controller,
       style: const TextStyle(color: AppColors.textPrimary),
@@ -186,21 +245,35 @@ class _EditProfilePageState extends State<EditProfilePage> {
         prefixIcon: Icon(icon, color: AppColors.textSecondary, size: 20),
         filled: true,
         fillColor: AppColors.surface,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
-        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: AppColors.primary)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColors.primary),
+        ),
       ),
     );
   }
 
-  Widget _buildAddField(TextEditingController controller, String hint, VoidCallback onAdd) {
+  Widget _buildAddField(
+    TextEditingController controller,
+    String hint,
+    VoidCallback onAdd,
+  ) {
     return Row(
       children: [
         Expanded(child: _buildTextField(controller, hint, Icons.add)),
         const SizedBox(width: 12),
         IconButton(
           onPressed: onAdd,
-          icon: const Icon(Icons.check_circle, color: AppColors.accent, size: 32),
-        )
+          icon: const Icon(
+            Icons.check_circle,
+            color: AppColors.accent,
+            size: 32,
+          ),
+        ),
       ],
     );
   }

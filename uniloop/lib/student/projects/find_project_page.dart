@@ -31,7 +31,7 @@ class FindProjectPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 50),
-              
+
               // 1. Induction
               _buildCategoryCard(
                 context,
@@ -41,14 +41,17 @@ class FindProjectPage extends StatelessWidget {
                 color: Colors.deepPurpleAccent,
                 onTap: () {
                   Navigator.push(
-                    context, 
-                    MaterialPageRoute(builder: (context) => const ProjectListPage(category: 'Induction')),
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const ProjectListPage(category: 'Induction'),
+                    ),
                   );
                 },
               ),
-              
+
               const SizedBox(height: 16),
-              
+
               // 2. Industrial
               _buildCategoryCard(
                 context,
@@ -58,14 +61,17 @@ class FindProjectPage extends StatelessWidget {
                 color: AppColors.accent,
                 onTap: () {
                   Navigator.push(
-                    context, 
-                    MaterialPageRoute(builder: (context) => const ProjectListPage(category: 'Industrial')),
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const ProjectListPage(category: 'Industrial'),
+                    ),
                   );
                 },
               ),
 
               const SizedBox(height: 16),
-              
+
               // 3. Professor
               _buildCategoryCard(
                 context,
@@ -75,8 +81,11 @@ class FindProjectPage extends StatelessWidget {
                 color: Colors.orangeAccent,
                 onTap: () {
                   Navigator.push(
-                    context, 
-                    MaterialPageRoute(builder: (context) => const ProjectListPage(category: 'Professor')),
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const ProjectListPage(category: 'Professor'),
+                    ),
                   );
                 },
               ),
@@ -89,11 +98,11 @@ class FindProjectPage extends StatelessWidget {
 
   Widget _buildCategoryCard(
     BuildContext context, {
-    required String title, 
+    required String title,
     required String subtitle,
     required IconData icon,
     required Color color,
-    required VoidCallback onTap
+    required VoidCallback onTap,
   }) {
     return InkWell(
       onTap: onTap,
@@ -139,7 +148,11 @@ class FindProjectPage extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(Icons.arrow_forward_ios, color: AppColors.textSecondary, size: 16),
+            const Icon(
+              Icons.arrow_forward_ios,
+              color: AppColors.textSecondary,
+              size: 16,
+            ),
           ],
         ),
       ),

@@ -22,28 +22,48 @@ class LoopAiTab extends StatelessWidget {
                       color: AppColors.primary.withValues(alpha: 0.2),
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.auto_awesome, color: AppColors.primary),
+                    child: const Icon(
+                      Icons.auto_awesome,
+                      color: AppColors.primary,
+                    ),
                   ),
                   const SizedBox(width: 12),
                   const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Loop AI', style: TextStyle(color: AppColors.textPrimary, fontSize: 20, fontWeight: FontWeight.bold)),
-                      Text('Your campus assistant', style: TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+                      Text(
+                        'Loop AI',
+                        style: TextStyle(
+                          color: AppColors.textPrimary,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        'Your campus assistant',
+                        style: TextStyle(
+                          color: AppColors.textSecondary,
+                          fontSize: 12,
+                        ),
+                      ),
                     ],
                   ),
                 ],
               ),
             ),
-            
+
             // Chat Area (Dummy)
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 children: [
-                  _buildBotMessage("Hi Shrawan! I'm Loop AI. How can I help you today? You can ask me about projects, clubs, or your schedule."),
+                  _buildBotMessage(
+                    "Hi Shrawan! I'm Loop AI. How can I help you today? You can ask me about projects, clubs, or your schedule.",
+                  ),
                   _buildUserMessage("Find me a project related to Flutter."),
-                  _buildBotMessage("I found 2 Flutter projects matching your skills:\n1. Campus Navigation App (TechCorp)\n2. College Event Website (Gymkhana)\n\nWould you like to see the details?"),
+                  _buildBotMessage(
+                    "I found 2 Flutter projects matching your skills:\n1. Campus Navigation App (TechCorp)\n2. College Event Website (Gymkhana)\n\nWould you like to see the details?",
+                  ),
                 ],
               ),
             ),
@@ -52,11 +72,16 @@ class LoopAiTab extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.surface,
                   borderRadius: BorderRadius.circular(24),
-                  border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+                  border: Border.all(
+                    color: Colors.white.withValues(alpha: 0.05),
+                  ),
                 ),
                 child: Row(
                   children: [
@@ -73,7 +98,7 @@ class LoopAiTab extends StatelessWidget {
                     IconButton(
                       icon: const Icon(Icons.send, color: AppColors.primary),
                       onPressed: () {},
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -100,7 +125,14 @@ class LoopAiTab extends StatelessWidget {
           ),
           border: Border.all(color: AppColors.primary.withValues(alpha: 0.2)),
         ),
-        child: Text(text, style: const TextStyle(color: AppColors.textPrimary, fontSize: 14, height: 1.5)),
+        child: Text(
+          text,
+          style: const TextStyle(
+            color: AppColors.textPrimary,
+            fontSize: 14,
+            height: 1.5,
+          ),
+        ),
       ),
     );
   }
@@ -120,7 +152,14 @@ class LoopAiTab extends StatelessWidget {
             bottomLeft: Radius.circular(16),
           ),
         ),
-        child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 14, height: 1.5)),
+        child: Text(
+          text,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+            height: 1.5,
+          ),
+        ),
       ),
     );
   }

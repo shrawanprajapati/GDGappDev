@@ -52,16 +52,19 @@ class ClubDetailPage extends StatelessWidget {
                       const SizedBox(height: 4),
                       Text(
                         '$category • $members',
-                        style: const TextStyle(color: AppColors.textSecondary, fontSize: 13),
+                        style: const TextStyle(
+                          color: AppColors.textSecondary,
+                          fontSize: 13,
+                        ),
                       ),
                     ],
                   ),
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 30),
-            
+
             // Action Buttons (Join & Projects)
             Row(
               children: [
@@ -71,10 +74,15 @@ class ClubDetailPage extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: color,
                       foregroundColor: Colors.black,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                       padding: const EdgeInsets.symmetric(vertical: 14),
                     ),
-                    child: const Text('Join Club', style: TextStyle(fontWeight: FontWeight.bold)),
+                    child: const Text(
+                      'Join Club',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -86,7 +94,9 @@ class ClubDetailPage extends StatelessWidget {
                     style: OutlinedButton.styleFrom(
                       side: BorderSide(color: color),
                       foregroundColor: color,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                       padding: const EdgeInsets.symmetric(vertical: 14),
                     ),
                     child: const Text('Find Projects'),
@@ -100,12 +110,20 @@ class ClubDetailPage extends StatelessWidget {
             // Common Highlights
             const Text(
               'Common Highlights',
-              style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.w700),
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+              ),
             ),
             const SizedBox(height: 10),
             Text(
               'The $clubName is a community of passionate individuals. We organize workshops, hackathons, and industry-level projects to help students grow beyond the classroom.',
-              style: const TextStyle(color: AppColors.textSecondary, fontSize: 14, height: 1.5),
+              style: const TextStyle(
+                color: AppColors.textSecondary,
+                fontSize: 14,
+                height: 1.5,
+              ),
             ),
 
             const SizedBox(height: 30),
@@ -113,10 +131,14 @@ class ClubDetailPage extends StatelessWidget {
             // Projects & Inductions
             const Text(
               'Ongoing Projects & Inductions',
-              style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.w700),
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+              ),
             ),
             const SizedBox(height: 12),
-            
+
             // Project Card
             Container(
               padding: const EdgeInsets.all(16),
@@ -133,19 +155,39 @@ class ClubDetailPage extends StatelessWidget {
                     children: [
                       const Text(
                         'Induction Project 2024',
-                        style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                          color: AppColors.textPrimary,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                        decoration: BoxDecoration(color: color.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(6)),
-                        child: Text('Open', style: TextStyle(color: color, fontSize: 12, fontWeight: FontWeight.bold)),
-                      )
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: color.withValues(alpha: 0.2),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Text(
+                          'Open',
+                          style: TextStyle(
+                            color: color,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 8),
                   const Text(
                     'Build a real-world application to qualify for club membership.',
-                    style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
+                    style: TextStyle(
+                      color: AppColors.textSecondary,
+                      fontSize: 13,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
@@ -155,11 +197,13 @@ class ClubDetailPage extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.background,
                         foregroundColor: AppColors.textPrimary,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
                       child: const Text('View Details'),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

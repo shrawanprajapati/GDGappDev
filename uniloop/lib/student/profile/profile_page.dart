@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
-import 'edit_profile_page.dart'; 
+import 'edit_profile_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -13,17 +13,25 @@ class ProfilePage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text('My Profile', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'My Profile',
+          style: TextStyle(
+            color: AppColors.textPrimary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit_outlined, color: AppColors.textPrimary),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const EditProfilePage()),
+                MaterialPageRoute(
+                  builder: (context) => const EditProfilePage(),
+                ),
               );
             },
-          )
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -49,33 +57,55 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   const Text(
-                    'Shrawan Prajapati', 
-                    style: TextStyle(color: AppColors.textPrimary, fontSize: 24, fontWeight: FontWeight.w800)
+                    'Shrawan Prajapati',
+                    style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   const Text(
-                    'B.Tech CSE • 2nd Year • IIT Indore', 
-                    style: TextStyle(color: AppColors.textSecondary, fontSize: 14)
+                    'B.Tech CSE • 2nd Year • IIT Indore',
+                    style: TextStyle(
+                      color: AppColors.textSecondary,
+                      fontSize: 14,
+                    ),
                   ),
                 ],
               ),
             ),
-            
+
             const SizedBox(height: 30),
 
             // 2. Social Links
             Row(
               children: [
-                Expanded(child: _buildLinkCard(Icons.code, 'GitHub', Colors.white)),
+                Expanded(
+                  child: _buildLinkCard(Icons.code, 'GitHub', Colors.white),
+                ),
                 const SizedBox(width: 12),
-                Expanded(child: _buildLinkCard(Icons.work, 'LinkedIn', Colors.blueAccent)),
+                Expanded(
+                  child: _buildLinkCard(
+                    Icons.work,
+                    'LinkedIn',
+                    Colors.blueAccent,
+                  ),
+                ),
               ],
             ),
 
             const SizedBox(height: 30),
 
             // 3. Clubs & Councils
-            const Text('Clubs & Councils', style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.w700)),
+            const Text(
+              'Clubs & Councils',
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
             const SizedBox(height: 12),
             Wrap(
               spacing: 10,
@@ -90,7 +120,14 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 30),
 
             // 4. Skills
-            const Text('Skills', style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.w700)),
+            const Text(
+              'Skills',
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
             const SizedBox(height: 12),
             Wrap(
               spacing: 10,
@@ -106,7 +143,14 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 30),
 
             // 5. Interests
-            const Text('Interests & Preferences', style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.w700)),
+            const Text(
+              'Interests & Preferences',
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
             const SizedBox(height: 12),
             Container(
               padding: const EdgeInsets.all(16),
@@ -118,7 +162,13 @@ class ProfilePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
-                  Text('Looking for:', style: TextStyle(color: AppColors.textSecondary, fontSize: 13)),
+                  Text(
+                    'Looking for:',
+                    style: TextStyle(
+                      color: AppColors.textSecondary,
+                      fontSize: 13,
+                    ),
+                  ),
                   SizedBox(height: 8),
                   _InterestItem(text: 'Internship (Summer 2025)'),
                   SizedBox(height: 6),
@@ -130,14 +180,23 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 30),
 
             // 6. Resume
-            const Text('Resume', style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.w700)),
+            const Text(
+              'Resume',
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
             const SizedBox(height: 12),
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: AppColors.surface,
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
+                border: Border.all(
+                  color: AppColors.primary.withValues(alpha: 0.3),
+                ),
               ),
               child: Row(
                 children: [
@@ -147,23 +206,42 @@ class ProfilePage extends StatelessWidget {
                       color: AppColors.primary.withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Icon(Icons.picture_as_pdf, color: AppColors.primary, size: 30),
+                    child: const Icon(
+                      Icons.picture_as_pdf,
+                      color: AppColors.primary,
+                      size: 30,
+                    ),
                   ),
                   const SizedBox(width: 16),
                   const Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Shrawan_Resume.pdf', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w600)),
+                        Text(
+                          'Shrawan_Resume.pdf',
+                          style: TextStyle(
+                            color: AppColors.textPrimary,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                         SizedBox(height: 4),
-                        Text('Uploaded • 2 days ago', style: TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+                        Text(
+                          'Uploaded • 2 days ago',
+                          style: TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: 12,
+                          ),
+                        ),
                       ],
                     ),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.upload_file, color: AppColors.accent),
+                    icon: const Icon(
+                      Icons.upload_file,
+                      color: AppColors.accent,
+                    ),
                     onPressed: () {},
-                  )
+                  ),
                 ],
               ),
             ),
@@ -190,7 +268,13 @@ class ProfilePage extends StatelessWidget {
           children: [
             Icon(icon, color: color, size: 20),
             const SizedBox(width: 8),
-            Text(title, style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w600)),
+            Text(
+              title,
+              style: const TextStyle(
+                color: AppColors.textPrimary,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ],
         ),
       ),
@@ -212,7 +296,14 @@ class _TagChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
-      child: Text(label, style: TextStyle(color: color, fontSize: 13, fontWeight: FontWeight.w500)),
+      child: Text(
+        label,
+        style: TextStyle(
+          color: color,
+          fontSize: 13,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
     );
   }
 }
@@ -227,7 +318,10 @@ class _InterestItem extends StatelessWidget {
       children: [
         const Icon(Icons.check_circle, color: AppColors.accent, size: 16),
         const SizedBox(width: 8),
-        Text(text, style: const TextStyle(color: AppColors.textPrimary, fontSize: 14)),
+        Text(
+          text,
+          style: const TextStyle(color: AppColors.textPrimary, fontSize: 14),
+        ),
       ],
     );
   }

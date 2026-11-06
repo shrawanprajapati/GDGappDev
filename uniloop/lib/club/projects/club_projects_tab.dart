@@ -12,13 +12,23 @@ class ClubProjectsTab extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('Club Projects', style: TextStyle(color: AppColors.textPrimary, fontSize: 20, fontWeight: FontWeight.bold)),
+            const Text(
+              'Club Projects',
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             ElevatedButton.icon(
               onPressed: () => _showCreateProjectDialog(context),
               icon: const Icon(Icons.add, size: 16),
               label: const Text('New Project'),
-              style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary, foregroundColor: Colors.white),
-            )
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primary,
+                foregroundColor: Colors.white,
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 20),
@@ -37,9 +47,16 @@ class ClubProjectsTab extends StatelessWidget {
           stats: '12 Applied • In Progress',
           isActive: true,
         ),
-        
+
         const SizedBox(height: 10),
-        const Text('Completed Projects', style: TextStyle(color: AppColors.textSecondary, fontSize: 14, fontWeight: FontWeight.bold)),
+        const Text(
+          'Completed Projects',
+          style: TextStyle(
+            color: AppColors.textSecondary,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         const SizedBox(height: 10),
         _buildProjectCard(
           context,
@@ -52,14 +69,24 @@ class ClubProjectsTab extends StatelessWidget {
     );
   }
 
-  Widget _buildProjectCard(BuildContext context, {required String title, required String type, required String stats, required bool isActive}) {
+  Widget _buildProjectCard(
+    BuildContext context, {
+    required String title,
+    required String type,
+    required String stats,
+    required bool isActive,
+  }) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.surface, 
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: isActive ? AppColors.primary.withValues(alpha: 0.3) : Colors.transparent),
+        border: Border.all(
+          color: isActive
+              ? AppColors.primary.withValues(alpha: 0.3)
+              : Colors.transparent,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,29 +96,56 @@ class ClubProjectsTab extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                decoration: BoxDecoration(color: AppColors.primary.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(4)),
-                child: Text(type, style: const TextStyle(color: AppColors.primary, fontSize: 10, fontWeight: FontWeight.bold)),
+                decoration: BoxDecoration(
+                  color: AppColors.primary.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Text(
+                  type,
+                  style: const TextStyle(
+                    color: AppColors.primary,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               if (isActive)
-                const Icon(Icons.more_vert, color: AppColors.textSecondary)
+                const Icon(Icons.more_vert, color: AppColors.textSecondary),
             ],
           ),
           const SizedBox(height: 8),
-          Text(title, style: const TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
+          Text(
+            title,
+            style: const TextStyle(
+              color: AppColors.textPrimary,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(stats, style: TextStyle(color: isActive ? AppColors.accent : AppColors.textSecondary, fontSize: 13, fontWeight: FontWeight.bold)),
+              Text(
+                stats,
+                style: TextStyle(
+                  color: isActive ? AppColors.accent : AppColors.textSecondary,
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               if (isActive)
                 TextButton(
                   onPressed: () {
-                    // Applicants view
+                    _showApplicants(context, title);
                   },
-                  child: const Text('View Applicants', style: TextStyle(color: AppColors.primary, fontSize: 12)),
-                )
+                  child: const Text(
+                    'View Applicants',
+                    style: TextStyle(color: AppColors.primary, fontSize: 12),
+                  ),
+                ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -102,15 +156,29 @@ class ClubProjectsTab extends StatelessWidget {
       context: context,
       backgroundColor: AppColors.surface,
       isScrollControlled: true,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
       builder: (context) {
         return Padding(
-          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom, left: 20, right: 20, top: 20),
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+            left: 20,
+            right: 20,
+            top: 20,
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Post New Project', style: TextStyle(color: AppColors.textPrimary, fontSize: 20, fontWeight: FontWeight.bold)),
+              const Text(
+                'Post New Project',
+                style: TextStyle(
+                  color: AppColors.textPrimary,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               const SizedBox(height: 16),
               _buildInputField('Project Title'),
               const SizedBox(height: 12),
@@ -125,11 +193,25 @@ class ClubProjectsTab extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Project Posted!'), backgroundColor: AppColors.accent),
+                      const SnackBar(
+                        content: Text('Project Posted!'),
+                        backgroundColor: AppColors.accent,
+                      ),
                     );
                   },
-                  style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
-                  child: const Text('Post Project', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text(
+                    'Post Project',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 30),
@@ -137,6 +219,14 @@ class ClubProjectsTab extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  void _showApplicants(BuildContext context, String projectTitle) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: AppColors.surface,
+      builder: (_) => _ClubApplicantsSheet(projectTitle: projectTitle),
     );
   }
 
@@ -149,7 +239,80 @@ class ClubProjectsTab extends StatelessWidget {
         hintStyle: const TextStyle(color: AppColors.textSecondary),
         filled: true,
         fillColor: AppColors.background,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
+      ),
+    );
+  }
+}
+
+class _ClubApplicantsSheet extends StatefulWidget {
+  const _ClubApplicantsSheet({required this.projectTitle});
+  final String projectTitle;
+  @override
+  State<_ClubApplicantsSheet> createState() => _ClubApplicantsSheetState();
+}
+
+class _ClubApplicantsSheetState extends State<_ClubApplicantsSheet> {
+  final decisions = <String, String>{};
+  final applicants = ['Aarav Mehta', 'Riya Kapoor', 'Kabir Singh'];
+  @override
+  Widget build(BuildContext context) => SafeArea(
+    child: Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Applicants · ${widget.projectTitle}',
+            style: const TextStyle(
+              color: AppColors.textPrimary,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 12),
+          ...applicants.map(_applicant),
+        ],
+      ),
+    ),
+  );
+  Widget _applicant(String name) {
+    final decision = decisions[name];
+    return Card(
+      color: AppColors.background,
+      child: ListTile(
+        title: Text(name, style: const TextStyle(color: AppColors.textPrimary)),
+        subtitle: const Text(
+          'Student applicant · CSE',
+          style: TextStyle(color: AppColors.textSecondary),
+        ),
+        trailing: decision == null
+            ? Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextButton(
+                    onPressed: () =>
+                        setState(() => decisions[name] = 'Accepted'),
+                    child: const Text(
+                      'Accept',
+                      style: TextStyle(color: AppColors.accent),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () =>
+                        setState(() => decisions[name] = 'Rejected'),
+                    child: const Text(
+                      'Reject',
+                      style: TextStyle(color: AppColors.textSecondary),
+                    ),
+                  ),
+                ],
+              )
+            : Text(decision, style: const TextStyle(color: AppColors.accent)),
       ),
     );
   }

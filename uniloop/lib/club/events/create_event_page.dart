@@ -10,7 +10,12 @@ class CreateEventPage extends StatefulWidget {
 
 class _CreateEventPageState extends State<CreateEventPage> {
   String _selectedCategory = 'Technical';
-  final List<String> _categories = ['Technical', 'Cultural', 'Sports', 'Induction'];
+  final List<String> _categories = [
+    'Technical',
+    'Cultural',
+    'Sports',
+    'Induction',
+  ];
 
   final _titleController = TextEditingController();
   final _descController = TextEditingController();
@@ -26,7 +31,10 @@ class _CreateEventPageState extends State<CreateEventPage> {
 
   void _publishEvent() {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Event Published Successfully!'), backgroundColor: AppColors.accent),
+      const SnackBar(
+        content: Text('Event Published Successfully!'),
+        backgroundColor: AppColors.accent,
+      ),
     );
     Navigator.pop(context);
   }
@@ -39,7 +47,13 @@ class _CreateEventPageState extends State<CreateEventPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text('Host an Event', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Host an Event',
+          style: TextStyle(
+            color: AppColors.textPrimary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
@@ -58,9 +72,19 @@ class _CreateEventPageState extends State<CreateEventPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Icon(Icons.add_photo_alternate_outlined, size: 40, color: AppColors.textSecondary),
+                  Icon(
+                    Icons.add_photo_alternate_outlined,
+                    size: 40,
+                    color: AppColors.textSecondary,
+                  ),
                   SizedBox(height: 8),
-                  Text('Upload Event Banner', style: TextStyle(color: AppColors.textSecondary, fontSize: 14)),
+                  Text(
+                    'Upload Event Banner',
+                    style: TextStyle(
+                      color: AppColors.textSecondary,
+                      fontSize: 14,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -84,12 +108,18 @@ class _CreateEventPageState extends State<CreateEventPage> {
                 child: DropdownButton<String>(
                   value: _selectedCategory,
                   dropdownColor: AppColors.surface,
-                  icon: const Icon(Icons.arrow_drop_down, color: AppColors.textSecondary),
+                  icon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: AppColors.textSecondary,
+                  ),
                   isExpanded: true,
                   items: _categories.map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value, style: const TextStyle(color: AppColors.textPrimary)),
+                      child: Text(
+                        value,
+                        style: const TextStyle(color: AppColors.textPrimary),
+                      ),
                     );
                   }).toList(),
                   onChanged: (newValue) {
@@ -110,7 +140,11 @@ class _CreateEventPageState extends State<CreateEventPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _buildLabel('Date'),
-                      _buildTextField(TextEditingController(), 'Select Date', icon: Icons.calendar_today),
+                      _buildTextField(
+                        TextEditingController(),
+                        'Select Date',
+                        icon: Icons.calendar_today,
+                      ),
                     ],
                   ),
                 ),
@@ -120,7 +154,11 @@ class _CreateEventPageState extends State<CreateEventPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _buildLabel('Time'),
-                      _buildTextField(TextEditingController(), 'Select Time', icon: Icons.access_time),
+                      _buildTextField(
+                        TextEditingController(),
+                        'Select Time',
+                        icon: Icons.access_time,
+                      ),
                     ],
                   ),
                 ),
@@ -130,13 +168,21 @@ class _CreateEventPageState extends State<CreateEventPage> {
 
             // Location
             _buildLabel('Location'),
-            _buildTextField(_locationController, 'e.g., Main Auditorium', icon: Icons.location_on_outlined),
+            _buildTextField(
+              _locationController,
+              'e.g., Main Auditorium',
+              icon: Icons.location_on_outlined,
+            ),
             const SizedBox(height: 20),
 
             // Description
             _buildLabel('Description'),
-            _buildTextField(_descController, 'Describe your event...', maxLines: 4),
-            
+            _buildTextField(
+              _descController,
+              'Describe your event...',
+              maxLines: 4,
+            ),
+
             const SizedBox(height: 40),
 
             // Publish Button
@@ -147,9 +193,18 @@ class _CreateEventPageState extends State<CreateEventPage> {
                 onPressed: _publishEvent,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
-                child: const Text('Publish Event', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                child: const Text(
+                  'Publish Event',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -162,11 +217,23 @@ class _CreateEventPageState extends State<CreateEventPage> {
   Widget _buildLabel(String text) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
-      child: Text(text, style: const TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.w600)),
+      child: Text(
+        text,
+        style: const TextStyle(
+          color: AppColors.textPrimary,
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
     );
   }
 
-  Widget _buildTextField(TextEditingController controller, String hint, {IconData? icon, int maxLines = 1}) {
+  Widget _buildTextField(
+    TextEditingController controller,
+    String hint, {
+    IconData? icon,
+    int maxLines = 1,
+  }) {
     return TextField(
       controller: controller,
       maxLines: maxLines,
@@ -174,11 +241,19 @@ class _CreateEventPageState extends State<CreateEventPage> {
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: const TextStyle(color: AppColors.textSecondary),
-        prefixIcon: icon != null ? Icon(icon, color: AppColors.textSecondary, size: 20) : null,
+        prefixIcon: icon != null
+            ? Icon(icon, color: AppColors.textSecondary, size: 20)
+            : null,
         filled: true,
         fillColor: AppColors.surface,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
-        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: AppColors.primary)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColors.primary),
+        ),
       ),
     );
   }

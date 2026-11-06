@@ -6,15 +6,29 @@ class CompaniesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final companies = ['Google', 'Microsoft', 'Amazon', 'Goldman Sachs', 'TCS', 'Infosys', 'Zomato'];
-    
+    final companies = [
+      'Google',
+      'Microsoft',
+      'Amazon',
+      'Goldman Sachs',
+      'TCS',
+      'Infosys',
+      'Zomato',
+    ];
+
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text('Companies', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Companies',
+          style: TextStyle(
+            color: AppColors.textPrimary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(20),
@@ -30,10 +44,23 @@ class CompaniesPage extends StatelessWidget {
             child: ListTile(
               leading: CircleAvatar(
                 backgroundColor: AppColors.background,
-                child: Text(companies[index][0], style: const TextStyle(color: AppColors.textPrimary)),
+                child: Text(
+                  companies[index][0],
+                  style: const TextStyle(color: AppColors.textPrimary),
+                ),
               ),
-              title: Text(companies[index], style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w600)),
-              trailing: const Icon(Icons.arrow_forward_ios, size: 14, color: AppColors.textSecondary),
+              title: Text(
+                companies[index],
+                style: const TextStyle(
+                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 14,
+                color: AppColors.textSecondary,
+              ),
               onTap: () {},
             ),
           );

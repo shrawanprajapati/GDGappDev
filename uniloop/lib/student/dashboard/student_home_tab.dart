@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/app_colors.dart'; // (Kyunki core bahar hai student folder se)
 import '../events/student_events_page.dart'; // 👈 Ye line change karo (student folder se direct)
 import '../projects/find_project_page.dart'; // 👈 Ye line change karo (student folder se direct)
+
 class StudentHomeTab extends StatelessWidget {
   const StudentHomeTab({super.key});
 
@@ -20,7 +21,7 @@ class StudentHomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 👈 2. Student ka naam (Baad me API/Backend se aayega)
-    const String studentName = 'Shrawan'; 
+    const String studentName = 'Shrawan';
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20.0),
@@ -39,10 +40,7 @@ class StudentHomeTab extends StatelessWidget {
           const SizedBox(height: 4),
           const Text(
             'What are you looking to build today?',
-            style: TextStyle(
-              fontSize: 14,
-              color: AppColors.textSecondary,
-            ),
+            style: TextStyle(fontSize: 14, color: AppColors.textSecondary),
           ),
           const SizedBox(height: 30),
 
@@ -124,20 +122,31 @@ class StudentHomeTab extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.primary.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Text(
                     'IIT BHU Induction',
-                    style: TextStyle(color: AppColors.primary, fontSize: 12, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      color: AppColors.primary,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 12),
                 const Text(
                   'Click to explore\ninduction projects',
-                  style: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                    color: AppColors.textPrimary,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ],
             ),
@@ -148,7 +157,7 @@ class StudentHomeTab extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
               child: const Icon(Icons.arrow_forward, color: Colors.black),
-            )
+            ),
           ],
         ),
       ),
@@ -168,7 +177,9 @@ class StudentHomeTab extends StatelessWidget {
               if (isEvent) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const StudentEventsPage()),
+                  MaterialPageRoute(
+                    builder: (context) => const StudentEventsPage(),
+                  ),
                 );
               }
             },
@@ -192,12 +203,19 @@ class StudentHomeTab extends StatelessWidget {
                   const Spacer(),
                   Text(
                     isEvent ? 'Tech Fest 2024' : 'Hackathon Winners',
-                    style: const TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.w600),
+                    style: const TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     isEvent ? 'Oct 24 • Main Audi' : 'Trending #1',
-                    style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                    style: const TextStyle(
+                      color: AppColors.textSecondary,
+                      fontSize: 12,
+                    ),
                   ),
                 ],
               ),
@@ -231,7 +249,10 @@ class StudentHomeTab extends StatelessWidget {
                 color: AppColors.background,
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.lightbulb_outline, color: AppColors.accent),
+              child: const Icon(
+                Icons.lightbulb_outline,
+                color: AppColors.accent,
+              ),
             ),
             const SizedBox(width: 16),
             const Expanded(
@@ -240,12 +261,19 @@ class StudentHomeTab extends StatelessWidget {
                 children: [
                   Text(
                     'AI Project: Smart Campus',
-                    style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w600, fontSize: 15),
+                    style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15,
+                    ),
                   ),
                   SizedBox(height: 4),
                   Text(
                     'Matches your Python & ML skills',
-                    style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
+                    style: TextStyle(
+                      color: AppColors.textSecondary,
+                      fontSize: 13,
+                    ),
                   ),
                 ],
               ),

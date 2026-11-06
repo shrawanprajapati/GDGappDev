@@ -27,12 +27,19 @@ class _ProfessorDashboardState extends State<ProfessorDashboard> {
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
-        title: const Text('Professor Portal', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Professor Portal',
+          style: TextStyle(
+            color: AppColors.textPrimary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout, color: AppColors.textPrimary),
-            onPressed: () => Navigator.popUntil(context, (route) => route.isFirst),
-          )
+            onPressed: () =>
+                Navigator.popUntil(context, (route) => route.isFirst),
+          ),
         ],
       ),
       body: _tabs[_currentIndex],

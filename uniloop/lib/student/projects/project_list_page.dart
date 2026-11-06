@@ -30,12 +30,13 @@ class ProjectListPage extends StatelessWidget {
         'type': 'Industrial',
         'status': 'Open',
       },
-      
+
       // --- INDUCTION PROJECTS ---
       {
         'title': 'GDG Recruitment Task: Build a Portfolio',
         'postedBy': 'Google Developer Groups (GDG)',
-        'desc': 'Build a responsive personal portfolio website to get inducted into the Web Dev team.',
+        'desc':
+            'Build a responsive personal portfolio website to get inducted into the Web Dev team.',
         'skills': ['HTML/CSS', 'JavaScript', 'React'],
         'budget': 'Induction Task',
         'duration': '1 Week',
@@ -45,7 +46,8 @@ class ProjectListPage extends StatelessWidget {
       {
         'title': 'Programming Club Induction: CP Contest',
         'postedBy': 'Programming Club (P Club)',
-        'desc': 'Participate in the competitive coding contest and solve at least 4 problems to get shortlisted.',
+        'desc':
+            'Participate in the competitive coding contest and solve at least 4 problems to get shortlisted.',
         'skills': ['C++', 'Data Structures'],
         'budget': 'Induction Task',
         'duration': '3 Hours',
@@ -55,7 +57,8 @@ class ProjectListPage extends StatelessWidget {
       {
         'title': 'Robotics Cell Induction: Line Follower Bot',
         'postedBy': 'Robotics Cell',
-        'desc': 'Build a basic line follower robot and submit a video demonstration of it working.',
+        'desc':
+            'Build a basic line follower robot and submit a video demonstration of it working.',
         'skills': ['Arduino', 'Embedded C'],
         'budget': 'Induction Task',
         'duration': '2 Weeks',
@@ -76,7 +79,9 @@ class ProjectListPage extends StatelessWidget {
       },
     ];
 
-    final filteredProjects = allProjects.where((p) => p['type'] == category).toList();
+    final filteredProjects = allProjects
+        .where((p) => p['type'] == category)
+        .toList();
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -84,10 +89,21 @@ class ProjectListPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: Text(category, style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
+        title: Text(
+          category,
+          style: const TextStyle(
+            color: AppColors.textPrimary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: filteredProjects.isEmpty
-          ? const Center(child: Text("No projects found.", style: TextStyle(color: AppColors.textSecondary)))
+          ? const Center(
+              child: Text(
+                "No projects found.",
+                style: TextStyle(color: AppColors.textSecondary),
+              ),
+            )
           : ListView.builder(
               padding: const EdgeInsets.all(20),
               itemCount: filteredProjects.length,
@@ -111,7 +127,12 @@ class ProjectListPage extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailsPage(projectData: project)));
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProjectDetailsPage(projectData: project),
+          ),
+        );
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
@@ -128,66 +149,129 @@ class ProjectListPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: typeColor.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
-                    project['type'].toUpperCase(), 
-                    style: TextStyle(color: typeColor, fontSize: 11, fontWeight: FontWeight.bold)
+                    project['type'].toUpperCase(),
+                    style: TextStyle(
+                      color: typeColor,
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 if (project['status'] == 'Urgent')
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                    decoration: BoxDecoration(color: Colors.redAccent.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(4)),
-                    child: const Text('Urgent', style: TextStyle(color: Colors.redAccent, fontSize: 10, fontWeight: FontWeight.bold)),
-                  )
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 2,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.redAccent.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: const Text(
+                      'Urgent',
+                      style: TextStyle(
+                        color: Colors.redAccent,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
               ],
             ),
             const SizedBox(height: 12),
-            Text(project['title'], style: const TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.w700)),
+            Text(
+              project['title'],
+              style: const TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 18,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
             const SizedBox(height: 6),
-            
+
             Row(
               children: [
-                const Icon(Icons.business, size: 14, color: AppColors.textSecondary),
+                const Icon(
+                  Icons.business,
+                  size: 14,
+                  color: AppColors.textSecondary,
+                ),
                 const SizedBox(width: 6),
                 Expanded(
                   child: Text(
-                    project['postedBy'], 
-                    style: const TextStyle(color: AppColors.textSecondary, fontSize: 13),
+                    project['postedBy'],
+                    style: const TextStyle(
+                      color: AppColors.textSecondary,
+                      fontSize: 13,
+                    ),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 16),
-            
+
             Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: (project['skills'] as List<String>).map((skill) => Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                decoration: BoxDecoration(
-                  color: AppColors.background,
-                  borderRadius: BorderRadius.circular(6),
-                  border: Border.all(color: Colors.white.withValues(alpha: 0.05))
-                ),
-                child: Text(skill, style: const TextStyle(color: AppColors.textPrimary, fontSize: 11)),
-              )).toList(),
+              children: (project['skills'] as List<String>)
+                  .map(
+                    (skill) => Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.background,
+                        borderRadius: BorderRadius.circular(6),
+                        border: Border.all(
+                          color: Colors.white.withValues(alpha: 0.05),
+                        ),
+                      ),
+                      child: Text(
+                        skill,
+                        style: const TextStyle(
+                          color: AppColors.textPrimary,
+                          fontSize: 11,
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
             ),
             const SizedBox(height: 16),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('${project['budget']} • ${project['duration']}', style: const TextStyle(color: AppColors.textPrimary, fontSize: 13, fontWeight: FontWeight.w600)),
-                const Text('View Details', style: TextStyle(color: AppColors.accent, fontSize: 13, fontWeight: FontWeight.bold)),
+                Text(
+                  '${project['budget']} • ${project['duration']}',
+                  style: const TextStyle(
+                    color: AppColors.textPrimary,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const Text(
+                  'View Details',
+                  style: TextStyle(
+                    color: AppColors.accent,
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

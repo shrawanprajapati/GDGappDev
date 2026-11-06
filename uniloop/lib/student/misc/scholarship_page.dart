@@ -12,14 +12,32 @@ class ScholarshipPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text('Scholarships', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Scholarships',
+          style: TextStyle(
+            color: AppColors.textPrimary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
-          _buildScholarshipCard('Merit-cum-Means Scholarship', 'For top 10% students', 'Deadline: Nov 30'),
-          _buildScholarshipCard('Google Generation Scholarship', 'For CS students', 'Deadline: Dec 15'),
-          _buildScholarshipCard('Reliance Foundation Scholarship', 'For all UG students', 'Deadline: Jan 10'),
+          _buildScholarshipCard(
+            'Merit-cum-Means Scholarship',
+            'For top 10% students',
+            'Deadline: Nov 30',
+          ),
+          _buildScholarshipCard(
+            'Google Generation Scholarship',
+            'For CS students',
+            'Deadline: Dec 15',
+          ),
+          _buildScholarshipCard(
+            'Reliance Foundation Scholarship',
+            'For all UG students',
+            'Deadline: Jan 10',
+          ),
         ],
       ),
     );
@@ -42,10 +60,26 @@ class ScholarshipPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: const TextStyle(color: AppColors.textPrimary, fontSize: 15, fontWeight: FontWeight.bold)),
-                Text(desc, style: const TextStyle(color: AppColors.textSecondary, fontSize: 13)),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    color: AppColors.textPrimary,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  desc,
+                  style: const TextStyle(
+                    color: AppColors.textSecondary,
+                    fontSize: 13,
+                  ),
+                ),
                 const SizedBox(height: 4),
-                Text(deadline, style: const TextStyle(color: Colors.redAccent, fontSize: 12)),
+                Text(
+                  deadline,
+                  style: const TextStyle(color: Colors.redAccent, fontSize: 12),
+                ),
               ],
             ),
           ),

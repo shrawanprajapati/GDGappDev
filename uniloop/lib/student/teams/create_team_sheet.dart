@@ -16,22 +16,29 @@ class _CreateTeamSheetState extends State<CreateTeamSheet> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom + 20, 
-        left: 20, 
-        right: 20, 
-        top: 20
+        bottom: MediaQuery.of(context).viewInsets.bottom + 20,
+        left: 20,
+        right: 20,
+        top: 20,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Create New Team', style: TextStyle(color: AppColors.textPrimary, fontSize: 20, fontWeight: FontWeight.bold)),
+          const Text(
+            'Create New Team',
+            style: TextStyle(
+              color: AppColors.textPrimary,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const SizedBox(height: 16),
-          
+
           // Team Name
           _buildInputField('Team Name (e.g., CodeCrafters)'),
           const SizedBox(height: 12),
-          
+
           // Project Target
           _buildInputField('Target Project (e.g., SIH 2024)'),
           const SizedBox(height: 12),
@@ -46,17 +53,31 @@ class _CreateTeamSheetState extends State<CreateTeamSheet> {
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  decoration: BoxDecoration(color: AppColors.background, borderRadius: BorderRadius.circular(12)),
+                  decoration: BoxDecoration(
+                    color: AppColors.background,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
                       value: selectedDept,
                       dropdownColor: AppColors.surface,
-                      icon: const Icon(Icons.arrow_drop_down, color: AppColors.textSecondary),
+                      icon: const Icon(
+                        Icons.arrow_drop_down,
+                        color: AppColors.textSecondary,
+                      ),
                       isExpanded: true,
-                      items: ['Any', 'CSE', 'ECE', 'Mech', 'Civil'].map((String value) {
+                      items: ['Any', 'CSE', 'ECE', 'Mech', 'Civil'].map((
+                        String value,
+                      ) {
                         return DropdownMenuItem<String>(
                           value: value,
-                          child: Text('Dept: $value', style: const TextStyle(color: AppColors.textPrimary, fontSize: 14)),
+                          child: Text(
+                            'Dept: $value',
+                            style: const TextStyle(
+                              color: AppColors.textPrimary,
+                              fontSize: 14,
+                            ),
+                          ),
                         );
                       }).toList(),
                       onChanged: (newValue) {
@@ -70,19 +91,38 @@ class _CreateTeamSheetState extends State<CreateTeamSheet> {
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  decoration: BoxDecoration(color: AppColors.background, borderRadius: BorderRadius.circular(12)),
+                  decoration: BoxDecoration(
+                    color: AppColors.background,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
                       value: selectedYear,
                       dropdownColor: AppColors.surface,
-                      icon: const Icon(Icons.arrow_drop_down, color: AppColors.textSecondary),
+                      icon: const Icon(
+                        Icons.arrow_drop_down,
+                        color: AppColors.textSecondary,
+                      ),
                       isExpanded: true,
-                      items: ['Any', '1st Year', '2nd Year', '3rd Year', '4th Year'].map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value, style: const TextStyle(color: AppColors.textPrimary, fontSize: 14)),
-                        );
-                      }).toList(),
+                      items:
+                          [
+                            'Any',
+                            '1st Year',
+                            '2nd Year',
+                            '3rd Year',
+                            '4th Year',
+                          ].map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: const TextStyle(
+                                  color: AppColors.textPrimary,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            );
+                          }).toList(),
                       onChanged: (newValue) {
                         setState(() => selectedYear = newValue!);
                       },
@@ -92,7 +132,7 @@ class _CreateTeamSheetState extends State<CreateTeamSheet> {
               ),
             ],
           ),
-          
+
           const SizedBox(height: 24),
           SizedBox(
             width: double.infinity,
@@ -101,14 +141,25 @@ class _CreateTeamSheetState extends State<CreateTeamSheet> {
               onPressed: () {
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Team Created Successfully!'), backgroundColor: AppColors.accent),
+                  const SnackBar(
+                    content: Text('Team Created Successfully!'),
+                    backgroundColor: AppColors.accent,
+                  ),
                 );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
-              child: const Text('Create Team', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              child: const Text(
+                'Create Team',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
           const SizedBox(height: 10),
@@ -125,7 +176,10 @@ class _CreateTeamSheetState extends State<CreateTeamSheet> {
         hintStyle: const TextStyle(color: AppColors.textSecondary),
         filled: true,
         fillColor: AppColors.background,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
       ),
     );
   }

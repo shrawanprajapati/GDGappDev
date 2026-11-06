@@ -13,13 +13,28 @@ class ProfProjectsTab extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('Research Projects', style: TextStyle(color: AppColors.textPrimary, fontSize: 20, fontWeight: FontWeight.bold)),
+            const Text(
+              'Research Projects',
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             ElevatedButton.icon(
-              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const CreateProjectPage())),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CreateProjectPage(),
+                ),
+              ),
               icon: const Icon(Icons.add, size: 16),
               label: const Text('New Project'),
-              style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary, foregroundColor: Colors.white),
-            )
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primary,
+                foregroundColor: Colors.white,
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 20),
@@ -40,14 +55,23 @@ class ProfProjectsTab extends StatelessWidget {
     );
   }
 
-  Widget _buildProjectCard(BuildContext context, {required String title, required String stats, required bool isActive}) {
+  Widget _buildProjectCard(
+    BuildContext context, {
+    required String title,
+    required String stats,
+    required bool isActive,
+  }) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: isActive ? AppColors.accent.withValues(alpha: 0.3) : Colors.transparent),
+        border: Border.all(
+          color: isActive
+              ? AppColors.accent.withValues(alpha: 0.3)
+              : Colors.transparent,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +79,14 @@ class ProfProjectsTab extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: const TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
+              Text(
+                title,
+                style: const TextStyle(
+                  color: AppColors.textPrimary,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               const Icon(Icons.more_vert, color: AppColors.textSecondary),
             ],
           ),
@@ -63,15 +94,25 @@ class ProfProjectsTab extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(stats, style: const TextStyle(color: AppColors.primary, fontSize: 13, fontWeight: FontWeight.bold)),
+              Text(
+                stats,
+                style: const TextStyle(
+                  color: AppColors.primary,
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               TextButton(
                 onPressed: () {
                   // Show Applicants
                 },
-                child: const Text('Review Applicants', style: TextStyle(color: AppColors.accent, fontSize: 13)),
+                child: const Text(
+                  'Review Applicants',
+                  style: TextStyle(color: AppColors.accent, fontSize: 13),
+                ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );

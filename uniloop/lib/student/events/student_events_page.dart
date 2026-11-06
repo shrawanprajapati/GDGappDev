@@ -124,13 +124,21 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                       backgroundColor: AppColors.surface,
                       selectedColor: AppColors.primary.withValues(alpha: 0.2),
                       labelStyle: TextStyle(
-                        color: isSelected ? AppColors.primary : AppColors.textSecondary,
-                        fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                        color: isSelected
+                            ? AppColors.primary
+                            : AppColors.textSecondary,
+                        fontWeight: isSelected
+                            ? FontWeight.w600
+                            : FontWeight.normal,
                       ),
                       side: BorderSide(
-                        color: isSelected ? AppColors.primary : Colors.white.withValues(alpha: 0.05),
+                        color: isSelected
+                            ? AppColors.primary
+                            : Colors.white.withValues(alpha: 0.05),
                       ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
                   );
                 },
@@ -163,8 +171,8 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
           color: AppColors.surface,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: event['isOngoing'] 
-                ? AppColors.primary.withValues(alpha: 0.5) 
+            color: event['isOngoing']
+                ? AppColors.primary.withValues(alpha: 0.5)
                 : Colors.white.withValues(alpha: 0.05),
           ),
           boxShadow: [
@@ -182,7 +190,10 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
             children: [
               // Date Box (Left Side)
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                  horizontal: 16,
+                ),
                 decoration: BoxDecoration(
                   color: event['color'].withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12),
@@ -191,17 +202,25 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                   children: [
                     Text(
                       event['day'],
-                      style: TextStyle(color: event['color'], fontSize: 24, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: event['color'],
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     Text(
                       event['month'],
-                      style: TextStyle(color: event['color'], fontSize: 12, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: event['color'],
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
               ),
               const SizedBox(width: 16),
-              
+
               // Event Details (Right Side)
               Expanded(
                 child: Column(
@@ -210,14 +229,21 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                     Row(
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 2,
+                          ),
                           decoration: BoxDecoration(
                             color: event['color'].withValues(alpha: 0.15),
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
                             event['category'],
-                            style: TextStyle(color: event['color'], fontSize: 10, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              color: event['color'],
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         const Spacer(),
@@ -227,10 +253,20 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                               Container(
                                 width: 6,
                                 height: 6,
-                                decoration: const BoxDecoration(color: Colors.redAccent, shape: BoxShape.circle),
+                                decoration: const BoxDecoration(
+                                  color: Colors.redAccent,
+                                  shape: BoxShape.circle,
+                                ),
                               ),
                               const SizedBox(width: 4),
-                              const Text('Live', style: TextStyle(color: Colors.redAccent, fontSize: 12, fontWeight: FontWeight.bold)),
+                              const Text(
+                                'Live',
+                                style: TextStyle(
+                                  color: Colors.redAccent,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ],
                           ),
                       ],
@@ -238,30 +274,54 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                     const SizedBox(height: 8),
                     Text(
                       event['title'],
-                      style: const TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.w700),
+                      style: const TextStyle(
+                        color: AppColors.textPrimary,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 4),
                     Text(
                       event['subtitle'],
-                      style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                      style: const TextStyle(
+                        color: AppColors.textSecondary,
+                        fontSize: 12,
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 10),
                     Row(
                       children: [
-                        const Icon(Icons.access_time, size: 14, color: AppColors.textSecondary),
+                        const Icon(
+                          Icons.access_time,
+                          size: 14,
+                          color: AppColors.textSecondary,
+                        ),
                         const SizedBox(width: 4),
-                        Text(event['time'], style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+                        Text(
+                          event['time'],
+                          style: const TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: 12,
+                          ),
+                        ),
                         const SizedBox(width: 12),
-                        const Icon(Icons.location_on_outlined, size: 14, color: AppColors.textSecondary),
+                        const Icon(
+                          Icons.location_on_outlined,
+                          size: 14,
+                          color: AppColors.textSecondary,
+                        ),
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
-                            event['location'], 
-                            style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                            event['location'],
+                            style: const TextStyle(
+                              color: AppColors.textSecondary,
+                              fontSize: 12,
+                            ),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
@@ -269,7 +329,7 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -305,26 +365,36 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                 ),
               ),
               const SizedBox(height: 24),
-              
+
               Text(
                 event['title'],
-                style: const TextStyle(color: AppColors.textPrimary, fontSize: 24, fontWeight: FontWeight.w800),
+                style: const TextStyle(
+                  color: AppColors.textPrimary,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
               const SizedBox(height: 8),
               Text(
                 event['subtitle'],
-                style: const TextStyle(color: AppColors.textSecondary, fontSize: 16),
+                style: const TextStyle(
+                  color: AppColors.textSecondary,
+                  fontSize: 16,
+                ),
               ),
               const SizedBox(height: 24),
-              
-              _buildDetailRow(Icons.calendar_today_outlined, '${event['date']} • ${event['time']}'),
+
+              _buildDetailRow(
+                Icons.calendar_today_outlined,
+                '${event['date']} • ${event['time']}',
+              ),
               const SizedBox(height: 16),
               _buildDetailRow(Icons.location_on_outlined, event['location']),
               const SizedBox(height: 16),
               _buildDetailRow(Icons.group_outlined, 'Open to all students'),
-              
+
               const SizedBox(height: 32),
-              
+
               // Action Button
               SizedBox(
                 width: double.infinity,
@@ -332,26 +402,38 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
-                    gradient: const LinearGradient(colors: [AppColors.primary, AppColors.accent]),
+                    gradient: const LinearGradient(
+                      colors: [AppColors.primary, AppColors.accent],
+                    ),
                   ),
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text('Successfully Registered for ${event['title']}!'), 
-                          backgroundColor: AppColors.accent
+                          content: Text(
+                            'Successfully Registered for ${event['title']}!',
+                          ),
+                          backgroundColor: AppColors.accent,
                         ),
                       );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
                     ),
                     child: Text(
-                      event['isOngoing'] ? 'Fill Induction Form' : 'Register Now',
-                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                      event['isOngoing']
+                          ? 'Fill Induction Form'
+                          : 'Register Now',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -369,7 +451,10 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
       children: [
         Icon(icon, color: AppColors.accent, size: 20),
         const SizedBox(width: 12),
-        Text(text, style: const TextStyle(color: AppColors.textPrimary, fontSize: 15)),
+        Text(
+          text,
+          style: const TextStyle(color: AppColors.textPrimary, fontSize: 15),
+        ),
       ],
     );
   }

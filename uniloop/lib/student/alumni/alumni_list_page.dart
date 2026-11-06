@@ -49,7 +49,13 @@ class AlumniListPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text('Connect Alumni', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Connect Alumni',
+          style: TextStyle(
+            color: AppColors.textPrimary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -67,7 +73,10 @@ class AlumniListPage extends StatelessWidget {
                 decoration: InputDecoration(
                   hintText: 'Search by company or domain...',
                   hintStyle: TextStyle(color: AppColors.textSecondary),
-                  prefixIcon: Icon(Icons.search, color: AppColors.textSecondary),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: AppColors.textSecondary,
+                  ),
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.symmetric(vertical: 14),
                 ),
@@ -96,7 +105,9 @@ class AlumniListPage extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => AlumniProfilePage(alumniData: alumni)),
+          MaterialPageRoute(
+            builder: (context) => AlumniProfilePage(alumniData: alumni),
+          ),
         );
       },
       child: Container(
@@ -116,21 +127,41 @@ class AlumniListPage extends StatelessWidget {
               backgroundColor: AppColors.background,
             ),
             const SizedBox(width: 16),
-            
+
             // Details
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(alumni['name'], style: const TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.w700)),
+                  Text(
+                    alumni['name'],
+                    style: const TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
                   const SizedBox(height: 4),
-                  Text('${alumni['role']} at ${alumni['company']}', style: const TextStyle(color: AppColors.accent, fontSize: 13, fontWeight: FontWeight.w500)),
+                  Text(
+                    '${alumni['role']} at ${alumni['company']}',
+                    style: const TextStyle(
+                      color: AppColors.accent,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                   const SizedBox(height: 4),
-                  Text(alumni['batch'], style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+                  Text(
+                    alumni['batch'],
+                    style: const TextStyle(
+                      color: AppColors.textSecondary,
+                      fontSize: 12,
+                    ),
+                  ),
                 ],
               ),
             ),
-            
+
             const Icon(Icons.chevron_right, color: AppColors.textSecondary),
           ],
         ),

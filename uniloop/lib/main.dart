@@ -5,7 +5,7 @@ import 'onboarding/onboarding_page.dart';
 import 'auth/login_page.dart';
 import 'auth/university_login_page.dart';
 import 'auth/university_member_page.dart'; 
-import 'student/student_dashboard.dart'; // Updated Import
+import 'student/dashboard/student_dashboard.dart'; // Updated Import
 
 void main() => runApp(const UniloopApp());
 

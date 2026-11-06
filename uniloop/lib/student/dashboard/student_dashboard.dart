@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../core/app_colors.dart';
+import '../../core/app_colors.dart';
+import '../drawer/student_drawer.dart';
+import '../teams/student_teams_tab.dart';
 import 'student_home_tab.dart';
-import 'drawer/student_drawer.dart';
-import 'teams/student_teams_tab.dart'; // 👈 Naya import add karo
+import 'notification_page.dart'; // 👈 Notification Page import kiya
 
 class StudentDashboard extends StatefulWidget {
   const StudentDashboard({super.key});
@@ -16,10 +17,9 @@ class _StudentDashboardState extends State<StudentDashboard> {
   
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>(); 
 
-  // 👈 Yahan Teams tab update kiya
   final List<Widget> _tabs = [
     const StudentHomeTab(),
-    const StudentTeamsTab(), // Teams Tab
+    const StudentTeamsTab(),
     const Center(child: Text('Marketplace coming soon', style: TextStyle(color: AppColors.textPrimary))),
     const Center(child: Text('Loop AI coming soon', style: TextStyle(color: AppColors.textPrimary))),
   ];
@@ -48,13 +48,53 @@ class _StudentDashboardState extends State<StudentDashboard> {
           ),
         ),
         actions: [
+          // 👈 Search Icon (Bottom Sheet ke saath)
           IconButton(
             icon: const Icon(Icons.search, color: AppColors.textPrimary),
-            onPressed: () {},
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                backgroundColor: AppColors.surface,
+                isScrollControlled: true,
+                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+                builder: (context) {
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom, left: 20, right: 20, top: 20),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          decoration: BoxDecoration(color: AppColors.background, borderRadius: BorderRadius.circular(12)),
+                          child: const TextField(
+                            autofocus: true,
+                            style: TextStyle(color: AppColors.textPrimary),
+                            decoration: InputDecoration(
+                              hintText: 'Search events, projects, clubs...',
+                              hintStyle: TextStyle(color: AppColors.textSecondary),
+                              border: InputBorder.none,
+                              icon: Icon(Icons.search, color: AppColors.textSecondary),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
           ),
+          
+          // 👈 Notification Icon (Naya Page)
           IconButton(
             icon: const Icon(Icons.notifications_outlined, color: AppColors.textPrimary),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const NotificationPage()),
+              );
+            },
           ),
           const SizedBox(width: 8),
         ],
@@ -62,7 +102,6 @@ class _StudentDashboardState extends State<StudentDashboard> {
 
       body: _tabs[_currentIndex],
 
-      // (Bottom Navigation Bar waisa hi rahega)
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: AppColors.surface,

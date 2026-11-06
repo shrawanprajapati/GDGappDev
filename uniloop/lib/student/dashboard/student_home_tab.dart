@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../core/app_colors.dart'; // (Kyunki core bahar hai student folder se)
-import 'events/student_events_page.dart'; // 👈 Ye line change karo (student folder se direct)
-import 'projects/find_project_page.dart'; // 👈 Ye line change karo (student folder se direct)
+import '../../core/app_colors.dart'; // (Kyunki core bahar hai student folder se)
+import '../events/student_events_page.dart'; // 👈 Ye line change karo (student folder se direct)
+import '../projects/find_project_page.dart'; // 👈 Ye line change karo (student folder se direct)
 class StudentHomeTab extends StatelessWidget {
   const StudentHomeTab({super.key});
 

@@ -1,24 +1,47 @@
 import 'package:flutter/material.dart';
-import '../core/app_colors.dart';
-import 'student_events_page.dart';
-import 'projects/find_project_page.dart'; // 👈 Import
-
+import '../core/app_colors.dart'; // (Kyunki core bahar hai student folder se)
+import 'events/student_events_page.dart'; // 👈 Ye line change karo (student folder se direct)
+import 'projects/find_project_page.dart'; // 👈 Ye line change karo (student folder se direct)
 class StudentHomeTab extends StatelessWidget {
   const StudentHomeTab({super.key});
 
+  // 👈 1. Time ke hisaab se Greeting nikalne ka function
+  String _getGreeting() {
+    var hour = DateTime.now().hour;
+    if (hour < 12) {
+      return 'Good Morning';
+    } else if (hour < 17) {
+      return 'Good Afternoon';
+    } else {
+      return 'Good Evening';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    // 👈 2. Student ka naam (Baad me API/Backend se aayega)
+    const String studentName = 'Shrawan'; 
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Welcome to UniLoop',
-            style: TextStyle(
-              fontSize: 28,
+          // 3. Dynamic Greeting & Name
+          Text(
+            '${_getGreeting()}, $studentName 👋',
+            style: const TextStyle(
+              fontSize: 26, // Font size thoda adjust kiya
               fontWeight: FontWeight.w700,
               color: AppColors.textPrimary,
+            ),
+          ),
+          const SizedBox(height: 4),
+          const Text(
+            'What are you looking to build today?',
+            style: TextStyle(
+              fontSize: 14,
+              color: AppColors.textSecondary,
             ),
           ),
           const SizedBox(height: 30),
@@ -47,7 +70,7 @@ class StudentHomeTab extends StatelessWidget {
           // 4. Recommendation
           _buildSectionTitle('Recommendation for you'),
           const SizedBox(height: 8),
-          Text(
+          const Text(
             'Based on the skills you got, here are project recommendations.',
             style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
           ),
@@ -71,11 +94,9 @@ class StudentHomeTab extends StatelessWidget {
     );
   }
 
-  // --- INDUCTION CARD (Connected to Projects) ---
   Widget _buildInductionCard(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigate to Find Project (Induction)
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const FindProjectPage()),
@@ -134,7 +155,6 @@ class StudentHomeTab extends StatelessWidget {
     );
   }
 
-  // --- HORIZONTAL TILES (Trending & Events) ---
   Widget _buildHorizontalTiles(BuildContext context, {bool isEvent = false}) {
     return SizedBox(
       height: 140,
@@ -146,13 +166,10 @@ class StudentHomeTab extends StatelessWidget {
           return GestureDetector(
             onTap: () {
               if (isEvent) {
-                // Navigate to Events Page
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const StudentEventsPage()),
                 );
-              } else {
-                // TODO: Navigate to Trending Post Details
               }
             },
             child: Container(
@@ -191,11 +208,9 @@ class StudentHomeTab extends StatelessWidget {
     );
   }
 
-  // --- RECOMMENDATION CARD ---
   Widget _buildRecommendationCard(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigate to Projects Marketplace
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const FindProjectPage()),

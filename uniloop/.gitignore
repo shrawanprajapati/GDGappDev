@@ -5,6 +5,18 @@ uniloop/.idea/
 uniloop/.flutter-plugins-dependencies
 uniloop/android/.gradle/
 
+# Secrets and signing material
+.env
+.env.*
+*.keystore
+*.jks
+*.p12
+key.properties
+
+# Nested Flutter build/tool output
+**/build/
+**/.dart_tool/
+
 # OS files
 .DS_Store
 Thumbs.db

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
 import 'student_home_tab.dart';
-import 'student_drawer.dart'; 
+import 'student_drawer.dart';
+import 'student_teams_tab.dart'; // 👈 Naya import add karo
 
 class StudentDashboard extends StatefulWidget {
   const StudentDashboard({super.key});
@@ -15,9 +16,10 @@ class _StudentDashboardState extends State<StudentDashboard> {
   
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>(); 
 
+  // 👈 Yahan Teams tab update kiya
   final List<Widget> _tabs = [
     const StudentHomeTab(),
-    const Center(child: Text('Teams coming soon', style: TextStyle(color: AppColors.textPrimary))),
+    const StudentTeamsTab(), // Teams Tab
     const Center(child: Text('Marketplace coming soon', style: TextStyle(color: AppColors.textPrimary))),
     const Center(child: Text('Loop AI coming soon', style: TextStyle(color: AppColors.textPrimary))),
   ];
@@ -29,7 +31,6 @@ class _StudentDashboardState extends State<StudentDashboard> {
       backgroundColor: AppColors.background,
       drawer: const StudentDrawer(),
 
-      // 👈 Yahan Top Bar (AppBar) wapas add kar diya hai
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
@@ -61,6 +62,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
 
       body: _tabs[_currentIndex],
 
+      // (Bottom Navigation Bar waisa hi rahega)
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: AppColors.surface,

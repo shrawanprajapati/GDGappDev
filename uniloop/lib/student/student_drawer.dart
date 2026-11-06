@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
+import 'club_detail_page.dart'; // 👈 Import add karo
 
 class StudentDrawer extends StatelessWidget {
   const StudentDrawer({super.key});
@@ -47,12 +48,12 @@ class StudentDrawer extends StatelessWidget {
             
             const Divider(color: Colors.white12, thickness: 1, height: 30),
 
-            // 2. College Clubs
+            // 2. College Clubs (Updated with navigation)
             _drawerHeader('Know your College clubs'),
-            _drawerItem(Icons.computer, 'Technical Club'),
-            _drawerItem(Icons.music_note_outlined, 'Cultural Club'),
-            _drawerItem(Icons.sports_cricket_outlined, 'Sports'),
-            _drawerItem(Icons.group_outlined, 'Association'),
+            _buildClubItem(context, 'Technical Club', Icons.computer, Colors.blueAccent),
+            _buildClubItem(context, 'Cultural Club', Icons.music_note, Colors.pinkAccent),
+            _buildClubItem(context, 'Sports', Icons.sports_soccer, Colors.greenAccent),
+            _buildClubItem(context, 'Association', Icons.groups, Colors.orangeAccent),
 
             const Divider(color: Colors.white12, thickness: 1, height: 30),
 
@@ -112,8 +113,38 @@ class StudentDrawer extends StatelessWidget {
         title,
         style: const TextStyle(color: AppColors.textPrimary, fontSize: 15),
       ),
+      onTap: () {},
+    );
+  }
+
+  // 👈 Naya function jo clubs ko ClubDetailPage se connect karega
+  Widget _buildClubItem(BuildContext context, String name, IconData icon, Color color) {
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      leading: Icon(icon, color: color, size: 22),
+      title: Text(
+        name,
+        style: const TextStyle(color: AppColors.textPrimary, fontSize: 15),
+      ),
       onTap: () {
-        // TODO: Navigate to respective pages
+        // Drawer close karo
+        Navigator.pop(context); 
+        
+        // Fir ClubDetailPage open karo
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ClubDetailPage(
+              clubData: {
+                'name': name,
+                'category': 'Club',
+                'members': 'Active Members',
+                'icon': icon,
+                'color': color,
+              },
+            ),
+          ),
+        );
       },
     );
   }

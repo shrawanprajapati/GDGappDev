@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
 import 'student_home_tab.dart';
+import 'student_drawer.dart'; 
 
 class StudentDashboard extends StatefulWidget {
   const StudentDashboard({super.key});
@@ -11,6 +12,8 @@ class StudentDashboard extends StatefulWidget {
 
 class _StudentDashboardState extends State<StudentDashboard> {
   int _currentIndex = 0;
+  
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>(); 
 
   final List<Widget> _tabs = [
     const StudentHomeTab(),
@@ -22,8 +25,42 @@ class _StudentDashboardState extends State<StudentDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: AppColors.background,
+      drawer: const StudentDrawer(),
+
+      // 👈 Yahan Top Bar (AppBar) wapas add kar diya hai
+      appBar: AppBar(
+        backgroundColor: AppColors.background,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.menu, color: AppColors.textPrimary),
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(), 
+        ),
+        title: const Text(
+          'UniLoop',
+          style: TextStyle(
+            color: AppColors.textPrimary,
+            fontWeight: FontWeight.w800,
+            fontSize: 24,
+            letterSpacing: 1.2,
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search, color: AppColors.textPrimary),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.notifications_outlined, color: AppColors.textPrimary),
+            onPressed: () {},
+          ),
+          const SizedBox(width: 8),
+        ],
+      ),
+
       body: _tabs[_currentIndex],
+
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: AppColors.surface,

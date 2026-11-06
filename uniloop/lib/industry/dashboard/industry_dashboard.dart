@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../core/app_colors.dart';
+import '../../core/data/mock_store.dart';
 import '../post_project/post_project_page.dart';
+import '../hiring_pipeline.dart';
+import '../review_applicants.dart';
 
 class IndustryDashboard extends StatefulWidget {
   const IndustryDashboard({super.key});
@@ -164,6 +167,15 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
         'Review applicants',
         'Continue where you left off',
         () => setState(() => _currentIndex = 1),
+      ),
+      _actionTile(
+        Icons.account_tree_outlined,
+        'Hiring pipeline',
+        'Move candidates through your hiring stages',
+        () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const HiringPipelinePage()),
+        ),
       ),
     ],
   );
@@ -447,7 +459,17 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
       context,
       MaterialPageRoute(builder: (_) => const PostProjectPage()),
     );
-    if (project != null) setState(() => _projects.insert(0, project));
+    if (project != null) {
+      final projectWithId = {
+        ...project,
+        'id': DateTime.now().microsecondsSinceEpoch.toString(),
+        'postedBy': 'Acme Labs',
+        'domain': 'Industry',
+        'status': 'Open',
+      };
+      MockStore.instance.addProject(projectWithId);
+      setState(() => _projects.insert(0, projectWithId));
+    }
   }
 
   void _showApplicants(Map<String, dynamic> project) {
@@ -468,13 +490,7 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
         'skills': 'Dart · Maps API',
       },
     ];
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: AppColors.surface,
-      isScrollControlled: true,
-      builder: (_) =>
-          _ApplicantsSheet(project: project, applicants: applicants),
-    );
+    showApplicantReviewSheet(context, applicants, project['title']);
   }
 }
 

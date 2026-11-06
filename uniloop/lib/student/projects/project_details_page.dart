@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
+import '../../core/data/mock_store.dart';
+import '../../core/session_service.dart';
 
 class ProjectDetailsPage extends StatelessWidget {
   final Map<String, dynamic> projectData;
@@ -19,45 +21,145 @@ class ProjectDetailsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(projectData['type'].toUpperCase(), style: const TextStyle(color: AppColors.accent, fontSize: 14, fontWeight: FontWeight.bold)),
+            Text(
+              projectData['type'].toUpperCase(),
+              style: const TextStyle(
+                color: AppColors.accent,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             const SizedBox(height: 8),
-            Text(projectData['title'], style: const TextStyle(color: AppColors.textPrimary, fontSize: 26, fontWeight: FontWeight.w800)),
+            Text(
+              projectData['title'],
+              style: const TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 26,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
             const SizedBox(height: 8),
-            Text('Posted by ${projectData['postedBy']}', style: const TextStyle(color: AppColors.textSecondary, fontSize: 14)),
-            
+            Text(
+              'Posted by ${projectData['postedBy']}',
+              style: const TextStyle(
+                color: AppColors.textSecondary,
+                fontSize: 14,
+              ),
+            ),
+
             const SizedBox(height: 24),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildInfoBox('Budget', projectData['budget'], Icons.currency_rupee),
-                _buildInfoBox('Duration', projectData['duration'], Icons.timer_outlined),
-                _buildInfoBox('Status', projectData['status'], Icons.circle, color: AppColors.accent),
+                _buildInfoBox(
+                  'Budget',
+                  projectData['budget'],
+                  Icons.currency_rupee,
+                ),
+                _buildInfoBox(
+                  'Duration',
+                  projectData['duration'],
+                  Icons.timer_outlined,
+                ),
+                _buildInfoBox(
+                  'Status',
+                  projectData['status'],
+                  Icons.circle,
+                  color: AppColors.accent,
+                ),
               ],
             ),
 
             const SizedBox(height: 30),
 
-            const Text('Project Description', style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
+            const Text(
+              'Project Description',
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             const SizedBox(height: 8),
-            Text(projectData['desc'], style: const TextStyle(color: AppColors.textSecondary, fontSize: 15, height: 1.5)),
+            Text(
+              projectData['desc'],
+              style: const TextStyle(
+                color: AppColors.textSecondary,
+                fontSize: 15,
+                height: 1.5,
+              ),
+            ),
+
+            const SizedBox(height: 24),
+            const Text(
+              'Expected Deliverables',
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'Working prototype, source code, documentation, and a short demo presentation.',
+              style: TextStyle(color: AppColors.textSecondary, height: 1.5),
+            ),
+
+            const SizedBox(height: 24),
+            const Text(
+              'Timeline',
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              projectData['duration'],
+              style: const TextStyle(color: AppColors.textSecondary),
+            ),
 
             const SizedBox(height: 30),
 
-            const Text('Required Skills', style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
+            const Text(
+              'Required Skills',
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             const SizedBox(height: 12),
             Wrap(
               spacing: 10,
               runSpacing: 10,
-              children: (projectData['skills'] as List<String>).map((skill) => Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                decoration: BoxDecoration(
-                  color: AppColors.primary.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
-                ),
-                child: Text(skill, style: const TextStyle(color: AppColors.primary, fontSize: 14, fontWeight: FontWeight.w500)),
-              )).toList(),
+              children: (projectData['skills'] as List<String>)
+                  .map(
+                    (skill) => Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.primary.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: AppColors.primary.withValues(alpha: 0.3),
+                        ),
+                      ),
+                      child: Text(
+                        skill,
+                        style: const TextStyle(
+                          color: AppColors.primary,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
             ),
 
             const SizedBox(height: 40),
@@ -71,9 +173,18 @@ class ProjectDetailsPage extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
-                child: const Text('Apply for this Project', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                child: const Text(
+                  'Apply for this Project',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -83,7 +194,12 @@ class ProjectDetailsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoBox(String label, String value, IconData icon, {Color color = AppColors.textPrimary}) {
+  Widget _buildInfoBox(
+    String label,
+    String value,
+    IconData icon, {
+    Color color = AppColors.textPrimary,
+  }) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
@@ -95,9 +211,22 @@ class ProjectDetailsPage extends StatelessWidget {
         children: [
           Icon(icon, color: color, size: 20),
           const SizedBox(height: 8),
-          Text(label, style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+          Text(
+            label,
+            style: const TextStyle(
+              color: AppColors.textSecondary,
+              fontSize: 12,
+            ),
+          ),
           const SizedBox(height: 4),
-          Text(value, style: const TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.bold)),
+          Text(
+            value,
+            style: const TextStyle(
+              color: AppColors.textPrimary,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );
@@ -108,21 +237,41 @@ class ProjectDetailsPage extends StatelessWidget {
       context: context,
       backgroundColor: AppColors.surface,
       isScrollControlled: true,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
       builder: (context) {
         return Padding(
-          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom, left: 20, right: 20, top: 20),
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+            left: 20,
+            right: 20,
+            top: 20,
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Submit Proposal', style: TextStyle(color: AppColors.textPrimary, fontSize: 20, fontWeight: FontWeight.bold)),
+              const Text(
+                'Submit Proposal',
+                style: TextStyle(
+                  color: AppColors.textPrimary,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               const SizedBox(height: 8),
-              const Text('Write a short cover letter or upload your team resume.', style: TextStyle(color: AppColors.textSecondary, fontSize: 13)),
+              const Text(
+                'Write a short cover letter or upload your team resume.',
+                style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
+              ),
               const SizedBox(height: 16),
-              
+
               Container(
-                decoration: BoxDecoration(color: AppColors.background, borderRadius: BorderRadius.circular(12)),
+                decoration: BoxDecoration(
+                  color: AppColors.background,
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 child: const TextField(
                   maxLines: 4,
                   style: TextStyle(color: AppColors.textPrimary),
@@ -139,10 +288,15 @@ class ProjectDetailsPage extends StatelessWidget {
               OutlinedButton.icon(
                 onPressed: () {},
                 icon: const Icon(Icons.attach_file, color: AppColors.accent),
-                label: const Text('Attach Resume / Portfolio', style: TextStyle(color: AppColors.accent)),
+                label: const Text(
+                  'Attach Resume / Portfolio',
+                  style: TextStyle(color: AppColors.accent),
+                ),
                 style: OutlinedButton.styleFrom(
                   side: const BorderSide(color: AppColors.accent),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   minimumSize: const Size(double.infinity, 50),
                 ),
@@ -154,16 +308,37 @@ class ProjectDetailsPage extends StatelessWidget {
                 height: 54,
                 child: ElevatedButton(
                   onPressed: () {
+                    MockStore.instance.addApplication({
+                      'id': DateTime.now().microsecondsSinceEpoch.toString(),
+                      'projectTitle': projectData['title'],
+                      'studentId':
+                          SessionService.instance.userId ?? 'student-1',
+                      'status': 'Pending',
+                      'coverNote':
+                          'Interested in contributing to this project.',
+                    });
                     Navigator.pop(context);
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Application Submitted Successfully!'), backgroundColor: AppColors.accent),
+                      const SnackBar(
+                        content: Text('Application Submitted Successfully!'),
+                        backgroundColor: AppColors.accent,
+                      ),
                     );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                   ),
-                  child: const Text('Submit Application', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                  child: const Text(
+                    'Submit Application',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 30),

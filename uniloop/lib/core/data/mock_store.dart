@@ -137,4 +137,9 @@ class MockStore extends ChangeNotifier {
     reports.add(report);
     notifyListeners();
   }
+
+  void addApplication(Map<String, dynamic> application) {
+    applications.add(application);
+    notifyListeners();
+  }
 }

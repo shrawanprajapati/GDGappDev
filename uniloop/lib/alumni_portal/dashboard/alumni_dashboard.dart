@@ -28,7 +28,12 @@ class _AlumniDashboardState extends State<AlumniDashboard> {
       backgroundColor: AppColors.background,
       elevation: 0,
       title: Text(
-        ['Alumni Home', 'Post Opportunity', 'Mentorship Requests'][tab],
+        [
+          'Alumni Home',
+          'Post Opportunity',
+          'Mentorship Requests',
+          'Profile',
+        ][tab],
         style: const TextStyle(
           color: AppColors.textPrimary,
           fontWeight: FontWeight.bold,
@@ -39,7 +44,9 @@ class _AlumniDashboardState extends State<AlumniDashboard> {
         ? _home()
         : tab == 1
         ? _form()
-        : _mentees(),
+        : tab == 2
+        ? _mentees()
+        : _profile(),
     bottomNavigationBar: BottomNavigationBar(
       currentIndex: tab,
       onTap: (value) => setState(() => tab = value),
@@ -56,6 +63,10 @@ class _AlumniDashboardState extends State<AlumniDashboard> {
         BottomNavigationBarItem(
           icon: Icon(Icons.people_outline),
           label: 'Mentees',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person_outline),
+          label: 'Profile',
         ),
       ],
     ),
@@ -154,6 +165,57 @@ class _AlumniDashboardState extends State<AlumniDashboard> {
         const SnackBar(content: Text('Opportunity posted successfully.')),
       );
     },
+  );
+
+  Widget _profile() => ListView(
+    padding: const EdgeInsets.all(20),
+    children: [
+      const CircleAvatar(
+        radius: 42,
+        backgroundColor: AppColors.primary,
+        child: Icon(Icons.person, color: AppColors.textPrimary, size: 38),
+      ),
+      const SizedBox(height: 14),
+      const Center(
+        child: Text(
+          'Ananya Verma',
+          style: TextStyle(
+            color: AppColors.textPrimary,
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      const Center(
+        child: Text(
+          'Product Manager · Acme Labs',
+          style: TextStyle(color: AppColors.textSecondary),
+        ),
+      ),
+      const SizedBox(height: 24),
+      ListTile(
+        leading: const Icon(Icons.email_outlined, color: AppColors.accent),
+        title: const Text(
+          'Email',
+          style: TextStyle(color: AppColors.textSecondary),
+        ),
+        subtitle: const Text(
+          'alumni@loop.edu',
+          style: TextStyle(color: AppColors.textPrimary),
+        ),
+      ),
+      ListTile(
+        leading: const Icon(Icons.school_outlined, color: AppColors.accent),
+        title: const Text(
+          'Alma Mater',
+          style: TextStyle(color: AppColors.textSecondary),
+        ),
+        subtitle: const Text(
+          'UniLoop University · CSE 2022',
+          style: TextStyle(color: AppColors.textPrimary),
+        ),
+      ),
+    ],
   );
   Widget _stat(String label, String value, IconData icon) => Expanded(
     child: Container(

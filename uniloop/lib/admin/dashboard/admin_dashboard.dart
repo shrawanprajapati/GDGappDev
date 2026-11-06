@@ -138,6 +138,14 @@ class _AdminDashboardState extends State<AdminDashboard> {
           style: const TextStyle(color: AppColors.accent),
         ),
       ),
+      onLongPress: () {
+        setState(() => users.remove(user));
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('User deleted from the mock directory.'),
+          ),
+        );
+      },
     ),
   );
   Widget _moderate() => ListView(

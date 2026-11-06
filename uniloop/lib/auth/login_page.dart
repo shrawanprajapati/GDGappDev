@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 60),
-              
+
               // Heading
               const Text(
                 'Get Started with',
@@ -27,9 +27,9 @@ class LoginPage extends StatelessWidget {
                   letterSpacing: -1.0,
                 ),
               ),
-              
+
               const SizedBox(height: 60),
-              
+
               // University member option
               _buildRoleOption(
                 context: context,
@@ -40,16 +40,16 @@ class LoginPage extends StatelessWidget {
                   Navigator.pushNamed(context, AppRoutes.universityLogin);
                 },
               ),
-              
+
               const SizedBox(height: 24),
-              
+
               // Industry/company option
               _buildRoleOption(
                 context: context,
                 title: 'Industry/company',
                 icon: Icons.business_outlined,
                 onTap: () {
-                  // Industry Login will be built later
+                  Navigator.pushNamed(context, AppRoutes.industryLogin);
                 },
               ),
             ],
@@ -88,7 +88,11 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            const Icon(Icons.arrow_forward_ios, size: 16, color: AppColors.textSecondary),
+            const Icon(
+              Icons.arrow_forward_ios,
+              size: 16,
+              color: AppColors.textSecondary,
+            ),
           ],
         ),
       ),

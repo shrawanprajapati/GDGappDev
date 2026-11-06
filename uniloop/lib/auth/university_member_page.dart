@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/app_colors.dart';
 
 class UniversityMemberPage extends StatelessWidget {
   const UniversityMemberPage({super.key});
@@ -6,11 +7,11 @@ class UniversityMemberPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: AppColors.textPrimary),
       ),
       body: SafeArea(
         child: Padding(
@@ -23,13 +24,13 @@ class UniversityMemberPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.w800,
-                  color: Color(0xFF1E1E1E),
+                  color: AppColors.textPrimary,
                   letterSpacing: -1.0,
                 ),
               ),
-              
+
               const SizedBox(height: 60),
-              
+
               // List of sub-roles
               _buildSubRole(context, 'Student'),
               _buildSubRole(context, 'Professors'),
@@ -47,8 +48,11 @@ class UniversityMemberPage extends StatelessWidget {
   Widget _buildSubRole(BuildContext context, String title) {
     return InkWell(
       onTap: () {
-        // TODO: Yahan hum next step (Login Form) pe jayenge
-        print('$title selected');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('$title login is available from the role selector.'),
+          ),
+        );
       },
       borderRadius: BorderRadius.circular(8),
       child: Padding(
@@ -58,7 +62,7 @@ class UniversityMemberPage extends StatelessWidget {
             const Icon(
               Icons.description_outlined,
               size: 22,
-              color: Color(0xFF4A4A4A),
+              color: AppColors.accent,
             ),
             const SizedBox(width: 12),
             Text(
@@ -66,7 +70,7 @@ class UniversityMemberPage extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
-                color: Color(0xFF2C2C2C),
+                color: AppColors.textPrimary,
                 decoration: TextDecoration.underline,
                 decorationThickness: 1.5,
               ),

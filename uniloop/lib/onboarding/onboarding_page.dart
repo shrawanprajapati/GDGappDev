@@ -17,7 +17,12 @@ class _OnboardingPageState extends State<OnboardingPage>
   static const String _subtitle = 'CONNECT · DISCOVER · BELONG';
   static const String _ctaLabel = 'Get Started';
   static const String _skipLabel = 'Skip for now';
-  static const List<String> _chips = ['Events', 'Clubs', 'Students', 'Professors'];
+  static const List<String> _chips = [
+    'Events',
+    'Clubs',
+    'Students',
+    'Professors',
+  ];
 
   late final VideoPlayerController _video;
   late final AnimationController _anim;
@@ -25,19 +30,25 @@ class _OnboardingPageState extends State<OnboardingPage>
   @override
   void initState() {
     super.initState();
-    _video = VideoPlayerController.asset('assets/videos/onboarding_video.mp4')
-      ..initialize().then((_) {
-        _video
-          ..setLooping(true)
-          ..setVolume(0)
-          ..play();
-        if (mounted) setState(() {});
-      });
+    _video = VideoPlayerController.asset('assets/videos/onboarding_video.mp4');
+    _initializeVideo();
 
     _anim = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1000),
     )..forward();
+  }
+
+  Future<void> _initializeVideo() async {
+    try {
+      await _video.initialize();
+      await _video.setLooping(true);
+      await _video.setVolume(0);
+      await _video.play();
+      if (mounted) setState(() {});
+    } catch (_) {
+      // The onboarding remains usable when video playback is unavailable.
+    }
   }
 
   @override
@@ -126,7 +137,11 @@ class _OnboardingPageState extends State<OnboardingPage>
                         height: 1.15,
                         letterSpacing: -0.5,
                         shadows: [
-                          Shadow(offset: Offset(0, 2), blurRadius: 12, color: Colors.black54),
+                          Shadow(
+                            offset: Offset(0, 2),
+                            blurRadius: 12,
+                            color: Colors.black54,
+                          ),
                         ],
                       ),
                     ),
@@ -144,7 +159,9 @@ class _OnboardingPageState extends State<OnboardingPage>
                     Wrap(
                       spacing: 10,
                       runSpacing: 10,
-                      children: _chips.map((label) => _Chip(label: label)).toList(),
+                      children: _chips
+                          .map((label) => _Chip(label: label))
+                          .toList(),
                     ),
                     const SizedBox(height: 28),
                     // Get Started Button
@@ -167,7 +184,10 @@ class _OnboardingPageState extends State<OnboardingPage>
                         ),
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, AppRoutes.login);
+                            Navigator.pushReplacementNamed(
+                              context,
+                              AppRoutes.login,
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.transparent,
@@ -191,7 +211,10 @@ class _OnboardingPageState extends State<OnboardingPage>
                     Center(
                       child: TextButton(
                         onPressed: () {
-                          Navigator.pushReplacementNamed(context, AppRoutes.login);
+                          Navigator.pushReplacementNamed(
+                            context,
+                            AppRoutes.login,
+                          );
                         },
                         child: Text(
                           _skipLabel,
@@ -224,7 +247,9 @@ class _Chip extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.textPrimary.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(30),
-        border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.15)),
+        border: Border.all(
+          color: AppColors.textPrimary.withValues(alpha: 0.15),
+        ),
       ),
       child: Text(
         label,

@@ -20,6 +20,7 @@ import '../misc/internship_page.dart';
 import '../misc/companies_page.dart';
 import '../misc/scholarship_page.dart';
 import '../../common/logout_dialog.dart';
+
 class StudentDrawer extends StatelessWidget {
   const StudentDrawer({super.key});
 
@@ -43,130 +44,298 @@ class StudentDrawer extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-                    Text('Shrawan Prajapati', style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
+                    Text(
+                      'Shrawan Prajapati',
+                      style: TextStyle(
+                        color: AppColors.textPrimary,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     SizedBox(height: 4),
-                    Text('Student • CSE 2026', style: TextStyle(color: AppColors.textSecondary, fontSize: 13)),
+                    Text(
+                      'Student • CSE 2026',
+                      style: TextStyle(
+                        color: AppColors.textSecondary,
+                        fontSize: 13,
+                      ),
+                    ),
                   ],
                 ),
               ],
             ),
             const SizedBox(height: 24),
             const Divider(color: Colors.white12, thickness: 1),
-            
+
             // 2. Main Options
             _drawerItem(
-              context, 
-              Icons.person_outline, 
-              'Profile', 
-              onTap: () {
-                Navigator.pop(context); 
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
-              }
-            ),
-            _drawerItem(
-              context, 
-              Icons.work_outline, 
-              'Find Project', 
+              context,
+              Icons.person_outline,
+              'Profile',
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const FindProjectPage()));
-              }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProfilePage()),
+                );
+              },
             ),
             _drawerItem(
-              context, 
-              Icons.assignment_outlined, 
-              'My Projects', 
+              context,
+              Icons.work_outline,
+              'Find Project',
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const MyProjectsPage()));
-              }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const FindProjectPage(),
+                  ),
+                );
+              },
             ),
-            _drawerItem(context, Icons.class_outlined, 'Reminder (classroom type)'),
-            
+            _drawerItem(
+              context,
+              Icons.assignment_outlined,
+              'My Projects',
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MyProjectsPage(),
+                  ),
+                );
+              },
+            ),
+            _drawerItem(
+              context,
+              Icons.class_outlined,
+              'Reminder (classroom type)',
+              onTap: () => _showComingSoon(context, 'Classroom reminders'),
+            ),
+
             const Divider(color: Colors.white12, thickness: 1, height: 30),
 
             // 3. College Clubs
             _drawerHeader('Know your College clubs'),
             _buildCouncilItem(
-              context, 'Technical Club', Icons.computer, Colors.blueAccent,
+              context,
+              'Technical Club',
+              Icons.computer,
+              Colors.blueAccent,
               [
-                {'name': 'Programming Club', 'icon': Icons.code, 'desc': 'Competitive coding & dev.'},
-                {'name': 'Robotics Club', 'icon': Icons.smart_toy, 'desc': 'Hardware & automation.'},
-                {'name': 'Astronomy Club', 'icon': Icons.public, 'desc': 'Space & stargazing.'},
-              ]
+                {
+                  'name': 'Programming Club',
+                  'icon': Icons.code,
+                  'desc': 'Competitive coding & dev.',
+                },
+                {
+                  'name': 'Robotics Club',
+                  'icon': Icons.smart_toy,
+                  'desc': 'Hardware & automation.',
+                },
+                {
+                  'name': 'Astronomy Club',
+                  'icon': Icons.public,
+                  'desc': 'Space & stargazing.',
+                },
+              ],
             ),
             _buildCouncilItem(
-              context, 'Cultural Club', Icons.music_note, Colors.pinkAccent,
+              context,
+              'Cultural Club',
+              Icons.music_note,
+              Colors.pinkAccent,
               [
-                {'name': 'Music Club', 'icon': Icons.piano, 'desc': 'Singing & instruments.'},
-                {'name': 'Dance Club', 'icon': Icons.directions_run, 'desc': 'Choreography & street dance.'},
-                {'name': 'Drama Club', 'icon': Icons.theater_comedy, 'desc': 'Acting & theatre.'},
-              ]
+                {
+                  'name': 'Music Club',
+                  'icon': Icons.piano,
+                  'desc': 'Singing & instruments.',
+                },
+                {
+                  'name': 'Dance Club',
+                  'icon': Icons.directions_run,
+                  'desc': 'Choreography & street dance.',
+                },
+                {
+                  'name': 'Drama Club',
+                  'icon': Icons.theater_comedy,
+                  'desc': 'Acting & theatre.',
+                },
+              ],
             ),
             _buildCouncilItem(
-              context, 'Sports', Icons.sports_soccer, Colors.greenAccent,
+              context,
+              'Sports',
+              Icons.sports_soccer,
+              Colors.greenAccent,
               [
-                {'name': 'Cricket Team', 'icon': Icons.sports_cricket, 'desc': 'Institute cricket team.'},
-                {'name': 'Football Team', 'icon': Icons.sports_soccer, 'desc': 'Institute football team.'},
-                {'name': 'Athletics Team', 'icon': Icons.directions_run, 'desc': 'Track & field events.'},
-              ]
+                {
+                  'name': 'Cricket Team',
+                  'icon': Icons.sports_cricket,
+                  'desc': 'Institute cricket team.',
+                },
+                {
+                  'name': 'Football Team',
+                  'icon': Icons.sports_soccer,
+                  'desc': 'Institute football team.',
+                },
+                {
+                  'name': 'Athletics Team',
+                  'icon': Icons.directions_run,
+                  'desc': 'Track & field events.',
+                },
+              ],
             ),
             _buildCouncilItem(
-              context, 'Association', Icons.groups, Colors.orangeAccent,
+              context,
+              'Association',
+              Icons.groups,
+              Colors.orangeAccent,
               [
-                {'name': 'Alumni Connect', 'icon': Icons.people, 'desc': 'Networking with alumni.'},
-                {'name': 'Counselling Cell', 'icon': Icons.psychology, 'desc': 'Mental health support.'},
-              ]
+                {
+                  'name': 'Alumni Connect',
+                  'icon': Icons.people,
+                  'desc': 'Networking with alumni.',
+                },
+                {
+                  'name': 'Counselling Cell',
+                  'icon': Icons.psychology,
+                  'desc': 'Mental health support.',
+                },
+              ],
             ),
 
             const Divider(color: Colors.white12, thickness: 1, height: 30),
 
             // 4. Connect Alumni
             _drawerHeader('Connect Alumni'),
-            _drawerItem(context, Icons.mic_none_outlined, 'Talks', onTap: () {
-              Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const AlumniTalksPage()));
-            }),
-            _drawerItem(context, Icons.people_outline, 'Know our Alumni', onTap: () {
-              Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const AlumniListPage()));
-            }),
-            _drawerItem(context, Icons.handshake_outlined, 'Request for Guidance'),
-            _drawerItem(context, Icons.work_history_outlined, 'Internship', onTap: () {
-              Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const InternshipPage()));
-            }),
+            _drawerItem(
+              context,
+              Icons.mic_none_outlined,
+              'Talks',
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AlumniTalksPage(),
+                  ),
+                );
+              },
+            ),
+            _drawerItem(
+              context,
+              Icons.people_outline,
+              'Know our Alumni',
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AlumniListPage(),
+                  ),
+                );
+              },
+            ),
+            _drawerItem(
+              context,
+              Icons.handshake_outlined,
+              'Request for Guidance',
+              onTap: () => _showComingSoon(context, 'Alumni guidance requests'),
+            ),
+            _drawerItem(
+              context,
+              Icons.work_history_outlined,
+              'Internship',
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const InternshipPage(),
+                  ),
+                );
+              },
+            ),
 
             const Divider(color: Colors.white12, thickness: 1, height: 30),
 
             // 5. Placement
             _drawerHeader('Placement'),
-            _drawerItem(context, Icons.business_outlined, 'Know different companies', onTap: () {
-              Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const CompaniesPage()));
-            }),
-            _drawerItem(context, Icons.school_outlined, 'Scholarship', onTap: () {
-              Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const ScholarshipPage()));
-            }),
+            _drawerItem(
+              context,
+              Icons.business_outlined,
+              'Know different companies',
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CompaniesPage(),
+                  ),
+                );
+              },
+            ),
+            _drawerItem(
+              context,
+              Icons.school_outlined,
+              'Scholarship',
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScholarshipPage(),
+                  ),
+                );
+              },
+            ),
 
             const Divider(color: Colors.white12, thickness: 1, height: 30),
 
             // 6. Others (Common)
-            _drawerItem(context, Icons.storefront_outlined, 'UniLoop MarketPlace'),
-            _drawerItem(context, Icons.settings_outlined, 'Settings', onTap: () {
-              Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage()));
-            }),
-            _drawerItem(context, Icons.logout, 'Logout', onTap: () {
-              Navigator.pop(context);
-              LogoutDialog.show(context);
-            }),
-            _drawerItem(context, Icons.description_outlined, 'Terms and conditions', onTap: () {
-              Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const TermsPage()));
-            }),
-            
+            _drawerItem(
+              context,
+              Icons.storefront_outlined,
+              'UniLoop MarketPlace',
+              onTap: () => _showComingSoon(context, 'UniLoop Marketplace'),
+            ),
+            _drawerItem(
+              context,
+              Icons.settings_outlined,
+              'Settings',
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SettingsPage()),
+                );
+              },
+            ),
+            _drawerItem(
+              context,
+              Icons.logout,
+              'Logout',
+              onTap: () {
+                Navigator.pop(context);
+                LogoutDialog.show(context);
+              },
+            ),
+            _drawerItem(
+              context,
+              Icons.description_outlined,
+              'Terms and conditions',
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TermsPage()),
+                );
+              },
+            ),
+
             const SizedBox(height: 30),
           ],
         ),
@@ -180,33 +349,58 @@ class StudentDrawer extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: const TextStyle(color: AppColors.accent, fontSize: 16, fontWeight: FontWeight.bold)),
+          Text(
+            title,
+            style: const TextStyle(
+              color: AppColors.accent,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const Icon(Icons.chevron_right, color: AppColors.accent, size: 20),
         ],
       ),
     );
   }
 
-  Widget _drawerItem(BuildContext context, IconData icon, String title, {VoidCallback? onTap}) {
+  void _showComingSoon(BuildContext context, String feature) {
+    Navigator.pop(context);
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('$feature will be available soon.')));
+  }
+
+  Widget _drawerItem(
+    BuildContext context,
+    IconData icon,
+    String title, {
+    VoidCallback? onTap,
+  }) {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       leading: Icon(icon, color: AppColors.textSecondary, size: 22),
-      title: Text(title, style: const TextStyle(color: AppColors.textPrimary, fontSize: 15)),
-      onTap: onTap ?? () {}, 
+      title: Text(
+        title,
+        style: const TextStyle(color: AppColors.textPrimary, fontSize: 15),
+      ),
+      onTap: onTap ?? () {},
     );
   }
 
   Widget _buildCouncilItem(
-    BuildContext context, 
-    String name, 
-    IconData icon, 
+    BuildContext context,
+    String name,
+    IconData icon,
     Color color,
     List<Map<String, dynamic>> clubs,
   ) {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       leading: Icon(icon, color: color, size: 22),
-      title: Text(name, style: const TextStyle(color: AppColors.textPrimary, fontSize: 15)),
+      title: Text(
+        name,
+        style: const TextStyle(color: AppColors.textPrimary, fontSize: 15),
+      ),
       onTap: () {
         Navigator.pop(context);
         Navigator.push(

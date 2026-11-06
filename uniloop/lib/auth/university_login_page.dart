@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
 import '../core/app_routes.dart';
-import '../club/dashboard/club_dashboard.dart'; // 👈 Naya Dashboard import kiya
+import '../club/dashboard/club_dashboard.dart';
+import '../professor/dashboard/professor_dashboard.dart';
+import 'signup_page.dart'; // 👈 Naya import add kiya
 
 class UniversityLoginPage extends StatefulWidget {
   const UniversityLoginPage({super.key});
@@ -13,7 +15,7 @@ class UniversityLoginPage extends StatefulWidget {
 class _UniversityLoginPageState extends State<UniversityLoginPage> {
   String? _selectedRole;
   bool _obscureText = true;
-  
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -21,9 +23,8 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
     'Student',
     'Professor',
     'Club',
-    'Administration',
-    'Worker',
     'Alumni',
+    'Admin',
   ];
 
   @override
@@ -35,9 +36,9 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
 
   void _handleLogin() {
     if (_selectedRole == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please select your role')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Please select your role')));
       return;
     }
 
@@ -48,17 +49,24 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
       return;
     }
 
-    // 👈 Role ke hisaab se Dashboard change hoga
     if (_selectedRole == 'Student') {
       Navigator.pushReplacementNamed(context, AppRoutes.studentDashboard);
-      
-    } else if (_selectedRole == 'Club' || _selectedRole == 'Professor' || _selectedRole == 'Administration') {
-      // Club, Prof, aur Admin ke liye naya Dashboard
+    } else if (_selectedRole == 'Club') {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const ClubDashboard()),
       );
-      
+    } else if (_selectedRole == 'Professor') {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const ProfessorDashboard()),
+      );
+    } else if (_selectedRole == 'Industry/Company') {
+      Navigator.pushReplacementNamed(context, AppRoutes.industryDashboard);
+    } else if (_selectedRole == 'Admin') {
+      Navigator.pushReplacementNamed(context, AppRoutes.adminDashboard);
+    } else if (_selectedRole == 'Alumni') {
+      Navigator.pushReplacementNamed(context, AppRoutes.alumniDashboard);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('$_selectedRole login coming soon!')),
@@ -91,11 +99,9 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
               ),
               const SizedBox(height: 30),
 
-              // Role Dropdown
               _buildDropdown(),
               const SizedBox(height: 20),
 
-              // Email Field
               _buildTextField(
                 controller: _emailController,
                 hint: 'University Email',
@@ -104,7 +110,6 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
               ),
               const SizedBox(height: 20),
 
-              // Password Field
               _buildTextField(
                 controller: _passwordController,
                 hint: 'Password',
@@ -123,8 +128,7 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                   },
                 ),
               ),
-              
-              // Forgot Password
+
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
@@ -137,7 +141,6 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
               ),
               const SizedBox(height: 24),
 
-              // Login Button
               SizedBox(
                 width: double.infinity,
                 height: 58,
@@ -156,7 +159,7 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                     ],
                   ),
                   child: ElevatedButton(
-                    onPressed: _handleLogin, 
+                    onPressed: _handleLogin,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       shadowColor: Colors.transparent,
@@ -175,32 +178,45 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                   ),
                 ),
               ),
-              
-              const SizedBox(height: 24),
-              
-              // OR Divider
-              Row(
-                children: [
-                  Expanded(child: Divider(color: AppColors.textSecondary.withValues(alpha: 0.3))),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text('OR', style: TextStyle(color: AppColors.textSecondary.withValues(alpha: 0.7))),
-                  ),
-                  Expanded(child: Divider(color: AppColors.textSecondary.withValues(alpha: 0.3))),
-                ],
-              ),
-              
+
               const SizedBox(height: 24),
 
-              // Google Login Button
+              Row(
+                children: [
+                  Expanded(
+                    child: Divider(
+                      color: AppColors.textSecondary.withValues(alpha: 0.3),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      'OR',
+                      style: TextStyle(
+                        color: AppColors.textSecondary.withValues(alpha: 0.7),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Divider(
+                      color: AppColors.textSecondary.withValues(alpha: 0.3),
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 24),
+
               SizedBox(
                 width: double.infinity,
                 height: 54,
                 child: OutlinedButton.icon(
-                  onPressed: () {
-                    // Google Sign In logic
-                  },
-                  icon: const Icon(Icons.g_mobiledata, size: 32, color: AppColors.textPrimary),
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.g_mobiledata,
+                    size: 32,
+                    color: AppColors.textPrimary,
+                  ),
                   label: const Text(
                     'Continue with Google',
                     style: TextStyle(
@@ -210,17 +226,19 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                     ),
                   ),
                   style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: Colors.white.withValues(alpha: 0.2)),
+                    side: BorderSide(
+                      color: Colors.white.withValues(alpha: 0.2),
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
                     ),
                   ),
                 ),
               ),
-              
+
               const SizedBox(height: 30),
-              
-              // Sign Up Redirect
+
+              // 👈 Yahan Signup ka link add kiya hai
               Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -231,7 +249,13 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        // Navigate to Sign Up Page
+                        // Navigate to Signup Page
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SignupPage(),
+                          ),
+                        );
                       },
                       child: const Text(
                         "Create an account",
@@ -268,7 +292,10 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
             style: TextStyle(color: AppColors.textSecondary),
           ),
           dropdownColor: AppColors.surface,
-          icon: const Icon(Icons.arrow_drop_down, color: AppColors.textSecondary),
+          icon: const Icon(
+            Icons.arrow_drop_down,
+            color: AppColors.textSecondary,
+          ),
           isExpanded: true,
           items: _roles.map((String role) {
             return DropdownMenuItem<String>(

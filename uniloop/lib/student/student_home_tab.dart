@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
+import 'student_events_page.dart';
 
 class StudentHomeTab extends StatelessWidget {
   const StudentHomeTab({super.key});
@@ -31,14 +32,14 @@ class StudentHomeTab extends StatelessWidget {
           // 2. Trending on Campus
           _buildSectionTitle('Trending On Campus'),
           const SizedBox(height: 12),
-          _buildHorizontalTiles(),
+          _buildHorizontalTiles(context), // 👈 context pass kiya
 
           const SizedBox(height: 30),
 
           // 3. Events
           _buildSectionTitle('Events'),
           const SizedBox(height: 12),
-          _buildHorizontalTiles(isEvent: true),
+          _buildHorizontalTiles(context, isEvent: true), // 👈 context pass kiya
 
           const SizedBox(height: 30),
 
@@ -122,7 +123,8 @@ class StudentHomeTab extends StatelessWidget {
     );
   }
 
-  Widget _buildHorizontalTiles({bool isEvent = false}) {
+  // 👈 Yahan context add kiya aur onTap event add kiya
+  Widget _buildHorizontalTiles(BuildContext context, {bool isEvent = false}) {
     return SizedBox(
       height: 140,
       child: ListView.separated(
@@ -130,34 +132,44 @@ class StudentHomeTab extends StatelessWidget {
         itemCount: 3,
         separatorBuilder: (_, __) => const SizedBox(width: 16),
         itemBuilder: (context, index) {
-          return Container(
-            width: 200,
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: AppColors.surface,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Icon(
-                  isEvent ? Icons.event : Icons.local_fire_department,
-                  color: isEvent ? AppColors.accent : AppColors.primary,
-                  size: 28,
-                ),
-                const Spacer(),
-                Text(
-                  isEvent ? 'Tech Fest 2024' : 'Hackathon Winners',
-                  style: const TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  isEvent ? 'Oct 24 • Main Audi' : 'Trending #1',
-                  style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
-                ),
-              ],
+          return GestureDetector(
+            onTap: () {
+              if (isEvent) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const StudentEventsPage()),
+                );
+              }
+            },
+            child: Container(
+              width: 200,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: AppColors.surface,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Icon(
+                    isEvent ? Icons.event : Icons.local_fire_department,
+                    color: isEvent ? AppColors.accent : AppColors.primary,
+                    size: 28,
+                  ),
+                  const Spacer(),
+                  Text(
+                    isEvent ? 'Tech Fest 2024' : 'Hackathon Winners',
+                    style: const TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    isEvent ? 'Oct 24 • Main Audi' : 'Trending #1',
+                    style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                  ),
+                ],
+              ),
             ),
           );
         },

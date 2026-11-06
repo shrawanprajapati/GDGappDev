@@ -19,7 +19,7 @@ import '../misc/alumni_talks_page.dart';
 import '../misc/internship_page.dart';
 import '../misc/companies_page.dart';
 import '../misc/scholarship_page.dart';
-
+import '../../common/logout_dialog.dart';
 class StudentDrawer extends StatelessWidget {
   const StudentDrawer({super.key});
 
@@ -157,6 +157,10 @@ class StudentDrawer extends StatelessWidget {
             _drawerItem(context, Icons.settings_outlined, 'Settings', onTap: () {
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage()));
+            }),
+            _drawerItem(context, Icons.logout, 'Logout', onTap: () {
+              Navigator.pop(context);
+              LogoutDialog.show(context);
             }),
             _drawerItem(context, Icons.description_outlined, 'Terms and conditions', onTap: () {
               Navigator.pop(context);

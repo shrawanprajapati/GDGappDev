@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
-import '../core/app_routes.dart'; // 👈 Ye import add kiya (Error fix)
+import '../core/app_routes.dart';
+import '../club/dashboard/club_dashboard.dart'; // 👈 Naya Dashboard import kiya
 
 class UniversityLoginPage extends StatefulWidget {
   const UniversityLoginPage({super.key});
@@ -13,7 +14,6 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
   String? _selectedRole;
   bool _obscureText = true;
   
-  // 👈 Controllers add kiye email aur password ke liye
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -33,7 +33,6 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
     super.dispose();
   }
 
-  // 👈 Login handle karne ka function
   void _handleLogin() {
     if (_selectedRole == null) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -49,11 +48,18 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
       return;
     }
 
+    // 👈 Role ke hisaab se Dashboard change hoga
     if (_selectedRole == 'Student') {
-      // Student select kiya hai, toh Dashboard par bhejo
       Navigator.pushReplacementNamed(context, AppRoutes.studentDashboard);
+      
+    } else if (_selectedRole == 'Club' || _selectedRole == 'Professor' || _selectedRole == 'Administration') {
+      // Club, Prof, aur Admin ke liye naya Dashboard
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const ClubDashboard()),
+      );
+      
     } else {
-      // Baaki roles ke liye backend baad me aayega
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('$_selectedRole login coming soon!')),
       );
@@ -150,7 +156,7 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                     ],
                   ),
                   child: ElevatedButton(
-                    onPressed: _handleLogin, // 👈 Function call kiya
+                    onPressed: _handleLogin, 
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       shadowColor: Colors.transparent,
@@ -283,7 +289,6 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
     );
   }
 
-  // 👈 TextField function me controller add kiya
   Widget _buildTextField({
     required TextEditingController controller,
     required String hint,
@@ -299,7 +304,7 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
         border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
       ),
       child: TextField(
-        controller: controller, // 👈 Controller attached
+        controller: controller,
         obscureText: obscureText,
         keyboardType: keyboardType,
         style: const TextStyle(color: AppColors.textPrimary),

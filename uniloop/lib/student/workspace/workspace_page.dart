@@ -9,7 +9,9 @@ class WorkspacePage extends StatefulWidget {
   State<WorkspacePage> createState() => _WorkspacePageState();
 }
 
-class _WorkspacePageState extends State<WorkspacePage> {
+class _WorkspacePageState extends State<WorkspacePage> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
   // Dummy Tasks
   final List<Map<String, dynamic>> tasks = [
     {'title': 'Design Landing Page UI', 'assignedTo': 'You', 'status': 'Done', 'due': 'Today'},
@@ -17,6 +19,25 @@ class _WorkspacePageState extends State<WorkspacePage> {
     {'title': 'Integrate Google Maps API', 'assignedTo': 'You', 'status': 'In Progress', 'due': 'Tomorrow'},
     {'title': 'Write Documentation', 'assignedTo': 'Amit', 'status': 'Pending', 'due': '25 Oct'},
   ];
+
+  // Dummy Milestones
+  final List<Map<String, dynamic>> milestones = [
+    {'title': 'UI/UX Prototype Submission', 'status': 'Approved', 'feedback': 'Great design, loved the dark theme!'},
+    {'title': 'MVP Development', 'status': 'Pending Review', 'feedback': 'Submitted on time.'},
+    {'title': 'Final Deployment', 'status': 'Upcoming', 'feedback': ''},
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,72 +48,90 @@ class _WorkspacePageState extends State<WorkspacePage> {
         elevation: 0,
         iconTheme: const IconThemeData(color: AppColors.textPrimary),
         title: const Text('Workspace', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.bold)),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.chat_bubble_outline, color: AppColors.accent),
-            onPressed: () {
-              // TODO: Discussion Thread
-            },
-          )
-        ],
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Project Header
-            Text(
-              widget.projectData['title'],
-              style: const TextStyle(color: AppColors.textPrimary, fontSize: 22, fontWeight: FontWeight.w800),
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                const Icon(Icons.timer_outlined, size: 16, color: Colors.orangeAccent),
-                const SizedBox(width: 6),
-                Text(widget.projectData['deadline'], style: const TextStyle(color: Colors.orangeAccent, fontSize: 13, fontWeight: FontWeight.bold)),
-              ],
-            ),
-            
-            const SizedBox(height: 30),
-
-            // Team Members Section
-            const Text('Team Members', style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 12),
-            Row(
-              children: [
-                _buildAvatar('You', AppColors.primary),
-                const SizedBox(width: 12),
-                _buildAvatar('Rahul', Colors.blueAccent),
-                const SizedBox(width: 12),
-                _buildAvatar('Amit', Colors.orangeAccent),
-                const SizedBox(width: 12),
-                _buildAvatar('Priya', Colors.pinkAccent),
-              ],
-            ),
-
-            const SizedBox(height: 30),
-
-            // Tasks Section
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text('Project Tasks', style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
-                TextButton.icon(
-                  onPressed: () {
-                    // TODO: Add Task
-                  },
-                  icon: const Icon(Icons.add, size: 16, color: AppColors.accent),
-                  label: const Text('Add Task', style: TextStyle(color: AppColors.accent, fontSize: 13)),
-                )
-              ],
-            ),
-            const SizedBox(height: 8),
-            
-            ...tasks.map((task) => _buildTaskCard(task)),
+        bottom: TabBar(
+          controller: _tabController,
+          indicatorColor: AppColors.accent,
+          labelColor: AppColors.accent,
+          unselectedLabelColor: AppColors.textSecondary,
+          tabs: const [
+            Tab(text: 'Project Tasks'),
+            Tab(text: 'Milestones'),
           ],
         ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          // --- TAB 1: TASKS & TEAM ---
+          SingleChildScrollView(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.projectData['title'],
+                  style: const TextStyle(color: AppColors.textPrimary, fontSize: 22, fontWeight: FontWeight.w800),
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    const Icon(Icons.timer_outlined, size: 16, color: Colors.orangeAccent),
+                    const SizedBox(width: 6),
+                    Text(widget.projectData['deadline'], style: const TextStyle(color: Colors.orangeAccent, fontSize: 13, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                const SizedBox(height: 30),
+
+                const Text('Team Members', style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    _buildAvatar('You', AppColors.primary),
+                    const SizedBox(width: 12),
+                    _buildAvatar('Rahul', Colors.blueAccent),
+                    const SizedBox(width: 12),
+                    _buildAvatar('Amit', Colors.orangeAccent),
+                    const SizedBox(width: 12),
+                    _buildAvatar('Priya', Colors.pinkAccent),
+                  ],
+                ),
+
+                const SizedBox(height: 30),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Tasks', style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
+                    TextButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.add, size: 16, color: AppColors.accent),
+                      label: const Text('Add', style: TextStyle(color: AppColors.accent, fontSize: 13)),
+                    )
+                  ],
+                ),
+                ...tasks.map((task) => _buildTaskCard(task)),
+              ],
+            ),
+          ),
+
+          // --- TAB 2: MILESTONES ---
+          ListView.builder(
+            padding: const EdgeInsets.all(20.0),
+            itemCount: milestones.length,
+            itemBuilder: (context, index) {
+              final milestone = milestones[index];
+              return _buildMilestoneCard(context, milestone);
+            },
+          ),
+        ],
+      ),
+      // Chat Floating Action Button
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _showDiscussionThread(context);
+        },
+        backgroundColor: AppColors.primary,
+        child: const Icon(Icons.forum, color: Colors.white),
       ),
     );
   }
@@ -161,6 +200,175 @@ class _WorkspacePageState extends State<WorkspacePage> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildMilestoneCard(BuildContext context, Map<String, dynamic> milestone) {
+    Color statusColor;
+    if (milestone['status'] == 'Approved') {
+      statusColor = AppColors.accent;
+    } else if (milestone['status'] == 'Pending Review') {
+      statusColor = Colors.orangeAccent;
+    } else {
+      statusColor = AppColors.textSecondary;
+    }
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(milestone['title'], style: const TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.bold)),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(color: statusColor.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(6)),
+                child: Text(milestone['status'], style: TextStyle(color: statusColor, fontSize: 11, fontWeight: FontWeight.bold)),
+              )
+            ],
+          ),
+          if (milestone['feedback'].toString().isNotEmpty) ...[
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(color: AppColors.background, borderRadius: BorderRadius.circular(8)),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Icon(Icons.feedback_outlined, color: AppColors.textSecondary, size: 16),
+                  const SizedBox(width: 8),
+                  Expanded(child: Text('Client Feedback: "${milestone['feedback']}"', style: const TextStyle(color: AppColors.textSecondary, fontSize: 12, fontStyle: FontStyle.italic))),
+                ],
+              ),
+            ),
+          ],
+          if (milestone['status'] == 'Upcoming') ...[
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Milestone Submitted for Review!'), backgroundColor: AppColors.accent),
+                  );
+                },
+                style: ElevatedButton.styleFrom(backgroundColor: AppColors.surface, foregroundColor: AppColors.textPrimary, side: const BorderSide(color: Colors.white12)),
+                child: const Text('Submit Deliverable'),
+              ),
+            )
+          ]
+        ],
+      ),
+    );
+  }
+
+  // --- CHAT / DISCUSSION THREAD ---
+  void _showDiscussionThread(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: AppColors.surface,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+      builder: (context) {
+        return Padding(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.7,
+            child: Column(
+              children: [
+                // Header
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: const BoxDecoration(
+                    border: Border(bottom: BorderSide(color: Colors.white12)),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.forum, color: AppColors.accent),
+                      const SizedBox(width: 12),
+                      const Text('Team Discussion', style: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold)),
+                      const Spacer(),
+                      IconButton(icon: const Icon(Icons.close, color: AppColors.textSecondary), onPressed: () => Navigator.pop(context)),
+                    ],
+                  ),
+                ),
+                
+                // Messages
+                Expanded(
+                  child: ListView(
+                    padding: const EdgeInsets.all(20),
+                    children: [
+                      _buildChatMessage('Rahul', 'Hey team, I finished the Flutter project setup.', false),
+                      _buildChatMessage('You', 'Great! I am working on the Google Maps API now.', true),
+                      _buildChatMessage('Priya', 'Let me know if you need help with the UI design.', false),
+                    ],
+                  ),
+                ),
+
+                // Input
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          decoration: BoxDecoration(color: AppColors.background, borderRadius: BorderRadius.circular(24)),
+                          child: const TextField(
+                            style: TextStyle(color: AppColors.textPrimary),
+                            decoration: InputDecoration(hintText: 'Type a message...', hintStyle: TextStyle(color: AppColors.textSecondary), border: InputBorder.none),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      CircleAvatar(
+                        backgroundColor: AppColors.primary,
+                        child: IconButton(icon: const Icon(Icons.send, color: Colors.white, size: 20), onPressed: () {}),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildChatMessage(String sender, String message, bool isMe) {
+    return Align(
+      alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 16),
+        constraints: const BoxConstraints(maxWidth: 250),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: isMe ? AppColors.primary : AppColors.background,
+          borderRadius: BorderRadius.only(
+            topLeft: const Radius.circular(16),
+            topRight: const Radius.circular(16),
+            bottomRight: isMe ? const Radius.circular(0) : const Radius.circular(16),
+            bottomLeft: isMe ? const Radius.circular(16) : const Radius.circular(0),
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (!isMe) Text(sender, style: const TextStyle(color: AppColors.accent, fontSize: 11, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 4),
+            Text(message, style: TextStyle(color: isMe ? Colors.white : AppColors.textPrimary, fontSize: 14)),
+          ],
+        ),
       ),
     );
   }

@@ -297,11 +297,20 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                     borderRadius: BorderRadius.circular(16),
                     gradient: const LinearGradient(colors: [AppColors.primary, AppColors.accent]),
                   ),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      // TODO: Register logic
-                    },
+                  
+
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context); // Close bottom sheet
+                        // Show Success Message
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Successfully Registered for ${event['title']}!'),
+                            backgroundColor: AppColors.accent,
+                          ),
+                        );
+                      },
+                    
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       shadowColor: Colors.transparent,

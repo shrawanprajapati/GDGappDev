@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
 import 'student_home_tab.dart';
-import 'student_drawer.dart';
+import 'drawer/student_drawer.dart';
 import 'student_teams_tab.dart'; // 👈 Naya import add karo
 
 class StudentDashboard extends StatefulWidget {

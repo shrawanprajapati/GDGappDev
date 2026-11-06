@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 import '../council_clubs_page.dart';
-import '../profile/profile_page.dart'; // 👈 ProfilePage ka import add kiya
+import '../profile/profile_page.dart';
+import '../projects/find_project_page.dart'; // 👈 Import perfect hai
 
 class StudentDrawer extends StatelessWidget {
   const StudentDrawer({super.key});
@@ -36,22 +37,33 @@ class StudentDrawer extends StatelessWidget {
             const SizedBox(height: 24),
             const Divider(color: Colors.white12, thickness: 1),
             
-            // 1. Profile (Fixed onTap)
+            // 1. Profile
             _drawerItem(
               context, 
               Icons.person_outline, 
               'Profile', 
               onTap: () {
-                Navigator.pop(context); // Drawer band karo
+                Navigator.pop(context); 
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
               }
             ),
-            _drawerItem(context, Icons.work_outline, 'Find Project'),
+            
+            // 2. Find Project (Syntax Fixed)
+            _drawerItem(
+              context, 
+              Icons.work_outline, 
+              'Find Project', 
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const FindProjectPage()));
+              }
+            ),
+            
             _drawerItem(context, Icons.class_outlined, 'Reminder (classroom type)'),
             
             const Divider(color: Colors.white12, thickness: 1, height: 30),
 
-            // 2. College Clubs
+            // 3. College Clubs
             _drawerHeader('Know your College clubs'),
             _buildCouncilItem(
               context, 'Technical Club', Icons.computer, Colors.blueAccent,
@@ -87,7 +99,7 @@ class StudentDrawer extends StatelessWidget {
 
             const Divider(color: Colors.white12, thickness: 1, height: 30),
 
-            // 3. Connect Alumni
+            // 4. Connect Alumni
             _drawerHeader('Connect Alumni'),
             _drawerItem(context, Icons.mic_none_outlined, 'Talks'),
             _drawerItem(context, Icons.people_outline, 'Know our Alumni'),
@@ -96,14 +108,14 @@ class StudentDrawer extends StatelessWidget {
 
             const Divider(color: Colors.white12, thickness: 1, height: 30),
 
-            // 4. Placement
+            // 5. Placement
             _drawerHeader('Placement'),
             _drawerItem(context, Icons.business_outlined, 'Know different companies'),
             _drawerItem(context, Icons.school_outlined, 'Scholarship'),
 
             const Divider(color: Colors.white12, thickness: 1, height: 30),
 
-            // 5. Others
+            // 6. Others
             _drawerItem(context, Icons.storefront_outlined, 'UniLoop MarketPlace'),
             _drawerItem(context, Icons.settings_outlined, 'Settings'),
             _drawerItem(context, Icons.description_outlined, 'Terms and conditions'),
@@ -128,13 +140,12 @@ class StudentDrawer extends StatelessWidget {
     );
   }
 
-  // 👈 _drawerItem function ab onTap accept karega
   Widget _drawerItem(BuildContext context, IconData icon, String title, {VoidCallback? onTap}) {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       leading: Icon(icon, color: AppColors.textSecondary, size: 22),
       title: Text(title, style: const TextStyle(color: AppColors.textPrimary, fontSize: 15)),
-      onTap: onTap ?? () {}, // Agar onTap nahi diya toh kuch na kare
+      onTap: onTap ?? () {}, 
     );
   }
 
@@ -150,7 +161,7 @@ class StudentDrawer extends StatelessWidget {
       leading: Icon(icon, color: color, size: 22),
       title: Text(name, style: const TextStyle(color: AppColors.textPrimary, fontSize: 15)),
       onTap: () {
-        Navigator.pop(context); // Close drawer
+        Navigator.pop(context);
         Navigator.push(
           context,
           MaterialPageRoute(

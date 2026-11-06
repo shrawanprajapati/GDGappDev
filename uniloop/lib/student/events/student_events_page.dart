@@ -9,16 +9,17 @@ class StudentEventsPage extends StatefulWidget {
 }
 
 class _StudentEventsPageState extends State<StudentEventsPage> {
-  // Filter state
   String _selectedFilter = 'All';
   final List<String> _filters = ['All', 'Technical', 'Cultural', 'Sports'];
 
-  // Dummy Data for Events
+  // Dummy Events Data
   final List<Map<String, dynamic>> _events = [
     {
       'title': 'IIT BHU Induction',
       'subtitle': 'Mandatory for all 1st years',
       'date': 'Aug 10, 2024',
+      'day': '10',
+      'month': 'AUG',
       'time': '10:00 AM',
       'location': 'Main Auditorium',
       'category': 'Technical',
@@ -29,6 +30,8 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
       'title': 'Tech Fest 2024',
       'subtitle': 'Annual Tech & Innovation Summit',
       'date': 'Oct 24, 2024',
+      'day': '24',
+      'month': 'OCT',
       'time': '09:00 AM',
       'location': 'Main Audi',
       'category': 'Technical',
@@ -39,6 +42,8 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
       'title': 'Spandan (Cultural)',
       'subtitle': 'Dance, Drama & Music',
       'date': 'Nov 12, 2024',
+      'day': '12',
+      'month': 'NOV',
       'time': '05:00 PM',
       'location': 'Open Air Theatre',
       'category': 'Cultural',
@@ -49,6 +54,8 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
       'title': 'Inter-College Hackathon',
       'subtitle': '36-hour coding challenge',
       'date': 'Sep 05, 2024',
+      'day': '05',
+      'month': 'SEP',
       'time': '08:00 AM',
       'location': 'CS Lab 2',
       'category': 'Technical',
@@ -59,6 +66,8 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
       'title': 'Sports Meet',
       'subtitle': 'Annual Athletics Meet',
       'date': 'Dec 01, 2024',
+      'day': '01',
+      'month': 'DEC',
       'time': '07:00 AM',
       'location': 'Sports Ground',
       'category': 'Sports',
@@ -69,7 +78,6 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Filter logic
     final filteredEvents = _selectedFilter == 'All'
         ? _events
         : _events.where((e) => e['category'] == _selectedFilter).toList();
@@ -153,7 +161,7 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
         margin: const EdgeInsets.only(bottom: 20),
         decoration: BoxDecoration(
           color: AppColors.surface,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: event['isOngoing'] 
                 ? AppColors.primary.withValues(alpha: 0.5) 
@@ -169,70 +177,99 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: event['color'].withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(8),
+              // Date Box (Left Side)
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                decoration: BoxDecoration(
+                  color: event['color'].withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      event['day'],
+                      style: TextStyle(color: event['color'], fontSize: 24, fontWeight: FontWeight.bold),
                     ),
-                    child: Text(
-                      event['category'],
+                    Text(
+                      event['month'],
                       style: TextStyle(color: event['color'], fontSize: 12, fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  if (event['isOngoing'])
+                  ],
+                ),
+              ),
+              const SizedBox(width: 16),
+              
+              // Event Details (Right Side)
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Row(
                       children: [
                         Container(
-                          width: 8,
-                          height: 8,
-                          decoration: const BoxDecoration(color: Colors.redAccent, shape: BoxShape.circle),
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: event['color'].withValues(alpha: 0.15),
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Text(
+                            event['category'],
+                            style: TextStyle(color: event['color'], fontSize: 10, fontWeight: FontWeight.bold),
+                          ),
                         ),
-                        const SizedBox(width: 6),
-                        const Text('Live', style: TextStyle(color: Colors.redAccent, fontSize: 12, fontWeight: FontWeight.bold)),
+                        const Spacer(),
+                        if (event['isOngoing'])
+                          Row(
+                            children: [
+                              Container(
+                                width: 6,
+                                height: 6,
+                                decoration: const BoxDecoration(color: Colors.redAccent, shape: BoxShape.circle),
+                              ),
+                              const SizedBox(width: 4),
+                              const Text('Live', style: TextStyle(color: Colors.redAccent, fontSize: 12, fontWeight: FontWeight.bold)),
+                            ],
+                          ),
                       ],
                     ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Text(
-                event['title'],
-                style: const TextStyle(
-                  color: AppColors.textPrimary,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                event['subtitle'],
-                style: const TextStyle(color: AppColors.textSecondary, fontSize: 14),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  const Icon(Icons.calendar_today_outlined, size: 16, color: AppColors.textSecondary),
-                  const SizedBox(width: 6),
-                  Text(event['date'], style: const TextStyle(color: AppColors.textSecondary, fontSize: 13)),
-                  const SizedBox(width: 16),
-                  const Icon(Icons.location_on_outlined, size: 16, color: AppColors.textSecondary),
-                  const SizedBox(width: 6),
-                  Expanded(
-                    child: Text(
-                      event['location'], 
-                      style: const TextStyle(color: AppColors.textSecondary, fontSize: 13),
+                    const SizedBox(height: 8),
+                    Text(
+                      event['title'],
+                      style: const TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.w700),
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                ],
-              ),
+                    const SizedBox(height: 4),
+                    Text(
+                      event['subtitle'],
+                      style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        const Icon(Icons.access_time, size: 14, color: AppColors.textSecondary),
+                        const SizedBox(width: 4),
+                        Text(event['time'], style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+                        const SizedBox(width: 12),
+                        const Icon(Icons.location_on_outlined, size: 14, color: AppColors.textSecondary),
+                        const SizedBox(width: 4),
+                        Expanded(
+                          child: Text(
+                            event['location'], 
+                            style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
@@ -297,20 +334,16 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                     borderRadius: BorderRadius.circular(16),
                     gradient: const LinearGradient(colors: [AppColors.primary, AppColors.accent]),
                   ),
-                  
-
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context); // Close bottom sheet
-                        // Show Success Message
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Successfully Registered for ${event['title']}!'),
-                            backgroundColor: AppColors.accent,
-                          ),
-                        );
-                      },
-                    
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Successfully Registered for ${event['title']}!'), 
+                          backgroundColor: AppColors.accent
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       shadowColor: Colors.transparent,

@@ -3,6 +3,7 @@ import '../../core/app_colors.dart';
 import '../council_clubs_page.dart';
 import '../profile/profile_page.dart';
 import '../projects/find_project_page.dart'; // 👈 Import perfect hai
+import '../workspace/my_projects_page.dart';
 
 class StudentDrawer extends StatelessWidget {
   const StudentDrawer({super.key});
@@ -58,7 +59,15 @@ class StudentDrawer extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const FindProjectPage()));
               }
             ),
-            
+            _drawerItem(
+              context, 
+              Icons.assignment_outlined, 
+              'My Projects', 
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const MyProjectsPage()));
+              }
+            ),
             _drawerItem(context, Icons.class_outlined, 'Reminder (classroom type)'),
             
             const Divider(color: Colors.white12, thickness: 1, height: 30),

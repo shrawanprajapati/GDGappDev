@@ -4,6 +4,7 @@ import '../council_clubs_page.dart';
 import '../profile/profile_page.dart';
 import '../projects/find_project_page.dart'; // 👈 Import perfect hai
 import '../workspace/my_projects_page.dart';
+import '../alumni/alumni_list_page.dart';
 
 class StudentDrawer extends StatelessWidget {
   const StudentDrawer({super.key});
@@ -111,7 +112,15 @@ class StudentDrawer extends StatelessWidget {
             // 4. Connect Alumni
             _drawerHeader('Connect Alumni'),
             _drawerItem(context, Icons.mic_none_outlined, 'Talks'),
-            _drawerItem(context, Icons.people_outline, 'Know our Alumni'),
+            _drawerItem(
+              context, 
+              Icons.people_outline, 
+              'Know our Alumni',
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const AlumniListPage()));
+              }
+            ),
             _drawerItem(context, Icons.handshake_outlined, 'Request for Guidance'),
             _drawerItem(context, Icons.work_history_outlined, 'Internship'),
 

@@ -4,6 +4,8 @@ import '../drawer/student_drawer.dart';
 import '../teams/student_teams_tab.dart';
 import 'student_home_tab.dart';
 import 'notification_page.dart'; // 👈 Notification Page import kiya
+import '../marketplace/marketplace_tab.dart';
+import 'loop_ai_tab.dart';
 
 class StudentDashboard extends StatefulWidget {
   const StudentDashboard({super.key});
@@ -20,6 +22,8 @@ class _StudentDashboardState extends State<StudentDashboard> {
   final List<Widget> _tabs = [
     const StudentHomeTab(),
     const StudentTeamsTab(),
+    const MarketplaceTab(), 
+    const LoopAiTab(),
     const Center(child: Text('Marketplace coming soon', style: TextStyle(color: AppColors.textPrimary))),
     const Center(child: Text('Loop AI coming soon', style: TextStyle(color: AppColors.textPrimary))),
   ];

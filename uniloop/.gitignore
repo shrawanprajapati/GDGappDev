@@ -1,0 +1,10 @@
+# Flutter/Dart build files
+uniloop/build/
+uniloop/.dart_tool/
+uniloop/.idea/
+uniloop/.flutter-plugins-dependencies
+uniloop/android/.gradle/
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -142,4 +142,14 @@ class MockStore extends ChangeNotifier {
     applications.add(application);
     notifyListeners();
   }
+
+  void addTask(Map<String, dynamic> task) {
+    tasks.add(task);
+    notifyListeners();
+  }
+
+  void addMilestone(Map<String, dynamic> milestone) {
+    milestones.add(milestone);
+    notifyListeners();
+  }
 }

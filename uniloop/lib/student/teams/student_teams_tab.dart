@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 import 'create_team_sheet.dart'; // 👈 Import add kiya
 import 'team_profile.dart';
+import '../../core/data/mock_store.dart';
 
 class StudentTeamsTab extends StatefulWidget {
   const StudentTeamsTab({super.key});
@@ -291,6 +292,16 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
           ElevatedButton(
             onPressed: () {
               if (controller.text.trim().isEmpty) return;
+              final invited = MockStore.instance.users.firstWhere(
+                (user) => user['email'] == controller.text.trim(),
+                orElse: () => {'id': 'student-2'},
+              );
+              MockStore.instance.addNotification(
+                userId: invited['id'],
+                type: 'Teams',
+                text: 'You have been invited to join Vishwakarma Award Team.',
+                route: '/student-dashboard',
+              );
               Navigator.pop(dialogContext);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(

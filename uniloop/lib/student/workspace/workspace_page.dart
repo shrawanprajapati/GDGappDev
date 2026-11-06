@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
+import '../../core/data/mock_store.dart';
 
 class WorkspacePage extends StatefulWidget {
   final Map<String, dynamic> projectData;
@@ -591,17 +592,17 @@ class _WorkspacePageState extends State<WorkspacePage>
                 child: ElevatedButton(
                   onPressed: () {
                     if (titleController.text.trim().isEmpty) return;
-                    setState(
-                      () => tasks.add({
-                        'title': titleController.text.trim(),
-                        'assignedTo': assignee,
-                        'status': 'Pending',
-                        'due': dueDate == null
-                            ? 'Not set'
-                            : '${dueDate!.day}/${dueDate!.month}',
-                        'priority': priority,
-                      }),
-                    );
+                    final newTask = {
+                      'title': titleController.text.trim(),
+                      'assignedTo': assignee,
+                      'status': 'Pending',
+                      'due': dueDate == null
+                          ? 'Not set'
+                          : '${dueDate!.day}/${dueDate!.month}',
+                      'priority': priority,
+                    };
+                    setState(() => tasks.add(newTask));
+                    MockStore.instance.addTask(newTask);
                     Navigator.pop(sheetContext);
                   },
                   style: ElevatedButton.styleFrom(
@@ -661,11 +662,17 @@ class _WorkspacePageState extends State<WorkspacePage>
               child: ElevatedButton(
                 onPressed: () {
                   if (controller.text.trim().isEmpty) return;
+                  final milestone = {
+                    'title': 'Workspace milestone',
+                    'status': 'Pending Review',
+                    'submission': controller.text.trim(),
+                  };
                   setState(
                     () => milestones.firstWhere(
                       (item) => item['status'] == 'Upcoming',
                     )['status'] = 'Pending Review',
                   );
+                  MockStore.instance.addMilestone(milestone);
                   Navigator.pop(sheetContext);
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
@@ -728,6 +735,11 @@ class _WorkspacePageState extends State<WorkspacePage>
               child: ElevatedButton(
                 onPressed: () {
                   if (controller.text.trim().isEmpty) return;
+                  MockStore.instance.addReport({
+                    'type': 'Workspace Issue',
+                    'description': controller.text.trim(),
+                    'status': 'Pending',
+                  });
                   Navigator.pop(sheetContext);
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(

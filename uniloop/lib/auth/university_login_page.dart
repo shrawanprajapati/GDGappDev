@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
+import '../core/app_routes.dart'; // 👈 Ye import add kiya (Error fix)
 
 class UniversityLoginPage extends StatefulWidget {
   const UniversityLoginPage({super.key});
@@ -11,6 +12,10 @@ class UniversityLoginPage extends StatefulWidget {
 class _UniversityLoginPageState extends State<UniversityLoginPage> {
   String? _selectedRole;
   bool _obscureText = true;
+  
+  // 👈 Controllers add kiye email aur password ke liye
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   final List<String> _roles = [
     'Student',
@@ -20,6 +25,40 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
     'Worker',
     'Alumni',
   ];
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  // 👈 Login handle karne ka function
+  void _handleLogin() {
+    if (_selectedRole == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please select your role')),
+      );
+      return;
+    }
+
+    if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter email and password')),
+      );
+      return;
+    }
+
+    if (_selectedRole == 'Student') {
+      // Student select kiya hai, toh Dashboard par bhejo
+      Navigator.pushReplacementNamed(context, AppRoutes.studentDashboard);
+    } else {
+      // Baaki roles ke liye backend baad me aayega
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('$_selectedRole login coming soon!')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +91,7 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
 
               // Email Field
               _buildTextField(
+                controller: _emailController,
                 hint: 'University Email',
                 icon: Icons.email_outlined,
                 keyboardType: TextInputType.emailAddress,
@@ -60,6 +100,7 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
 
               // Password Field
               _buildTextField(
+                controller: _passwordController,
                 hint: 'Password',
                 icon: Icons.lock_outline,
                 obscureText: _obscureText,
@@ -109,9 +150,7 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                     ],
                   ),
                   child: ElevatedButton(
-                    onPressed: () {
-                      // TODO: Login logic yahan aayega
-                    },
+                    onPressed: _handleLogin, // 👈 Function call kiya
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       shadowColor: Colors.transparent,
@@ -153,7 +192,7 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                 height: 54,
                 child: OutlinedButton.icon(
                   onPressed: () {
-                    // TODO: Google Sign In logic
+                    // Google Sign In logic
                   },
                   icon: const Icon(Icons.g_mobiledata, size: 32, color: AppColors.textPrimary),
                   label: const Text(
@@ -186,7 +225,7 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        // TODO: Navigate to Sign Up Page
+                        // Navigate to Sign Up Page
                       },
                       child: const Text(
                         "Create an account",
@@ -244,7 +283,9 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
     );
   }
 
+  // 👈 TextField function me controller add kiya
   Widget _buildTextField({
+    required TextEditingController controller,
     required String hint,
     required IconData icon,
     bool obscureText = false,
@@ -258,6 +299,7 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
         border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
       ),
       child: TextField(
+        controller: controller, // 👈 Controller attached
         obscureText: obscureText,
         keyboardType: keyboardType,
         style: const TextStyle(color: AppColors.textPrimary),

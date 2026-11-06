@@ -3,8 +3,9 @@ import 'core/app_theme.dart';
 import 'core/app_routes.dart';
 import 'onboarding/onboarding_page.dart';
 import 'auth/login_page.dart';
-import 'auth/university_login_page.dart'; // Naya import
-import 'auth/university_member_page.dart'; // Purana import
+import 'auth/university_login_page.dart';
+import 'auth/university_member_page.dart'; 
+import 'student/student_dashboard.dart'; // Updated Import
 
 void main() => runApp(const UniloopApp());
 
@@ -22,7 +23,8 @@ class UniloopApp extends StatelessWidget {
         AppRoutes.onboarding: (_) => const OnboardingPage(),
         AppRoutes.login: (_) => const LoginPage(),
         AppRoutes.universityMember: (_) => const UniversityMemberPage(),
-        AppRoutes.universityLogin: (_) => const UniversityLoginPage(), // Naya route
+        AppRoutes.universityLogin: (_) => const UniversityLoginPage(),
+        AppRoutes.studentDashboard: (_) => const StudentDashboard(), // Updated Route
       },
     );
   }

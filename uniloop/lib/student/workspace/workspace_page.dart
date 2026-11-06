@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 import '../../core/data/mock_store.dart';
+import 'project_history_page.dart';
 
 class WorkspacePage extends StatefulWidget {
   final Map<String, dynamic> projectData;
@@ -84,6 +85,19 @@ class _WorkspacePageState extends State<WorkspacePage>
             fontWeight: FontWeight.bold,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => ProjectHistoryPage(
+                  projectTitle: widget.projectData['title'],
+                ),
+              ),
+            ),
+            icon: const Icon(Icons.history, color: AppColors.textPrimary),
+          ),
+        ],
         bottom: TabBar(
           controller: _tabController,
           indicatorColor: AppColors.accent,
@@ -461,13 +475,29 @@ class _WorkspacePageState extends State<WorkspacePage>
                   ),
                   const SizedBox(width: 8),
                   Expanded(
-                    child: Text(
-                      'Client Feedback: "${milestone['feedback']}"',
-                      style: const TextStyle(
-                        color: AppColors.textSecondary,
-                        fontSize: 12,
-                        fontStyle: FontStyle.italic,
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Client Feedback: "${milestone['feedback']}"',
+                          style: const TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: 12,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: List.generate(
+                            5,
+                            (index) => Icon(
+                              index < 4 ? Icons.star : Icons.star_border,
+                              color: AppColors.accent,
+                              size: 18,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

@@ -5,6 +5,8 @@ import '../events/club_events_tab.dart';
 import '../profile/club_profile_tab.dart';
 import '../projects/club_projects_tab.dart';
 import '../events/create_event_page.dart';
+import '../../core/role_search_delegate.dart';
+import '../../role_data/role_data.dart';
 
 // ---------------------------------------------------
 // OPTIONAL: keep ClubDrawer in this file or import it
@@ -149,50 +151,13 @@ class _ClubDashboardState extends State<ClubDashboard> {
       ),
     );
   }
-
-  void _showSearch(BuildContext context) {
-    showSearch(context: context, delegate: _ClubSearchDelegate());
-  }
-}
-
-// ---------------------------------------------------
-// SEARCH DELEGATE (unchanged)
-// ---------------------------------------------------
-class _ClubSearchDelegate extends SearchDelegate<String> {
-  @override
-  ThemeData appBarTheme(BuildContext context) => Theme.of(context).copyWith(
-        appBarTheme: const AppBarTheme(
-          backgroundColor: AppColors.surface,
-          iconTheme: IconThemeData(color: AppColors.textPrimary),
-        ),
-        inputDecorationTheme: const InputDecorationTheme(
-          hintStyle: TextStyle(color: AppColors.textSecondary),
-        ),
-      );
-
-  @override
-  List<Widget>? buildActions(BuildContext context) => [
-        IconButton(onPressed: () => query = '', icon: const Icon(Icons.clear)),
-      ];
-
-  @override
-  Widget buildLeading(BuildContext context) => IconButton(
-        onPressed: () => close(context, ''),
-        icon: const Icon(Icons.arrow_back),
-      );
-
-  @override
-  Widget buildResults(BuildContext context) => _result();
-
-  @override
-  Widget buildSuggestions(BuildContext context) => _result();
-
-  Widget _result() => Center(
-        child: Text(
-          query.isEmpty
-              ? 'Search projects, events, and members'
-              : 'Search results for "$query"',
-          style: const TextStyle(color: AppColors.textSecondary),
-        ),
-      );
+      void _showSearch(BuildContext context) {
+        showSearch(
+          context: context,
+          delegate: RoleSearchDelegate(
+            roleName: 'Club',
+            items: RoleMockData.clubItems,   // <-- role‑specific data
+          ),
+        );
+      }
 }

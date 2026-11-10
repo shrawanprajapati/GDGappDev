@@ -1,13 +1,30 @@
 import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
+import '../club/themes/club_page_factory.dart';
+import '../club/themes/club_mock_data.dart';
 
+/// Student-facing page shown when they tap on a club.
+///
+/// If the club has a custom theme (e.g. GDG) → routes to that themed page.
+/// Otherwise → shows the generic DefaultClubPage.
 class ClubDetailPage extends StatelessWidget {
   final Map<String, dynamic> clubData;
   const ClubDetailPage({super.key, required this.clubData});
 
   @override
   Widget build(BuildContext context) {
+    final String clubId = clubData['id'] ?? '';
     final String clubName = clubData['name'] ?? 'Club Name';
+
+    // ── Check for custom-themed page ──
+    if (ClubPageFactory.hasCustomTheme(clubId)) {
+      final data = ClubMockData.getByClubId(clubId);
+      return ClubPageFactory.buildPage(data);
+    }
+
+    // ── Otherwise show the generic detail page ──
+    // (You can also route to DefaultClubPage via the factory here
+    //  if you want consistent data flow.)
     final String category = clubData['category'] ?? 'Category';
     final String members = clubData['members'] ?? 'Members';
     final IconData icon = clubData['icon'] ?? Icons.group;

@@ -139,6 +139,12 @@ class StudentDrawer extends StatelessWidget {
               Colors.blueAccent,
               [
                 {
+                  'id': 'gdg',
+                  'name': 'GDG - Google Developer Group',
+                  'icon': Icons.developer_board,
+                  'desc': 'Build, learn, and grow with Google tech.',
+                },
+                {
                   'name': 'Programming Club',
                   'icon': Icons.code,
                   'desc': 'Competitive coding & dev.',

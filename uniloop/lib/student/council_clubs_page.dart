@@ -75,12 +75,12 @@ class CouncilClubsPage extends StatelessWidget {
                 color: AppColors.textSecondary,
               ),
               onTap: () {
-                // Direct Club Detail Page par le jao
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => ClubDetailPage(
                       clubData: {
+                        'id': club['id'] ?? club['name'].toString().toLowerCase().replaceAll(' ', '_'),
                         'name': club['name'],
                         'category': councilName,
                         'members': 'Active Members',

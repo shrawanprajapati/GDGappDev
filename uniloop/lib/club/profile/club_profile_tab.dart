@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
-import 'club_settings_page.dart'; // 👈 Naya page import kiya
+import 'club_settings_page.dart';
 import '../member_management.dart';
+import '../themes/club_page_factory.dart';
+import '../themes/club_mock_data.dart';
 
 class ClubProfileTab extends StatefulWidget {
   const ClubProfileTab({super.key});
@@ -104,7 +106,14 @@ class _ClubProfileTabState extends State<ClubProfileTab> {
                     Expanded(
                       child: OutlinedButton(
                         onPressed: () {
-                          // TODO: Open Student View of Club Page
+                          // Open the public-facing club page (themed or default)
+                          final pageData = ClubMockData.getByClubId('gdg');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ClubPageFactory.buildPage(pageData),
+                            ),
+                          );
                         },
                         style: OutlinedButton.styleFrom(
                           side: const BorderSide(color: AppColors.accent),

@@ -4,7 +4,80 @@ import '../home/club_home_tab.dart';
 import '../events/club_events_tab.dart';
 import '../profile/club_profile_tab.dart';
 import '../projects/club_projects_tab.dart';
+import '../events/create_event_page.dart';
 
+// ---------------------------------------------------
+// OPTIONAL: keep ClubDrawer in this file or import it
+// ---------------------------------------------------
+class ClubDrawer extends StatelessWidget {
+  const ClubDrawer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      backgroundColor: AppColors.surface,
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          const DrawerHeader(
+            decoration: BoxDecoration(color: AppColors.background),
+            child: Text(
+              'Club Menu',
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.person, color: AppColors.textPrimary),
+            title: const Text('Profile',
+                style: TextStyle(color: AppColors.textPrimary)),
+            onTap: () {/* TODO: Open profile page */},
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings, color: AppColors.textPrimary),
+            title: const Text('Settings',
+                style: TextStyle(color: AppColors.textPrimary)),
+            onTap: () {/* TODO: Open settings page */},
+          ),
+          ListTile(
+            leading: const Icon(Icons.logout, color: AppColors.textPrimary),
+            title: const Text('Logout',
+                style: TextStyle(color: AppColors.textPrimary)),
+            onTap: () => Navigator.of(context).popUntil((r) => r.isFirst),
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.event, color: AppColors.textPrimary),
+            title: const Text('Add Event',
+                style: TextStyle(color: AppColors.textPrimary)),
+            onTap: () {
+              // First close the drawer
+              Navigator.of(context).pop();
+              // Then push the existing CreateEventPage
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const CreateEventPage()),
+              );
+            },
+          ),
+          ListTile(
+            leading:
+                const Icon(Icons.notifications, color: AppColors.textPrimary),
+            title: const Text('Release Notification to Students',
+                style: TextStyle(color: AppColors.textPrimary)),
+            onTap: () {/* TODO: Notification composer */},
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------
+// MAIN DASHBOARD (with Builder fix)
+// ---------------------------------------------------
 class ClubDashboard extends StatefulWidget {
   const ClubDashboard({super.key});
 
@@ -16,20 +89,32 @@ class _ClubDashboardState extends State<ClubDashboard> {
   int _currentIndex = 0;
 
   // Exact 4 tabs
-  final List<Widget> _tabs = [
-    const ClubHomeTab(),
-    const ClubEventsTab(),
-    const ClubProjectsTab(), // 3rd Tab
-    const ClubProfileTab(), // 4th Tab
+  final List<Widget> _tabs = const [
+    ClubHomeTab(),
+    ClubEventsTab(),
+    ClubProjectsTab(),
+    ClubProfileTab(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
+      drawer: const ClubDrawer(), // <- side drawer
+
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
+
+        // ----- LEFT‑HAND MENU (opens drawer) -----
+        leading: Builder(
+          builder: (innerContext) => IconButton(
+            icon: const Icon(Icons.menu, color: AppColors.textPrimary),
+            onPressed: () => Scaffold.of(innerContext).openDrawer(),
+          ),
+        ),
+
+        // ----- TITLE -----
         title: const Text(
           'Club Portal',
           style: TextStyle(
@@ -37,16 +122,14 @@ class _ClubDashboardState extends State<ClubDashboard> {
             fontWeight: FontWeight.bold,
           ),
         ),
+
+        // ----- RIGHT‑HAND ACTIONS (search) -----
         actions: [
           IconButton(
             icon: const Icon(Icons.search, color: AppColors.textPrimary),
             onPressed: () => _showSearch(context),
           ),
-          IconButton(
-            icon: const Icon(Icons.logout, color: AppColors.textPrimary),
-            onPressed: () =>
-                Navigator.popUntil(context, (route) => route.isFirst),
-          ),
+          const SizedBox(width: 8),
         ],
       ),
       body: _tabs[_currentIndex],
@@ -56,7 +139,7 @@ class _ClubDashboardState extends State<ClubDashboard> {
         backgroundColor: AppColors.surface,
         selectedItemColor: AppColors.accent,
         unselectedItemColor: AppColors.textSecondary,
-        type: BottomNavigationBarType.fixed, // Ye 4 tabs ke liye zaruri hai
+        type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.event), label: 'Events'),
@@ -72,36 +155,44 @@ class _ClubDashboardState extends State<ClubDashboard> {
   }
 }
 
+// ---------------------------------------------------
+// SEARCH DELEGATE (unchanged)
+// ---------------------------------------------------
 class _ClubSearchDelegate extends SearchDelegate<String> {
   @override
   ThemeData appBarTheme(BuildContext context) => Theme.of(context).copyWith(
-    appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.surface,
-      iconTheme: IconThemeData(color: AppColors.textPrimary),
-    ),
-    inputDecorationTheme: const InputDecorationTheme(
-      hintStyle: TextStyle(color: AppColors.textSecondary),
-    ),
-  );
+        appBarTheme: const AppBarTheme(
+          backgroundColor: AppColors.surface,
+          iconTheme: IconThemeData(color: AppColors.textPrimary),
+        ),
+        inputDecorationTheme: const InputDecorationTheme(
+          hintStyle: TextStyle(color: AppColors.textSecondary),
+        ),
+      );
+
   @override
   List<Widget>? buildActions(BuildContext context) => [
-    IconButton(onPressed: () => query = '', icon: const Icon(Icons.clear)),
-  ];
+        IconButton(onPressed: () => query = '', icon: const Icon(Icons.clear)),
+      ];
+
   @override
   Widget buildLeading(BuildContext context) => IconButton(
-    onPressed: () => close(context, ''),
-    icon: const Icon(Icons.arrow_back),
-  );
+        onPressed: () => close(context, ''),
+        icon: const Icon(Icons.arrow_back),
+      );
+
   @override
   Widget buildResults(BuildContext context) => _result();
+
   @override
   Widget buildSuggestions(BuildContext context) => _result();
+
   Widget _result() => Center(
-    child: Text(
-      query.isEmpty
-          ? 'Search projects, events, and members'
-          : 'Search results for "$query"',
-      style: const TextStyle(color: AppColors.textSecondary),
-    ),
-  );
+        child: Text(
+          query.isEmpty
+              ? 'Search projects, events, and members'
+              : 'Search results for "$query"',
+          style: const TextStyle(color: AppColors.textSecondary),
+        ),
+      );
 }

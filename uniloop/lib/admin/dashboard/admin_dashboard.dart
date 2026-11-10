@@ -40,6 +40,56 @@ class _AdminDashboardState extends State<AdminDashboard> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.menu, color: AppColors.textPrimary),
+            onPressed: () async {
+              await showModalBottomSheet(
+                context: context,
+                backgroundColor: AppColors.surface,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                ),
+                builder: (_) => ListView(
+                  shrinkWrap: true,
+                  children: [
+                    ListTile(
+                      leading: const Icon(Icons.person, color: AppColors.textPrimary),
+                      title: const Text('Profile', style: TextStyle(color: AppColors.textPrimary)),
+                      onTap: () {/* TODO: Profile page */},
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.settings, color: AppColors.textPrimary),
+                      title: const Text('Settings', style: TextStyle(color: AppColors.textPrimary)),
+                      onTap: () {/* TODO: Settings page */},
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.logout, color: AppColors.textPrimary),
+                      title: const Text('Logout', style: TextStyle(color: AppColors.textPrimary)),
+                      onTap: () => Navigator.of(context).popUntil((r) => r.isFirst),
+                    ),
+                    const Divider(),
+                    ListTile(
+                      leading: const Icon(Icons.report_problem, color: AppColors.textPrimary),
+                      title: const Text('Complaints', style: TextStyle(color: AppColors.textPrimary)),
+                      onTap: () {/* TODO: Open complaints screen */},
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.notifications_active, color: AppColors.textPrimary),
+                      title: const Text('Push Notification to Students', style: TextStyle(color: AppColors.textPrimary)),
+                      onTap: () {/* TODO: Notification composer */},
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.newspaper, color: AppColors.textPrimary),
+                      title: const Text('Add News', style: TextStyle(color: AppColors.textPrimary)),
+                      onTap: () {/* TODO: News editor */},
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: tab == 0
           ? _home()

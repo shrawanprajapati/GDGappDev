@@ -3,17 +3,17 @@ import '../../core/app_colors.dart';
 import 'create_project_page.dart';
 
 class ProfProjectsTab extends StatelessWidget {
-  const ProfProjectsTab({super.key});
+  ProfProjectsTab({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
+            Text(
               'Research Projects',
               style: TextStyle(
                 color: AppColors.textPrimary,
@@ -24,12 +24,10 @@ class ProfProjectsTab extends StatelessWidget {
             ElevatedButton.icon(
               onPressed: () => Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const CreateProjectPage(),
-                ),
+                MaterialPageRoute(builder: (context) => CreateProjectPage()),
               ),
-              icon: const Icon(Icons.add, size: 16),
-              label: const Text('New Project'),
+              icon: Icon(Icons.add, size: 16),
+              label: Text('New Project'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
                 foregroundColor: Colors.white,
@@ -37,7 +35,7 @@ class ProfProjectsTab extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: 20),
 
         _buildProjectCard(
           context,
@@ -62,8 +60,8 @@ class ProfProjectsTab extends StatelessWidget {
     required bool isActive,
   }) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(16),
+      margin: EdgeInsets.only(bottom: 16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
@@ -81,22 +79,22 @@ class ProfProjectsTab extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const Icon(Icons.more_vert, color: AppColors.textSecondary),
+              Icon(Icons.more_vert, color: AppColors.textSecondary),
             ],
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 stats,
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppColors.primary,
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
@@ -106,7 +104,7 @@ class ProfProjectsTab extends StatelessWidget {
                 onPressed: () {
                   // Show Applicants
                 },
-                child: const Text(
+                child: Text(
                   'Review Applicants',
                   style: TextStyle(color: AppColors.accent, fontSize: 13),
                 ),

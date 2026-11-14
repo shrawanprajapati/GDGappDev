@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
 
 class SignupPage extends StatefulWidget {
-  const SignupPage({super.key});
+  SignupPage({super.key});
 
   @override
   State<SignupPage> createState() => _SignupPageState();
@@ -31,15 +31,15 @@ class _SignupPageState extends State<SignupPage> {
         _nameController.text.isEmpty ||
         _emailController.text.isEmpty ||
         _passwordController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fill all the details')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Please fill all the details')));
       return;
     }
 
     // Show Success Message and redirect to Login
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
+      SnackBar(
         content: Text('Account Created Successfully! Please Login.'),
         backgroundColor: AppColors.accent,
       ),
@@ -56,15 +56,15 @@ class _SignupPageState extends State<SignupPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 28.0),
+          padding: EdgeInsets.symmetric(horizontal: 28.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Create Account',
                 style: TextStyle(
                   fontSize: 32,
@@ -72,16 +72,16 @@ class _SignupPageState extends State<SignupPage> {
                   color: AppColors.textPrimary,
                 ),
               ),
-              const SizedBox(height: 8),
-              const Text(
+              SizedBox(height: 8),
+              Text(
                 'Join UniLoop to explore opportunities.',
                 style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: 30),
 
               // Role Dropdown
               _buildDropdown(),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
               // Name Field
               _buildTextField(
@@ -89,7 +89,7 @@ class _SignupPageState extends State<SignupPage> {
                 hint: 'Full Name',
                 icon: Icons.person_outline,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
               // Email Field
               _buildTextField(
@@ -98,7 +98,7 @@ class _SignupPageState extends State<SignupPage> {
                 icon: Icons.email_outlined,
                 keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
               // Password Field
               _buildTextField(
@@ -120,7 +120,7 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
 
-              const SizedBox(height: 40),
+              SizedBox(height: 40),
 
               // Signup Button
               SizedBox(
@@ -129,14 +129,12 @@ class _SignupPageState extends State<SignupPage> {
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
-                    gradient: const LinearGradient(
-                      colors: [AppColors.primary, AppColors.accent],
-                    ),
+                    gradient: AppColors.brandGradient,
                     boxShadow: [
                       BoxShadow(
                         color: AppColors.primary.withValues(alpha: 0.45),
                         blurRadius: 24,
-                        offset: const Offset(0, 10),
+                        offset: Offset(0, 10),
                       ),
                     ],
                   ),
@@ -149,7 +147,7 @@ class _SignupPageState extends State<SignupPage> {
                         borderRadius: BorderRadius.circular(18),
                       ),
                     ),
-                    child: const Text(
+                    child: Text(
                       'Sign Up',
                       style: TextStyle(
                         fontSize: 17,
@@ -161,14 +159,14 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
 
-              const SizedBox(height: 30),
+              SizedBox(height: 30),
 
               // Login Redirect
               Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       "Already have an account? ",
                       style: TextStyle(color: AppColors.textSecondary),
                     ),
@@ -176,7 +174,7 @@ class _SignupPageState extends State<SignupPage> {
                       onTap: () {
                         Navigator.pop(context); // Go back to Login
                       },
-                      child: const Text(
+                      child: Text(
                         "Log In",
                         style: TextStyle(
                           color: AppColors.accent,
@@ -187,7 +185,7 @@ class _SignupPageState extends State<SignupPage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 40),
+              SizedBox(height: 40),
             ],
           ),
         ),
@@ -197,32 +195,26 @@ class _SignupPageState extends State<SignupPage> {
 
   Widget _buildDropdown() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+        border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
           value: _selectedRole,
-          hint: const Text(
+          hint: Text(
             'Select your role',
             style: TextStyle(color: AppColors.textSecondary),
           ),
           dropdownColor: AppColors.surface,
-          icon: const Icon(
-            Icons.arrow_drop_down,
-            color: AppColors.textSecondary,
-          ),
+          icon: Icon(Icons.arrow_drop_down, color: AppColors.textSecondary),
           isExpanded: true,
           items: _roles.map((String role) {
             return DropdownMenuItem<String>(
               value: role,
-              child: Text(
-                role,
-                style: const TextStyle(color: AppColors.textPrimary),
-              ),
+              child: Text(role, style: TextStyle(color: AppColors.textPrimary)),
             );
           }).toList(),
           onChanged: (newValue) {
@@ -247,22 +239,24 @@ class _SignupPageState extends State<SignupPage> {
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+        border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
       ),
       child: TextField(
         controller: controller,
         obscureText: obscureText,
         keyboardType: keyboardType,
-        style: const TextStyle(color: AppColors.textPrimary),
+        style: TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: const TextStyle(color: AppColors.textSecondary),
+          hintStyle: TextStyle(color: AppColors.textSecondary),
           prefixIcon: Icon(icon, color: AppColors.textSecondary, size: 20),
           suffixIcon: suffixIcon,
           border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(vertical: 18),
+          contentPadding: EdgeInsets.symmetric(vertical: 18),
         ),
       ),
     );
   }
 }
+
+

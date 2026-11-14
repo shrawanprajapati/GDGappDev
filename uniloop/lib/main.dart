@@ -18,22 +18,29 @@ class UniloopApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Uniloop',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.dark,
-      initialRoute: AppRoutes.onboarding,
-      routes: {
-        AppRoutes.onboarding: (_) => const OnboardingPage(),
-        AppRoutes.login: (_) => const LoginPage(),
-        AppRoutes.universityMember: (_) => const UniversityMemberPage(),
-        AppRoutes.universityLogin: (_) => const UniversityLoginPage(),
-        AppRoutes.industryLogin: (_) => const IndustryLoginPage(),
-        AppRoutes.studentDashboard: (_) =>
-            const StudentDashboard(), // Updated Route
-        AppRoutes.industryDashboard: (_) => const IndustryDashboard(),
-        AppRoutes.adminDashboard: (_) => const AdminDashboard(),
-        AppRoutes.alumniDashboard: (_) => const AlumniDashboard(),
+    return ValueListenableBuilder<AppThemeSettings>(
+      valueListenable: AppTheme.settings,
+      builder: (context, settings, _) {
+        AppTheme.syncCurrentColors();
+        return MaterialApp(
+          title: 'Uniloop',
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.light,
+          darkTheme: AppTheme.dark,
+          themeMode: settings.mode,
+          initialRoute: AppRoutes.onboarding,
+          routes: {
+            AppRoutes.onboarding: (_) => OnboardingPage(),
+            AppRoutes.login: (_) => LoginPage(),
+            AppRoutes.universityMember: (_) => UniversityMemberPage(),
+            AppRoutes.universityLogin: (_) => UniversityLoginPage(),
+            AppRoutes.industryLogin: (_) => IndustryLoginPage(),
+            AppRoutes.studentDashboard: (_) => StudentDashboard(),
+            AppRoutes.industryDashboard: (_) => IndustryDashboard(),
+            AppRoutes.adminDashboard: (_) => AdminDashboard(),
+            AppRoutes.alumniDashboard: (_) => AlumniDashboard(),
+          },
+        );
       },
     );
   }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 
 class AdminDashboard extends StatefulWidget {
-  const AdminDashboard({super.key});
+  AdminDashboard({super.key});
   @override
   State<AdminDashboard> createState() => _AdminDashboardState();
 }
@@ -35,54 +35,95 @@ class _AdminDashboardState extends State<AdminDashboard> {
         elevation: 0,
         title: Text(
           ['Admin Home', 'Manage Users', 'Moderate Content'][tab],
-          style: const TextStyle(
+          style: TextStyle(
             color: AppColors.textPrimary,
             fontWeight: FontWeight.bold,
           ),
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.menu, color: AppColors.textPrimary),
+            icon: Icon(Icons.menu, color: AppColors.textPrimary),
             onPressed: () async {
               await showModalBottomSheet(
                 context: context,
                 backgroundColor: AppColors.surface,
-                shape: const RoundedRectangleBorder(
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
                 ),
                 builder: (_) => ListView(
                   shrinkWrap: true,
                   children: [
                     ListTile(
-                      leading: const Icon(Icons.person, color: AppColors.textPrimary),
-                      title: const Text('Profile', style: TextStyle(color: AppColors.textPrimary)),
-                      onTap: () {/* TODO: Profile page */},
+                      leading: Icon(Icons.person, color: AppColors.textPrimary),
+                      title: Text(
+                        'Profile',
+                        style: TextStyle(color: AppColors.textPrimary),
+                      ),
+                      onTap: () {
+                        /* TODO: Profile page */
+                      },
                     ),
                     ListTile(
-                      leading: const Icon(Icons.settings, color: AppColors.textPrimary),
-                      title: const Text('Settings', style: TextStyle(color: AppColors.textPrimary)),
-                      onTap: () {/* TODO: Settings page */},
+                      leading: Icon(
+                        Icons.settings,
+                        color: AppColors.textPrimary,
+                      ),
+                      title: Text(
+                        'Settings',
+                        style: TextStyle(color: AppColors.textPrimary),
+                      ),
+                      onTap: () {
+                        /* TODO: Settings page */
+                      },
                     ),
                     ListTile(
-                      leading: const Icon(Icons.logout, color: AppColors.textPrimary),
-                      title: const Text('Logout', style: TextStyle(color: AppColors.textPrimary)),
-                      onTap: () => Navigator.of(context).popUntil((r) => r.isFirst),
+                      leading: Icon(Icons.logout, color: AppColors.textPrimary),
+                      title: Text(
+                        'Logout',
+                        style: TextStyle(color: AppColors.textPrimary),
+                      ),
+                      onTap: () =>
+                          Navigator.of(context).popUntil((r) => r.isFirst),
                     ),
-                    const Divider(),
+                    Divider(),
                     ListTile(
-                      leading: const Icon(Icons.report_problem, color: AppColors.textPrimary),
-                      title: const Text('Complaints', style: TextStyle(color: AppColors.textPrimary)),
-                      onTap: () {/* TODO: Open complaints screen */},
+                      leading: Icon(
+                        Icons.report_problem,
+                        color: AppColors.textPrimary,
+                      ),
+                      title: Text(
+                        'Complaints',
+                        style: TextStyle(color: AppColors.textPrimary),
+                      ),
+                      onTap: () {
+                        /* TODO: Open complaints screen */
+                      },
                     ),
                     ListTile(
-                      leading: const Icon(Icons.notifications_active, color: AppColors.textPrimary),
-                      title: const Text('Push Notification to Students', style: TextStyle(color: AppColors.textPrimary)),
-                      onTap: () {/* TODO: Notification composer */},
+                      leading: Icon(
+                        Icons.notifications_active,
+                        color: AppColors.textPrimary,
+                      ),
+                      title: Text(
+                        'Push Notification to Students',
+                        style: TextStyle(color: AppColors.textPrimary),
+                      ),
+                      onTap: () {
+                        /* TODO: Notification composer */
+                      },
                     ),
                     ListTile(
-                      leading: const Icon(Icons.newspaper, color: AppColors.textPrimary),
-                      title: const Text('Add News', style: TextStyle(color: AppColors.textPrimary)),
-                      onTap: () {/* TODO: News editor */},
+                      leading: Icon(
+                        Icons.newspaper,
+                        color: AppColors.textPrimary,
+                      ),
+                      title: Text(
+                        'Add News',
+                        style: TextStyle(color: AppColors.textPrimary),
+                      ),
+                      onTap: () {
+                        /* TODO: News editor */
+                      },
                     ),
                   ],
                 ),
@@ -103,7 +144,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
         selectedItemColor: AppColors.accent,
         unselectedItemColor: AppColors.textSecondary,
         type: BottomNavigationBarType.fixed,
-        items: const [
+        items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.dashboard_outlined),
             label: 'Home',
@@ -122,9 +163,9 @@ class _AdminDashboardState extends State<AdminDashboard> {
   }
 
   Widget _home() => ListView(
-    padding: const EdgeInsets.all(20),
+    padding: EdgeInsets.all(20),
     children: [
-      const Text(
+      Text(
         'Platform overview',
         style: TextStyle(
           color: AppColors.textPrimary,
@@ -132,20 +173,20 @@ class _AdminDashboardState extends State<AdminDashboard> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      const SizedBox(height: 8),
-      const Text(
+      SizedBox(height: 8),
+      Text(
         'Keep UniLoop safe and welcoming.',
         style: TextStyle(color: AppColors.textSecondary),
       ),
-      const SizedBox(height: 24),
+      SizedBox(height: 24),
       Row(
         children: [
           _stat('Users', users.length.toString(), Icons.people_outline),
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
           _stat('Flagged', flags.length.toString(), Icons.flag_outlined),
         ],
       ),
-      const SizedBox(height: 20),
+      SizedBox(height: 20),
       _action(
         'Review users',
         'Ban or restore accounts',
@@ -159,78 +200,73 @@ class _AdminDashboardState extends State<AdminDashboard> {
     ],
   );
   Widget _users() => ListView(
-    padding: const EdgeInsets.all(20),
+    padding: EdgeInsets.all(20),
     children: [
-      const Text(
+      Text(
         'Students, clubs, and professors',
         style: TextStyle(color: AppColors.textSecondary),
       ),
-      const SizedBox(height: 16),
+      SizedBox(height: 16),
       ...users.map(_userTile),
     ],
   );
   Widget _userTile(Map<String, dynamic> user) => Card(
     color: AppColors.surface,
     child: ListTile(
-      leading: const Icon(Icons.person, color: AppColors.accent),
-      title: Text(
-        user['name'],
-        style: const TextStyle(color: AppColors.textPrimary),
-      ),
+      leading: Icon(Icons.person, color: AppColors.accent),
+      title: Text(user['name'], style: TextStyle(color: AppColors.textPrimary)),
       subtitle: Text(
         user['type'],
-        style: const TextStyle(color: AppColors.textSecondary),
+        style: TextStyle(color: AppColors.textSecondary),
       ),
       trailing: TextButton(
         onPressed: () => setState(() => user['banned'] = !user['banned']),
         child: Text(
           user['banned'] ? 'Restore' : 'Ban',
-          style: const TextStyle(color: AppColors.accent),
+          style: TextStyle(color: AppColors.accent),
         ),
       ),
       onLongPress: () {
         setState(() => users.remove(user));
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('User deleted from the mock directory.'),
-          ),
+          SnackBar(content: Text('User deleted from the mock directory.')),
         );
       },
     ),
   );
   Widget _moderate() => ListView(
-    padding: const EdgeInsets.all(20),
+    padding: EdgeInsets.all(20),
     children: [
-      const Text(
+      Text(
         'Flagged projects and events',
         style: TextStyle(color: AppColors.textSecondary),
       ),
-      const SizedBox(height: 16),
+      SizedBox(height: 16),
       ...flags.map(
         (flag) => Card(
           color: AppColors.surface,
           child: ListTile(
             title: Text(
               flag['title']!,
-              style: const TextStyle(color: AppColors.textPrimary),
+              style: TextStyle(color: AppColors.textPrimary),
             ),
             subtitle: Text(
               '${flag['type']} · ${flag['reason']}',
-              style: const TextStyle(color: AppColors.textSecondary),
+              style: TextStyle(color: AppColors.textSecondary),
             ),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextButton(
                   onPressed: () => setState(() => flags.remove(flag)),
-                  child: const Text(
+                  child: Text(
                     'Approve',
                     style: TextStyle(color: AppColors.accent),
                   ),
                 ),
                 TextButton(
                   onPressed: () => setState(() => flags.remove(flag)),
-                  child: const Text(
+                  child: Text(
                     'Reject',
                     style: TextStyle(color: AppColors.textSecondary),
                   ),
@@ -244,7 +280,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
   );
   Widget _stat(String label, String value, IconData icon) => Expanded(
     child: Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
@@ -255,13 +291,13 @@ class _AdminDashboardState extends State<AdminDashboard> {
           Icon(icon, color: AppColors.accent),
           Text(
             value,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.textPrimary,
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Text(label, style: const TextStyle(color: AppColors.textSecondary)),
+          Text(label, style: TextStyle(color: AppColors.textSecondary)),
         ],
       ),
     ),
@@ -270,12 +306,12 @@ class _AdminDashboardState extends State<AdminDashboard> {
     color: AppColors.surface,
     child: ListTile(
       onTap: onTap,
-      title: Text(title, style: const TextStyle(color: AppColors.textPrimary)),
+      title: Text(title, style: TextStyle(color: AppColors.textPrimary)),
       subtitle: Text(
         subtitle,
-        style: const TextStyle(color: AppColors.textSecondary),
+        style: TextStyle(color: AppColors.textSecondary),
       ),
-      trailing: const Icon(Icons.chevron_right, color: AppColors.accent),
+      trailing: Icon(Icons.chevron_right, color: AppColors.accent),
     ),
   );
 }

@@ -16,7 +16,7 @@ class ClubEventsTab extends StatelessWidget {
             const Text(
               'Your Events',
               style: TextStyle(
-                color: AppColors.textPrimary,
+                color: ClubColors.textPrimary,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
@@ -31,7 +31,7 @@ class ClubEventsTab extends StatelessWidget {
               icon: const Icon(Icons.add, size: 16),
               label: const Text('Create'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
+                backgroundColor: ClubColors.primary,
                 foregroundColor: Colors.white,
               ),
             ),
@@ -75,11 +75,11 @@ class ClubEventsTab extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: ClubColors.surface,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: isActive
-              ? AppColors.accent.withValues(alpha: 0.3)
+              ? ClubColors.accent.withValues(alpha: 0.3)
               : Colors.transparent,
         ),
       ),
@@ -92,7 +92,7 @@ class ClubEventsTab extends StatelessWidget {
               Text(
                 title,
                 style: const TextStyle(
-                  color: AppColors.textPrimary,
+                  color: ClubColors.textPrimary,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -101,9 +101,9 @@ class ClubEventsTab extends StatelessWidget {
                 PopupMenuButton<String>(
                   icon: const Icon(
                     Icons.more_vert,
-                    color: AppColors.textSecondary,
+                    color: ClubColors.textSecondary,
                   ),
-                  color: AppColors.surface,
+                  color: ClubColors.surface,
                   onSelected: (value) {
                     if (value == 'delete') {
                       // Delete logic
@@ -114,7 +114,7 @@ class ClubEventsTab extends StatelessWidget {
                       value: 'edit',
                       child: Text(
                         'Edit Event',
-                        style: TextStyle(color: AppColors.textPrimary),
+                        style: TextStyle(color: ClubColors.textPrimary),
                       ),
                     ),
                     const PopupMenuItem(
@@ -132,7 +132,7 @@ class ClubEventsTab extends StatelessWidget {
           Text(
             subtitle,
             style: const TextStyle(
-              color: AppColors.textSecondary,
+              color: ClubColors.textSecondary,
               fontSize: 13,
             ),
           ),
@@ -147,16 +147,16 @@ class ClubEventsTab extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   color: isActive
-                      ? AppColors.accent.withValues(alpha: 0.2)
-                      : AppColors.background,
+                      ? ClubColors.accent.withValues(alpha: 0.2)
+                      : ClubColors.background,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
                   stats,
                   style: TextStyle(
                     color: isActive
-                        ? AppColors.accent
-                        : AppColors.textSecondary,
+                        ? ClubColors.accent
+                        : ClubColors.textSecondary,
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
                   ),
@@ -168,7 +168,7 @@ class ClubEventsTab extends StatelessWidget {
                   child: const Text(
                     'View Applicants',
                     style: TextStyle(
-                      color: AppColors.primary,
+                      color: ClubColors.primary,
                       fontSize: 13,
                       fontWeight: FontWeight.bold,
                     ),
@@ -185,7 +185,7 @@ class ClubEventsTab extends StatelessWidget {
   void _showApplicantsBottomSheet(BuildContext context, String eventName) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: AppColors.surface,
+      backgroundColor: ClubColors.surface,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
@@ -219,7 +219,7 @@ class ClubEventsTab extends StatelessWidget {
                       Text(
                         'Applicants: $eventName',
                         style: const TextStyle(
-                          color: AppColors.textPrimary,
+                          color: ClubColors.textPrimary,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -227,7 +227,7 @@ class ClubEventsTab extends StatelessWidget {
                       const Text(
                         '85 Total',
                         style: TextStyle(
-                          color: AppColors.accent,
+                          color: ClubColors.accent,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
@@ -246,25 +246,25 @@ class ClubEventsTab extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return ListTile(
                         leading: CircleAvatar(
-                          backgroundColor: AppColors.background,
+                          backgroundColor: ClubColors.background,
                           child: Text(
                             'S${index + 1}',
                             style: const TextStyle(
-                              color: AppColors.textPrimary,
+                              color: ClubColors.textPrimary,
                             ),
                           ),
                         ),
                         title: Text(
                           'Student ${index + 1}',
                           style: const TextStyle(
-                            color: AppColors.textPrimary,
+                            color: ClubColors.textPrimary,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                         subtitle: const Text(
                           'CSE • 2nd Year',
                           style: TextStyle(
-                            color: AppColors.textSecondary,
+                            color: ClubColors.textSecondary,
                             fontSize: 12,
                           ),
                         ),
@@ -274,7 +274,7 @@ class ClubEventsTab extends StatelessWidget {
                             IconButton(
                               icon: const Icon(
                                 Icons.check_circle,
-                                color: AppColors.accent,
+                                color: ClubColors.accent,
                               ),
                               onPressed: () {},
                             ),

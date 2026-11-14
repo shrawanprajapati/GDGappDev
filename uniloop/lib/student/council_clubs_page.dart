@@ -17,15 +17,15 @@ class CouncilClubsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: ClubColors.background,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
+        iconTheme: const IconThemeData(color: ClubColors.textPrimary),
         title: Text(
           councilName,
           style: const TextStyle(
-            color: AppColors.textPrimary,
+            color: ClubColors.textPrimary,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -39,7 +39,7 @@ class CouncilClubsPage extends StatelessWidget {
           return Container(
             margin: const EdgeInsets.only(bottom: 12),
             decoration: BoxDecoration(
-              color: AppColors.surface,
+              color: ClubColors.surface,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
             ),
@@ -59,20 +59,20 @@ class CouncilClubsPage extends StatelessWidget {
               title: Text(
                 club['name'],
                 style: const TextStyle(
-                  color: AppColors.textPrimary,
+                  color: ClubColors.textPrimary,
                   fontWeight: FontWeight.w600,
                 ),
               ),
               subtitle: Text(
                 club['desc'] ?? 'Explore events and projects',
                 style: const TextStyle(
-                  color: AppColors.textSecondary,
+                  color: ClubColors.textSecondary,
                   fontSize: 12,
                 ),
               ),
               trailing: const Icon(
                 Icons.chevron_right,
-                color: AppColors.textSecondary,
+                color: ClubColors.textSecondary,
               ),
               onTap: () {
                 Navigator.push(
@@ -80,7 +80,12 @@ class CouncilClubsPage extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => ClubDetailPage(
                       clubData: {
-                        'id': club['id'] ?? club['name'].toString().toLowerCase().replaceAll(' ', '_'),
+                        'id':
+                            club['id'] ??
+                            club['name'].toString().toLowerCase().replaceAll(
+                              ' ',
+                              '_',
+                            ),
                         'name': club['name'],
                         'category': councilName,
                         'members': 'Active Members',

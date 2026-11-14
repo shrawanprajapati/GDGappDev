@@ -4,7 +4,7 @@ import '../../core/data/mock_store.dart';
 import '../../core/session_service.dart';
 
 class NotificationPage extends StatefulWidget {
-  const NotificationPage({super.key});
+  NotificationPage({super.key});
 
   @override
   State<NotificationPage> createState() => _NotificationPageState();
@@ -58,8 +58,8 @@ class _NotificationPageState extends State<NotificationPage> {
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text(
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
+        title: Text(
           'Notifications',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -74,7 +74,7 @@ class _NotificationPageState extends State<NotificationPage> {
               );
               setState(() {});
             },
-            child: const Text(
+            child: Text(
               'Mark all read',
               style: TextStyle(color: AppColors.accent, fontSize: 13),
             ),
@@ -82,7 +82,7 @@ class _NotificationPageState extends State<NotificationPage> {
         ],
       ),
       body: ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         itemCount: notifications.length,
         itemBuilder: (context, index) {
           final notif = notifications[index];
@@ -97,15 +97,15 @@ class _NotificationPageState extends State<NotificationPage> {
     Map<String, dynamic> notif,
   ) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
+      margin: EdgeInsets.only(bottom: 12),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: notif['isUnread'] ? AppColors.surface : AppColors.background,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: notif['isUnread']
               ? AppColors.primary.withValues(alpha: 0.3)
-              : Colors.white.withValues(alpha: 0.05),
+              : AppColors.textPrimary.withValues(alpha: 0.08),
         ),
       ),
       child: Row(
@@ -113,14 +113,14 @@ class _NotificationPageState extends State<NotificationPage> {
         children: [
           // Icon
           Container(
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: notif['color'].withValues(alpha: 0.15),
               shape: BoxShape.circle,
             ),
             child: Icon(notif['icon'], color: notif['color'], size: 20),
           ),
-          const SizedBox(width: 16),
+          SizedBox(width: 16),
 
           // Text
           Expanded(
@@ -132,7 +132,7 @@ class _NotificationPageState extends State<NotificationPage> {
                   children: [
                     Text(
                       notif['title'],
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColors.textPrimary,
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
@@ -140,17 +140,17 @@ class _NotificationPageState extends State<NotificationPage> {
                     ),
                     Text(
                       notif['time'],
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColors.textSecondary,
                         fontSize: 11,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 6),
+                SizedBox(height: 6),
                 Text(
                   notif['desc'],
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: 13,
                     height: 1.4,
@@ -164,3 +164,5 @@ class _NotificationPageState extends State<NotificationPage> {
     );
   }
 }
+
+

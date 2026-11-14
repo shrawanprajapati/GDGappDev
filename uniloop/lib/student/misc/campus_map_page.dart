@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 
 class CampusMapPage extends StatefulWidget {
-  const CampusMapPage({super.key});
+  CampusMapPage({super.key});
   @override
   State<CampusMapPage> createState() => _CampusMapPageState();
 }
@@ -37,7 +37,7 @@ class _CampusMapPageState extends State<CampusMapPage> {
     appBar: AppBar(
       backgroundColor: AppColors.background,
       elevation: 0,
-      title: const Text(
+      title: Text(
         'Campus Map',
         style: TextStyle(
           color: AppColors.textPrimary,
@@ -46,7 +46,7 @@ class _CampusMapPageState extends State<CampusMapPage> {
       ),
     ),
     body: ListView(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       children: [
         Container(
           height: 260,
@@ -58,11 +58,7 @@ class _CampusMapPageState extends State<CampusMapPage> {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              const Icon(
-                Icons.map_outlined,
-                color: AppColors.accent,
-                size: 100,
-              ),
+              Icon(Icons.map_outlined, color: AppColors.accent, size: 100),
               Positioned(
                 top: 35,
                 left: 55,
@@ -81,8 +77,8 @@ class _CampusMapPageState extends State<CampusMapPage> {
             ],
           ),
         ),
-        const SizedBox(height: 24),
-        const Text(
+        SizedBox(height: 24),
+        Text(
           'Explore Campus',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -90,7 +86,7 @@ class _CampusMapPageState extends State<CampusMapPage> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: 12),
         ...places.map(
           (place) => Card(
             color: AppColors.surface,
@@ -104,13 +100,13 @@ class _CampusMapPageState extends State<CampusMapPage> {
               ),
               title: Text(
                 place['name'],
-                style: const TextStyle(color: AppColors.textPrimary),
+                style: TextStyle(color: AppColors.textPrimary),
               ),
               subtitle: Text(
                 place['detail'],
-                style: const TextStyle(color: AppColors.textSecondary),
+                style: TextStyle(color: AppColors.textSecondary),
               ),
-              trailing: const Icon(
+              trailing: Icon(
                 Icons.chevron_right,
                 color: AppColors.textSecondary,
               ),
@@ -123,10 +119,7 @@ class _CampusMapPageState extends State<CampusMapPage> {
   Widget _pin(IconData icon, String label) => Column(
     children: [
       Icon(icon, color: AppColors.accent, size: 28),
-      Text(
-        label,
-        style: const TextStyle(color: AppColors.textPrimary, fontSize: 11),
-      ),
+      Text(label, style: TextStyle(color: AppColors.textPrimary, fontSize: 11)),
     ],
   );
 }

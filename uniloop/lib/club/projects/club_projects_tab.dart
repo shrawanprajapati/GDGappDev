@@ -15,7 +15,7 @@ class ClubProjectsTab extends StatelessWidget {
             const Text(
               'Club Projects',
               style: TextStyle(
-                color: AppColors.textPrimary,
+                color: ClubColors.textPrimary,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
@@ -25,7 +25,7 @@ class ClubProjectsTab extends StatelessWidget {
               icon: const Icon(Icons.add, size: 16),
               label: const Text('New Project'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
+                backgroundColor: ClubColors.primary,
                 foregroundColor: Colors.white,
               ),
             ),
@@ -52,7 +52,7 @@ class ClubProjectsTab extends StatelessWidget {
         const Text(
           'Completed Projects',
           style: TextStyle(
-            color: AppColors.textSecondary,
+            color: ClubColors.textSecondary,
             fontSize: 14,
             fontWeight: FontWeight.bold,
           ),
@@ -80,11 +80,11 @@ class ClubProjectsTab extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: ClubColors.surface,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: isActive
-              ? AppColors.primary.withValues(alpha: 0.3)
+              ? ClubColors.primary.withValues(alpha: 0.3)
               : Colors.transparent,
         ),
       ),
@@ -97,27 +97,27 @@ class ClubProjectsTab extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 decoration: BoxDecoration(
-                  color: AppColors.primary.withValues(alpha: 0.15),
+                  color: ClubColors.primary.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: Text(
                   type,
                   style: const TextStyle(
-                    color: AppColors.primary,
+                    color: ClubColors.primary,
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
               if (isActive)
-                const Icon(Icons.more_vert, color: AppColors.textSecondary),
+                const Icon(Icons.more_vert, color: ClubColors.textSecondary),
             ],
           ),
           const SizedBox(height: 8),
           Text(
             title,
             style: const TextStyle(
-              color: AppColors.textPrimary,
+              color: ClubColors.textPrimary,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
@@ -129,7 +129,9 @@ class ClubProjectsTab extends StatelessWidget {
               Text(
                 stats,
                 style: TextStyle(
-                  color: isActive ? AppColors.accent : AppColors.textSecondary,
+                  color: isActive
+                      ? ClubColors.accent
+                      : ClubColors.textSecondary,
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
                 ),
@@ -141,7 +143,7 @@ class ClubProjectsTab extends StatelessWidget {
                   },
                   child: const Text(
                     'View Applicants',
-                    style: TextStyle(color: AppColors.primary, fontSize: 12),
+                    style: TextStyle(color: ClubColors.primary, fontSize: 12),
                   ),
                 ),
             ],
@@ -154,7 +156,7 @@ class ClubProjectsTab extends StatelessWidget {
   void _showCreateProjectDialog(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: AppColors.surface,
+      backgroundColor: ClubColors.surface,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
@@ -174,7 +176,7 @@ class ClubProjectsTab extends StatelessWidget {
               const Text(
                 'Post New Project',
                 style: TextStyle(
-                  color: AppColors.textPrimary,
+                  color: ClubColors.textPrimary,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -195,12 +197,12 @@ class ClubProjectsTab extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Project Posted!'),
-                        backgroundColor: AppColors.accent,
+                        backgroundColor: ClubColors.accent,
                       ),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary,
+                    backgroundColor: ClubColors.primary,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -225,7 +227,7 @@ class ClubProjectsTab extends StatelessWidget {
   void _showApplicants(BuildContext context, String projectTitle) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: AppColors.surface,
+      backgroundColor: ClubColors.surface,
       builder: (_) => _ClubApplicantsSheet(projectTitle: projectTitle),
     );
   }
@@ -233,12 +235,12 @@ class ClubProjectsTab extends StatelessWidget {
   Widget _buildInputField(String hint, {int maxLines = 1}) {
     return TextField(
       maxLines: maxLines,
-      style: const TextStyle(color: AppColors.textPrimary),
+      style: const TextStyle(color: ClubColors.textPrimary),
       decoration: InputDecoration(
         hintText: hint,
-        hintStyle: const TextStyle(color: AppColors.textSecondary),
+        hintStyle: const TextStyle(color: ClubColors.textSecondary),
         filled: true,
-        fillColor: AppColors.background,
+        fillColor: ClubColors.background,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
@@ -269,7 +271,7 @@ class _ClubApplicantsSheetState extends State<_ClubApplicantsSheet> {
           Text(
             'Applicants · ${widget.projectTitle}',
             style: const TextStyle(
-              color: AppColors.textPrimary,
+              color: ClubColors.textPrimary,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -283,12 +285,15 @@ class _ClubApplicantsSheetState extends State<_ClubApplicantsSheet> {
   Widget _applicant(String name) {
     final decision = decisions[name];
     return Card(
-      color: AppColors.background,
+      color: ClubColors.background,
       child: ListTile(
-        title: Text(name, style: const TextStyle(color: AppColors.textPrimary)),
+        title: Text(
+          name,
+          style: const TextStyle(color: ClubColors.textPrimary),
+        ),
         subtitle: const Text(
           'Student applicant · CSE',
-          style: TextStyle(color: AppColors.textSecondary),
+          style: TextStyle(color: ClubColors.textSecondary),
         ),
         trailing: decision == null
             ? Row(
@@ -299,7 +304,7 @@ class _ClubApplicantsSheetState extends State<_ClubApplicantsSheet> {
                         setState(() => decisions[name] = 'Accepted'),
                     child: const Text(
                       'Accept',
-                      style: TextStyle(color: AppColors.accent),
+                      style: TextStyle(color: ClubColors.accent),
                     ),
                   ),
                   TextButton(
@@ -307,12 +312,12 @@ class _ClubApplicantsSheetState extends State<_ClubApplicantsSheet> {
                         setState(() => decisions[name] = 'Rejected'),
                     child: const Text(
                       'Reject',
-                      style: TextStyle(color: AppColors.textSecondary),
+                      style: TextStyle(color: ClubColors.textSecondary),
                     ),
                   ),
                 ],
               )
-            : Text(decision, style: const TextStyle(color: AppColors.accent)),
+            : Text(decision, style: const TextStyle(color: ClubColors.accent)),
       ),
     );
   }

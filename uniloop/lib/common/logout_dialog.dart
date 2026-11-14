@@ -12,21 +12,21 @@ class LogoutDialog {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
-          title: const Text(
+          title: Text(
             'Log Out',
             style: TextStyle(
               color: AppColors.textPrimary,
               fontWeight: FontWeight.bold,
             ),
           ),
-          content: const Text(
+          content: Text(
             'Are you sure you want to log out of UniLoop?',
             style: TextStyle(color: AppColors.textSecondary),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text(
+              child: Text(
                 'Cancel',
                 style: TextStyle(color: AppColors.textSecondary),
               ),
@@ -47,7 +47,7 @@ class LogoutDialog {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              child: const Text(
+              child: Text(
                 'Log Out',
                 style: TextStyle(
                   color: Colors.white,

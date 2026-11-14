@@ -3,7 +3,7 @@ import '../../core/app_colors.dart';
 import 'alumni_profile_page.dart';
 
 class AlumniListPage extends StatelessWidget {
-  const AlumniListPage({super.key});
+  AlumniListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +48,8 @@ class AlumniListPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text(
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
+        title: Text(
           'Connect Alumni',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -61,14 +61,14 @@ class AlumniListPage extends StatelessWidget {
         children: [
           // Search Bar
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
             child: Container(
               decoration: BoxDecoration(
                 color: AppColors.surface,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+                border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
               ),
-              child: const TextField(
+              child: TextField(
                 style: TextStyle(color: AppColors.textPrimary),
                 decoration: InputDecoration(
                   hintText: 'Search by company or domain...',
@@ -87,7 +87,7 @@ class AlumniListPage extends StatelessWidget {
           // Alumni List
           Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               itemCount: alumniList.length,
               itemBuilder: (context, index) {
                 final alumni = alumniList[index];
@@ -111,12 +111,12 @@ class AlumniListPage extends StatelessWidget {
         );
       },
       child: Container(
-        margin: const EdgeInsets.only(bottom: 16),
-        padding: const EdgeInsets.all(16),
+        margin: EdgeInsets.only(bottom: 16),
+        padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: AppColors.surface,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+          border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
         ),
         child: Row(
           children: [
@@ -126,7 +126,7 @@ class AlumniListPage extends StatelessWidget {
               backgroundImage: NetworkImage(alumni['image']),
               backgroundColor: AppColors.background,
             ),
-            const SizedBox(width: 16),
+            SizedBox(width: 16),
 
             // Details
             Expanded(
@@ -135,25 +135,25 @@ class AlumniListPage extends StatelessWidget {
                 children: [
                   Text(
                     alumni['name'],
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: AppColors.textPrimary,
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4),
                   Text(
                     '${alumni['role']} at ${alumni['company']}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: AppColors.accent,
                       fontSize: 13,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4),
                   Text(
                     alumni['batch'],
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: 12,
                     ),
@@ -162,10 +162,12 @@ class AlumniListPage extends StatelessWidget {
               ),
             ),
 
-            const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+            Icon(Icons.chevron_right, color: AppColors.textSecondary),
           ],
         ),
       ),
     );
   }
 }
+
+

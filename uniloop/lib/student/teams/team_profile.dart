@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 
 class TeamProfilePage extends StatefulWidget {
-  const TeamProfilePage({super.key});
+  TeamProfilePage({super.key});
 
   @override
   State<TeamProfilePage> createState() => _TeamProfilePageState();
@@ -23,7 +23,7 @@ class _TeamProfilePageState extends State<TeamProfilePage> {
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
-        title: const Text(
+        title: Text(
           'Team Profile',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -32,15 +32,15 @@ class _TeamProfilePageState extends State<TeamProfilePage> {
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         children: [
-          const CircleAvatar(
+          CircleAvatar(
             radius: 38,
             backgroundColor: AppColors.primary,
             child: Icon(Icons.groups, color: AppColors.textPrimary, size: 36),
           ),
-          const SizedBox(height: 14),
-          const Center(
+          SizedBox(height: 14),
+          Center(
             child: Text(
               'Vishwakarma Award Team',
               style: TextStyle(
@@ -50,13 +50,13 @@ class _TeamProfilePageState extends State<TeamProfilePage> {
               ),
             ),
           ),
-          const Center(
+          Center(
             child: Text(
               'Building solutions that matter',
               style: TextStyle(color: AppColors.textSecondary),
             ),
           ),
-          const SizedBox(height: 28),
+          SizedBox(height: 28),
           _section(
             'Combined Skills',
             Wrap(
@@ -67,7 +67,7 @@ class _TeamProfilePageState extends State<TeamProfilePage> {
                     (skill) => Chip(
                       label: Text(
                         skill,
-                        style: const TextStyle(color: AppColors.accent),
+                        style: TextStyle(color: AppColors.accent),
                       ),
                       backgroundColor: AppColors.surface,
                       side: BorderSide.none,
@@ -83,17 +83,17 @@ class _TeamProfilePageState extends State<TeamProfilePage> {
                 for (final member in members)
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    leading: const CircleAvatar(
+                    leading: CircleAvatar(
                       backgroundColor: AppColors.surface,
                       child: Icon(Icons.person, color: AppColors.accent),
                     ),
                     title: Text(
                       member['name']!,
-                      style: const TextStyle(color: AppColors.textPrimary),
+                      style: TextStyle(color: AppColors.textPrimary),
                     ),
                     subtitle: Text(
                       member['role']!,
-                      style: const TextStyle(color: AppColors.textSecondary),
+                      style: TextStyle(color: AppColors.textSecondary),
                     ),
                   ),
               ],
@@ -101,7 +101,7 @@ class _TeamProfilePageState extends State<TeamProfilePage> {
           ),
           _section(
             'Past Projects',
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -138,19 +138,19 @@ class _TeamProfilePageState extends State<TeamProfilePage> {
   }
 
   Widget _section(String title, Widget child) => Padding(
-    padding: const EdgeInsets.only(bottom: 22),
+    padding: EdgeInsets.only(bottom: 22),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             color: AppColors.accent,
             fontSize: 17,
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 10),
+        SizedBox(height: 10),
         child,
       ],
     ),

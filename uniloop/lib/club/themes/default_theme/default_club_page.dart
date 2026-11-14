@@ -16,14 +16,14 @@ class DefaultClubPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color accent = data.accentColor ?? AppColors.primary;
+    final Color accent = data.accentColor ?? ClubColors.primary;
 
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: ClubColors.background,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
+        iconTheme: const IconThemeData(color: ClubColors.textPrimary),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -53,7 +53,7 @@ class DefaultClubPage extends StatelessWidget {
                       Text(
                         data.clubName,
                         style: const TextStyle(
-                          color: AppColors.textPrimary,
+                          color: ClubColors.textPrimary,
                           fontSize: 24,
                           fontWeight: FontWeight.w800,
                         ),
@@ -62,7 +62,7 @@ class DefaultClubPage extends StatelessWidget {
                       Text(
                         data.instituteName,
                         style: const TextStyle(
-                          color: AppColors.textSecondary,
+                          color: ClubColors.textSecondary,
                           fontSize: 13,
                         ),
                       ),
@@ -122,7 +122,7 @@ class DefaultClubPage extends StatelessWidget {
             const Text(
               'About',
               style: TextStyle(
-                color: AppColors.textPrimary,
+                color: ClubColors.textPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),
@@ -131,7 +131,7 @@ class DefaultClubPage extends StatelessWidget {
             Text(
               data.description,
               style: const TextStyle(
-                color: AppColors.textSecondary,
+                color: ClubColors.textSecondary,
                 fontSize: 14,
                 height: 1.5,
               ),
@@ -144,7 +144,7 @@ class DefaultClubPage extends StatelessWidget {
               const Text(
                 'Events',
                 style: TextStyle(
-                  color: AppColors.textPrimary,
+                  color: ClubColors.textPrimary,
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                 ),
@@ -159,7 +159,7 @@ class DefaultClubPage extends StatelessWidget {
               const Text(
                 'Team',
                 style: TextStyle(
-                  color: AppColors.textPrimary,
+                  color: ClubColors.textPrimary,
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                 ),
@@ -174,7 +174,7 @@ class DefaultClubPage extends StatelessWidget {
               const Text(
                 'Connect',
                 style: TextStyle(
-                  color: AppColors.textPrimary,
+                  color: ClubColors.textPrimary,
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                 ),
@@ -189,14 +189,12 @@ class DefaultClubPage extends StatelessWidget {
                     label: Text(
                       entry.key[0].toUpperCase() + entry.key.substring(1),
                       style: const TextStyle(
-                        color: AppColors.textPrimary,
+                        color: ClubColors.textPrimary,
                         fontSize: 12,
                       ),
                     ),
-                    backgroundColor: AppColors.surface,
-                    side: BorderSide(
-                      color: accent.withValues(alpha: 0.3),
-                    ),
+                    backgroundColor: ClubColors.surface,
+                    side: BorderSide(color: accent.withValues(alpha: 0.3)),
                   );
                 }).toList(),
               ),
@@ -215,7 +213,7 @@ class DefaultClubPage extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: ClubColors.surface,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: event.isUpcoming
@@ -233,25 +231,24 @@ class DefaultClubPage extends StatelessWidget {
                 child: Text(
                   event.title,
                   style: const TextStyle(
-                    color: AppColors.textPrimary,
+                    color: ClubColors.textPrimary,
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
               Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
                   color: event.isUpcoming
                       ? accent.withValues(alpha: 0.2)
-                      : AppColors.background,
+                      : ClubColors.background,
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Text(
                   event.isUpcoming ? 'Upcoming' : 'Past',
                   style: TextStyle(
-                    color: event.isUpcoming ? accent : AppColors.textSecondary,
+                    color: event.isUpcoming ? accent : ClubColors.textSecondary,
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
                   ),
@@ -263,7 +260,7 @@ class DefaultClubPage extends StatelessWidget {
           Text(
             '${event.date} • ${event.time} • ${event.venue}',
             style: const TextStyle(
-              color: AppColors.textSecondary,
+              color: ClubColors.textSecondary,
               fontSize: 12,
             ),
           ),
@@ -276,7 +273,7 @@ class DefaultClubPage extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: ClubColors.surface,
         borderRadius: BorderRadius.circular(12),
       ),
       child: ListTile(
@@ -284,25 +281,19 @@ class DefaultClubPage extends StatelessWidget {
           backgroundColor: accent.withValues(alpha: 0.15),
           child: Text(
             member.name.isNotEmpty ? member.name[0] : '?',
-            style: TextStyle(
-              color: accent,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(color: accent, fontWeight: FontWeight.bold),
           ),
         ),
         title: Text(
           member.name,
           style: const TextStyle(
-            color: AppColors.textPrimary,
+            color: ClubColors.textPrimary,
             fontWeight: FontWeight.w600,
           ),
         ),
         subtitle: Text(
           '${member.role}${member.department.isNotEmpty ? ' • ${member.department}' : ''}',
-          style: const TextStyle(
-            color: AppColors.textSecondary,
-            fontSize: 12,
-          ),
+          style: const TextStyle(color: ClubColors.textSecondary, fontSize: 12),
         ),
       ),
     );

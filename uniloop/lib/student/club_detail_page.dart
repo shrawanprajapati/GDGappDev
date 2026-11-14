@@ -28,14 +28,14 @@ class ClubDetailPage extends StatelessWidget {
     final String category = clubData['category'] ?? 'Category';
     final String members = clubData['members'] ?? 'Members';
     final IconData icon = clubData['icon'] ?? Icons.group;
-    final Color color = clubData['color'] ?? AppColors.primary;
+    final Color color = clubData['color'] ?? ClubColors.primary;
 
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: ClubColors.background,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
+        iconTheme: const IconThemeData(color: ClubColors.textPrimary),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -61,7 +61,7 @@ class ClubDetailPage extends StatelessWidget {
                       Text(
                         clubName,
                         style: const TextStyle(
-                          color: AppColors.textPrimary,
+                          color: ClubColors.textPrimary,
                           fontSize: 24,
                           fontWeight: FontWeight.w800,
                         ),
@@ -70,7 +70,7 @@ class ClubDetailPage extends StatelessWidget {
                       Text(
                         '$category • $members',
                         style: const TextStyle(
-                          color: AppColors.textSecondary,
+                          color: ClubColors.textSecondary,
                           fontSize: 13,
                         ),
                       ),
@@ -128,7 +128,7 @@ class ClubDetailPage extends StatelessWidget {
             const Text(
               'Common Highlights',
               style: TextStyle(
-                color: AppColors.textPrimary,
+                color: ClubColors.textPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),
@@ -137,7 +137,7 @@ class ClubDetailPage extends StatelessWidget {
             Text(
               'The $clubName is a community of passionate individuals. We organize workshops, hackathons, and industry-level projects to help students grow beyond the classroom.',
               style: const TextStyle(
-                color: AppColors.textSecondary,
+                color: ClubColors.textSecondary,
                 fontSize: 14,
                 height: 1.5,
               ),
@@ -149,7 +149,7 @@ class ClubDetailPage extends StatelessWidget {
             const Text(
               'Ongoing Projects & Inductions',
               style: TextStyle(
-                color: AppColors.textPrimary,
+                color: ClubColors.textPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),
@@ -160,7 +160,7 @@ class ClubDetailPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppColors.surface,
+                color: ClubColors.surface,
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
               ),
@@ -173,7 +173,7 @@ class ClubDetailPage extends StatelessWidget {
                       const Text(
                         'Induction Project 2024',
                         style: TextStyle(
-                          color: AppColors.textPrimary,
+                          color: ClubColors.textPrimary,
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
@@ -202,7 +202,7 @@ class ClubDetailPage extends StatelessWidget {
                   const Text(
                     'Build a real-world application to qualify for club membership.',
                     style: TextStyle(
-                      color: AppColors.textSecondary,
+                      color: ClubColors.textSecondary,
                       fontSize: 13,
                     ),
                   ),
@@ -212,8 +212,8 @@ class ClubDetailPage extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.background,
-                        foregroundColor: AppColors.textPrimary,
+                        backgroundColor: ClubColors.background,
+                        foregroundColor: ClubColors.textPrimary,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),

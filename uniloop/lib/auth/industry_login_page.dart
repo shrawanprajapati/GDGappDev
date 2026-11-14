@@ -4,7 +4,7 @@ import '../core/app_colors.dart';
 import '../core/app_routes.dart';
 
 class IndustryLoginPage extends StatefulWidget {
-  const IndustryLoginPage({super.key});
+  IndustryLoginPage({super.key});
 
   @override
   State<IndustryLoginPage> createState() => _IndustryLoginPageState();
@@ -26,7 +26,7 @@ class _IndustryLoginPageState extends State<IndustryLoginPage> {
     if (_emailController.text.trim().isEmpty ||
         _passwordController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter your email and password.')),
+        SnackBar(content: Text('Please enter your email and password.')),
       );
       return;
     }
@@ -40,21 +40,17 @@ class _IndustryLoginPageState extends State<IndustryLoginPage> {
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(28, 16, 28, 28),
+          padding: EdgeInsets.fromLTRB(28, 16, 28, 28),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Icon(
-                Icons.business_outlined,
-                color: AppColors.accent,
-                size: 42,
-              ),
-              const SizedBox(height: 20),
-              const Text(
+              Icon(Icons.business_outlined, color: AppColors.accent, size: 42),
+              SizedBox(height: 20),
+              Text(
                 'Company Login',
                 style: TextStyle(
                   color: AppColors.textPrimary,
@@ -62,19 +58,19 @@ class _IndustryLoginPageState extends State<IndustryLoginPage> {
                   fontWeight: FontWeight.w800,
                 ),
               ),
-              const SizedBox(height: 8),
-              const Text(
+              SizedBox(height: 8),
+              Text(
                 'Connect with university talent and manage your projects.',
                 style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
               ),
-              const SizedBox(height: 34),
+              SizedBox(height: 34),
               _field(
                 controller: _emailController,
                 hint: 'Company Email',
                 icon: Icons.email_outlined,
                 keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               _field(
                 controller: _passwordController,
                 hint: 'Password',
@@ -95,19 +91,19 @@ class _IndustryLoginPageState extends State<IndustryLoginPage> {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () {},
-                  child: const Text(
+                  child: Text(
                     'Forgot Password?',
                     style: TextStyle(color: AppColors.accent),
                   ),
                 ),
               ),
-              const SizedBox(height: 18),
+              SizedBox(height: 18),
               _gradientButton(label: 'Log In', onPressed: _login),
-              const SizedBox(height: 24),
+              SizedBox(height: 24),
               Center(
                 child: TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: const Text(
+                  child: Text(
                     'Use university member login',
                     style: TextStyle(color: AppColors.textSecondary),
                   ),
@@ -132,12 +128,12 @@ class _IndustryLoginPageState extends State<IndustryLoginPage> {
       controller: controller,
       keyboardType: keyboardType,
       obscureText: obscureText,
-      style: const TextStyle(color: AppColors.textPrimary),
+      style: TextStyle(color: AppColors.textPrimary),
       decoration: InputDecoration(
         filled: true,
         fillColor: AppColors.surface,
         hintText: hint,
-        hintStyle: const TextStyle(color: AppColors.textSecondary),
+        hintStyle: TextStyle(color: AppColors.textSecondary),
         prefixIcon: Icon(icon, color: AppColors.textSecondary),
         suffixIcon: suffix,
         border: OutlineInputBorder(
@@ -146,7 +142,7 @@ class _IndustryLoginPageState extends State<IndustryLoginPage> {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: AppColors.accent),
+          borderSide: BorderSide(color: AppColors.accent),
         ),
       ),
     );
@@ -161,9 +157,7 @@ class _IndustryLoginPageState extends State<IndustryLoginPage> {
       height: 56,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        gradient: const LinearGradient(
-          colors: [AppColors.primary, AppColors.accent],
-        ),
+        gradient: AppColors.brandGradient,
       ),
       child: ElevatedButton(
         onPressed: onPressed,
@@ -177,7 +171,7 @@ class _IndustryLoginPageState extends State<IndustryLoginPage> {
         ),
         child: Text(
           label,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
     );

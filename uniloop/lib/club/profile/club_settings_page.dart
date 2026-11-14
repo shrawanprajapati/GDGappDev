@@ -52,7 +52,7 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Data synced from website successfully!'),
-        backgroundColor: AppColors.accent,
+        backgroundColor: ClubColors.accent,
       ),
     );
   }
@@ -69,15 +69,15 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: ClubColors.background,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
+        iconTheme: const IconThemeData(color: ClubColors.textPrimary),
         title: const Text(
           'Club Settings',
           style: TextStyle(
-            color: AppColors.textPrimary,
+            color: ClubColors.textPrimary,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -92,14 +92,14 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppColors.surface,
+                color: ClubColors.surface,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
                 children: [
                   TextField(
                     controller: _websiteController,
-                    style: const TextStyle(color: AppColors.textPrimary),
+                    style: const TextStyle(color: ClubColors.textPrimary),
                     decoration: _inputDecoration(
                       'Club Website URL',
                       Icons.link,
@@ -126,7 +126,7 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
                             : 'Fetch Data from Website',
                       ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primary,
+                        backgroundColor: ClubColors.primary,
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(vertical: 14),
                       ),
@@ -136,7 +136,7 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
                     const SizedBox(height: 8),
                     const Text(
                       'Last synced: Just now',
-                      style: TextStyle(color: AppColors.accent, fontSize: 12),
+                      style: TextStyle(color: ClubColors.accent, fontSize: 12),
                     ),
                   ],
                 ],
@@ -149,7 +149,7 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
             TextField(
               controller: _aboutController,
               maxLines: 4,
-              style: const TextStyle(color: AppColors.textPrimary),
+              style: const TextStyle(color: ClubColors.textPrimary),
               decoration: _inputDecoration(
                 'Club Description / Highlights',
                 null,
@@ -162,19 +162,19 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               decoration: BoxDecoration(
-                color: AppColors.surface,
+                color: ClubColors.surface,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: ListTile(
                 contentPadding: EdgeInsets.zero,
                 leading: const CircleAvatar(
-                  backgroundColor: AppColors.primary,
+                  backgroundColor: ClubColors.primary,
                   child: Icon(Icons.person, color: Colors.white),
                 ),
                 title: Text(
                   _clubHead,
                   style: const TextStyle(
-                    color: AppColors.textPrimary,
+                    color: ClubColors.textPrimary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -182,7 +182,7 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
                   onPressed: () {},
                   child: const Text(
                     'Change',
-                    style: TextStyle(color: AppColors.accent),
+                    style: TextStyle(color: ClubColors.accent),
                   ),
                 ),
               ),
@@ -195,7 +195,7 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
               children: [
                 _buildSectionTitle('Domains & Heads'),
                 IconButton(
-                  icon: const Icon(Icons.add_circle, color: AppColors.accent),
+                  icon: const Icon(Icons.add_circle, color: ClubColors.accent),
                   onPressed: () => _showAddDomainDialog(),
                 ),
               ],
@@ -213,13 +213,13 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('Club Settings Saved!'),
-                      backgroundColor: AppColors.accent,
+                      backgroundColor: ClubColors.accent,
                     ),
                   );
                   Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.accent,
+                  backgroundColor: ClubColors.accent,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
@@ -247,7 +247,7 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
       child: Text(
         title,
         style: const TextStyle(
-          color: AppColors.textPrimary,
+          color: ClubColors.textPrimary,
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
@@ -262,7 +262,7 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: ClubColors.surface,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
       ),
@@ -275,7 +275,7 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
               Text(
                 domainName,
                 style: const TextStyle(
-                  color: AppColors.textPrimary,
+                  color: ClubColors.textPrimary,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -303,7 +303,7 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
                   Text(
                     'Head: ${head ?? "Not Assigned"}',
                     style: const TextStyle(
-                      color: AppColors.textSecondary,
+                      color: ClubColors.textSecondary,
                       fontSize: 13,
                     ),
                   ),
@@ -313,7 +313,10 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
                 onPressed: () => _showAssignHeadDialog(domainName),
                 child: Text(
                   head == null ? 'Assign Head' : 'Change Head',
-                  style: const TextStyle(color: AppColors.accent, fontSize: 13),
+                  style: const TextStyle(
+                    color: ClubColors.accent,
+                    fontSize: 13,
+                  ),
                 ),
               ),
             ],
@@ -326,12 +329,12 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
   InputDecoration _inputDecoration(String hint, IconData? icon) {
     return InputDecoration(
       hintText: hint,
-      hintStyle: const TextStyle(color: AppColors.textSecondary),
+      hintStyle: const TextStyle(color: ClubColors.textSecondary),
       prefixIcon: icon != null
-          ? Icon(icon, color: AppColors.textSecondary)
+          ? Icon(icon, color: ClubColors.textSecondary)
           : null,
       filled: true,
-      fillColor: AppColors.background,
+      fillColor: ClubColors.background,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide.none,
@@ -344,14 +347,14 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: AppColors.surface,
+          backgroundColor: ClubColors.surface,
           title: const Text(
             'Add New Domain',
-            style: TextStyle(color: AppColors.textPrimary),
+            style: TextStyle(color: ClubColors.textPrimary),
           ),
           content: TextField(
             controller: _newDomainController,
-            style: const TextStyle(color: AppColors.textPrimary),
+            style: const TextStyle(color: ClubColors.textPrimary),
             decoration: _inputDecoration('e.g., Web Dev Club', null),
           ),
           actions: [
@@ -359,7 +362,7 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
               onPressed: () => Navigator.pop(context),
               child: const Text(
                 'Cancel',
-                style: TextStyle(color: AppColors.textSecondary),
+                style: TextStyle(color: ClubColors.textSecondary),
               ),
             ),
             ElevatedButton(
@@ -368,7 +371,7 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
+                backgroundColor: ClubColors.primary,
               ),
               child: const Text('Add', style: TextStyle(color: Colors.white)),
             ),
@@ -383,18 +386,18 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: AppColors.surface,
+          backgroundColor: ClubColors.surface,
           title: Text(
             'Assign Head for $domainName',
-            style: TextStyle(color: AppColors.textPrimary, fontSize: 18),
+            style: TextStyle(color: ClubColors.textPrimary, fontSize: 18),
           ),
           content: const TextField(
-            style: TextStyle(color: AppColors.textPrimary),
+            style: TextStyle(color: ClubColors.textPrimary),
             decoration: InputDecoration(
               hintText: 'Enter Student Name or ID',
-              hintStyle: TextStyle(color: AppColors.textSecondary),
+              hintStyle: TextStyle(color: ClubColors.textSecondary),
               filled: true,
-              fillColor: AppColors.background,
+              fillColor: ClubColors.background,
               border: OutlineInputBorder(borderSide: BorderSide.none),
             ),
           ),
@@ -403,7 +406,7 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
               onPressed: () => Navigator.pop(context),
               child: const Text(
                 'Cancel',
-                style: TextStyle(color: AppColors.textSecondary),
+                style: TextStyle(color: ClubColors.textSecondary),
               ),
             ),
             ElevatedButton(
@@ -412,7 +415,7 @@ class _ClubSettingsPageState extends State<ClubSettingsPage> {
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
+                backgroundColor: ClubColors.primary,
               ),
               child: const Text(
                 'Assign',

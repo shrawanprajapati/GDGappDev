@@ -29,7 +29,7 @@ class _ClubProfileTabState extends State<ClubProfileTab> {
           const Text(
             'My Club Profile',
             style: TextStyle(
-              color: AppColors.textPrimary,
+              color: ClubColors.textPrimary,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
@@ -40,21 +40,21 @@ class _ClubProfileTabState extends State<ClubProfileTab> {
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: AppColors.surface,
+              color: ClubColors.surface,
               borderRadius: BorderRadius.circular(16),
             ),
             child: Column(
               children: [
                 const CircleAvatar(
                   radius: 40,
-                  backgroundColor: AppColors.primary,
+                  backgroundColor: ClubColors.primary,
                   child: Icon(Icons.computer, size: 40, color: Colors.white),
                 ),
                 const SizedBox(height: 16),
                 Text(
                   clubName,
                   style: const TextStyle(
-                    color: AppColors.textPrimary,
+                    color: ClubColors.textPrimary,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -64,7 +64,7 @@ class _ClubProfileTabState extends State<ClubProfileTab> {
                 Text(
                   '$clubDomain Domain • 450+ Members',
                   style: const TextStyle(
-                    color: AppColors.textSecondary,
+                    color: ClubColors.textSecondary,
                     fontSize: 13,
                   ),
                 ),
@@ -72,7 +72,7 @@ class _ClubProfileTabState extends State<ClubProfileTab> {
                 Text(
                   clubBio,
                   style: const TextStyle(
-                    color: AppColors.textSecondary,
+                    color: ClubColors.textSecondary,
                     fontSize: 13,
                     fontStyle: FontStyle.italic,
                   ),
@@ -95,7 +95,7 @@ class _ClubProfileTabState extends State<ClubProfileTab> {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
+                          backgroundColor: ClubColors.primary,
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 12),
                         ),
@@ -111,13 +111,14 @@ class _ClubProfileTabState extends State<ClubProfileTab> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => ClubPageFactory.buildPage(pageData),
+                              builder: (_) =>
+                                  ClubPageFactory.buildPage(pageData),
                             ),
                           );
                         },
                         style: OutlinedButton.styleFrom(
-                          side: const BorderSide(color: AppColors.accent),
-                          foregroundColor: AppColors.accent,
+                          side: const BorderSide(color: ClubColors.accent),
+                          foregroundColor: ClubColors.accent,
                           padding: const EdgeInsets.symmetric(vertical: 12),
                         ),
                         child: const Text('View Page'),
@@ -137,7 +138,7 @@ class _ClubProfileTabState extends State<ClubProfileTab> {
               const Text(
                 'Club Members',
                 style: TextStyle(
-                  color: AppColors.textPrimary,
+                  color: ClubColors.textPrimary,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -147,11 +148,11 @@ class _ClubProfileTabState extends State<ClubProfileTab> {
                 icon: const Icon(
                   Icons.person_add,
                   size: 16,
-                  color: AppColors.accent,
+                  color: ClubColors.accent,
                 ),
                 label: const Text(
                   'Add',
-                  style: TextStyle(color: AppColors.accent),
+                  style: TextStyle(color: ClubColors.accent),
                 ),
               ),
             ],
@@ -165,7 +166,7 @@ class _ClubProfileTabState extends State<ClubProfileTab> {
               ),
               icon: const Icon(Icons.manage_accounts_outlined),
               label: const Text('Manage Members'),
-              style: TextButton.styleFrom(foregroundColor: AppColors.accent),
+              style: TextButton.styleFrom(foregroundColor: ClubColors.accent),
             ),
           ),
           const SizedBox(height: 12),
@@ -182,28 +183,28 @@ class _ClubProfileTabState extends State<ClubProfileTab> {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: ClubColors.surface,
         borderRadius: BorderRadius.circular(12),
       ),
       child: ListTile(
         contentPadding: EdgeInsets.zero,
         leading: CircleAvatar(
-          backgroundColor: AppColors.background,
+          backgroundColor: ClubColors.background,
           child: Text(
             name[0],
-            style: const TextStyle(color: AppColors.textPrimary),
+            style: const TextStyle(color: ClubColors.textPrimary),
           ),
         ),
         title: Text(
           name,
           style: const TextStyle(
-            color: AppColors.textPrimary,
+            color: ClubColors.textPrimary,
             fontWeight: FontWeight.bold,
           ),
         ),
         subtitle: Text(
           role,
-          style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+          style: const TextStyle(color: ClubColors.textSecondary, fontSize: 12),
         ),
         trailing: IconButton(
           icon: const Icon(
@@ -225,25 +226,25 @@ class _ClubProfileTabState extends State<ClubProfileTab> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: AppColors.surface,
+          backgroundColor: ClubColors.surface,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
           title: const Text(
             'Add Member',
             style: TextStyle(
-              color: AppColors.textPrimary,
+              color: ClubColors.textPrimary,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
           content: const TextField(
-            style: TextStyle(color: AppColors.textPrimary),
+            style: TextStyle(color: ClubColors.textPrimary),
             decoration: InputDecoration(
               hintText: 'Enter student email or ID',
-              hintStyle: TextStyle(color: AppColors.textSecondary),
+              hintStyle: TextStyle(color: ClubColors.textSecondary),
               filled: true,
-              fillColor: AppColors.background,
+              fillColor: ClubColors.background,
               border: OutlineInputBorder(borderSide: BorderSide.none),
             ),
           ),
@@ -252,7 +253,7 @@ class _ClubProfileTabState extends State<ClubProfileTab> {
               onPressed: () => Navigator.pop(context),
               child: const Text(
                 'Cancel',
-                style: TextStyle(color: AppColors.textSecondary),
+                style: TextStyle(color: ClubColors.textSecondary),
               ),
             ),
             ElevatedButton(
@@ -261,12 +262,12 @@ class _ClubProfileTabState extends State<ClubProfileTab> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('Member Added!'),
-                    backgroundColor: AppColors.accent,
+                    backgroundColor: ClubColors.accent,
                   ),
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
+                backgroundColor: ClubColors.primary,
               ),
               child: const Text('Add', style: TextStyle(color: Colors.white)),
             ),

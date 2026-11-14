@@ -6,8 +6,8 @@ import '../role_data/role_data.dart';
 /// A reusable search delegate that works on any list of [SearchItem]s.
 class RoleSearchDelegate extends SearchDelegate<String> {
   RoleSearchDelegate({
-    required this.roleName,           // for UI header (e.g. "Club", "Student")
-    required this.items,              // the complete list for the role
+    required this.roleName, // for UI header (e.g. "Club", "Student")
+    required this.items, // the complete list for the role
   });
 
   final String roleName;
@@ -18,34 +18,31 @@ class RoleSearchDelegate extends SearchDelegate<String> {
   // -----------------------------------------------------------------
   @override
   ThemeData appBarTheme(BuildContext context) => Theme.of(context).copyWith(
-        appBarTheme: const AppBarTheme(
-          backgroundColor: AppColors.surface,
-          iconTheme: IconThemeData(color: AppColors.textPrimary),
-        ),
-        inputDecorationTheme: const InputDecorationTheme(
-          hintStyle: TextStyle(color: AppColors.textSecondary),
-        ),
-      );
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.surface,
+      iconTheme: IconThemeData(color: AppColors.textPrimary),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      hintStyle: TextStyle(color: AppColors.textSecondary),
+    ),
+  );
 
   @override
   List<Widget>? buildActions(BuildContext context) => [
-        IconButton(
-          onPressed: () => query = '',
-          icon: const Icon(Icons.clear),
-        ),
-      ];
+    IconButton(onPressed: () => query = '', icon: Icon(Icons.clear)),
+  ];
 
   @override
   Widget buildLeading(BuildContext context) => IconButton(
-        onPressed: () => close(context, ''),
-        icon: const Icon(Icons.arrow_back),
-      );
+    onPressed: () => close(context, ''),
+    icon: Icon(Icons.arrow_back),
+  );
 
   // -----------------------------------------------------------------
   // Core filtering logic – case‑insensitive, matches title or subtitle
   // -----------------------------------------------------------------
   List<SearchItem> _filtered() {
-    if (query.isEmpty) return const [];
+    if (query.isEmpty) return [];
     final lower = query.toLowerCase();
     return items.where((i) {
       return i.title.toLowerCase().contains(lower) ||
@@ -71,7 +68,7 @@ class RoleSearchDelegate extends SearchDelegate<String> {
       return Center(
         child: Text(
           'Search $roleName events, members, projects…',
-          style: const TextStyle(color: AppColors.textSecondary),
+          style: TextStyle(color: AppColors.textSecondary),
         ),
       );
     }
@@ -79,15 +76,15 @@ class RoleSearchDelegate extends SearchDelegate<String> {
       return Center(
         child: Text(
           'No $roleName results for “$query”',
-          style: const TextStyle(color: AppColors.textSecondary),
+          style: TextStyle(color: AppColors.textSecondary),
         ),
       );
     }
 
     return ListView.separated(
-      padding: const EdgeInsets.all(8),
+      padding: EdgeInsets.all(8),
       itemCount: results.length,
-      separatorBuilder: (context, index) => const Divider(height: 1),
+      separatorBuilder: (context, index) => Divider(height: 1),
       itemBuilder: (ctx, i) {
         final item = results[i];
         // Choose an icon based on the item type – feel free to expand
@@ -125,11 +122,11 @@ class RoleSearchDelegate extends SearchDelegate<String> {
           leading: Icon(icon, color: AppColors.textPrimary),
           title: Text(
             item.title,
-            style: const TextStyle(color: AppColors.textPrimary),
+            style: TextStyle(color: AppColors.textPrimary),
           ),
           subtitle: Text(
             item.subtitle,
-            style: const TextStyle(color: AppColors.textSecondary),
+            style: TextStyle(color: AppColors.textSecondary),
           ),
           onTap: () {
             // TODO: navigate to a detail page using `item.id` and `item.type`

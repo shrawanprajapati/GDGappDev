@@ -3,7 +3,7 @@ import '../../core/app_colors.dart';
 
 class AlumniProfilePage extends StatelessWidget {
   final Map<String, dynamic> alumniData;
-  const AlumniProfilePage({super.key, required this.alumniData});
+  AlumniProfilePage({super.key, required this.alumniData});
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +12,10 @@ class AlumniProfilePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(20.0),
         child: Column(
           children: [
             // Profile Header
@@ -27,28 +27,28 @@ class AlumniProfilePage extends StatelessWidget {
                     backgroundImage: NetworkImage(alumniData['image']),
                     backgroundColor: AppColors.surface,
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   Text(
                     alumniData['name'],
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: AppColors.textPrimary,
                       fontSize: 24,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4),
                   Text(
                     '${alumniData['role']} at ${alumniData['company']}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: AppColors.accent,
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4),
                   Text(
                     alumniData['batch'],
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: 13,
                     ),
@@ -57,7 +57,7 @@ class AlumniProfilePage extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 30),
+            SizedBox(height: 30),
 
             // Connect Buttons
             Row(
@@ -66,49 +66,49 @@ class AlumniProfilePage extends StatelessWidget {
                   child: ElevatedButton.icon(
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
+                        SnackBar(
                           content: Text('Mentorship Request Sent!'),
                           backgroundColor: AppColors.accent,
                         ),
                       );
                     },
-                    icon: const Icon(Icons.handshake_outlined, size: 20),
-                    label: const Text('Request Guidance'),
+                    icon: Icon(Icons.handshake_outlined, size: 20),
+                    label: Text('Request Guidance'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary,
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      padding: EdgeInsets.symmetric(vertical: 14),
                     ),
                   ),
                 ),
-                const SizedBox(width: 12),
+                SizedBox(width: 12),
                 Container(
                   decoration: BoxDecoration(
                     color: AppColors.surface,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: Colors.white.withValues(alpha: 0.05),
+                      color: AppColors.textPrimary.withValues(alpha: 0.08),
                     ),
                   ),
                   child: IconButton(
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.chat_bubble_outline,
                       color: AppColors.accent,
                     ),
                     onPressed: () {},
-                    padding: const EdgeInsets.all(14),
+                    padding: EdgeInsets.all(14),
                   ),
                 ),
               ],
             ),
 
-            const SizedBox(height: 30),
+            SizedBox(height: 30),
 
             // Expertise Section
-            const Align(
+            Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 'Domain Expertise',
@@ -119,14 +119,11 @@ class AlumniProfilePage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
             Align(
               alignment: Alignment.centerLeft,
               child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 10,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                 decoration: BoxDecoration(
                   color: AppColors.surface,
                   borderRadius: BorderRadius.circular(20),
@@ -136,7 +133,7 @@ class AlumniProfilePage extends StatelessWidget {
                 ),
                 child: Text(
                   alumniData['domain'],
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.accent,
                     fontWeight: FontWeight.w600,
                   ),
@@ -144,10 +141,10 @@ class AlumniProfilePage extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 30),
+            SizedBox(height: 30),
 
             // About Section
-            const Align(
+            Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 'About',
@@ -158,8 +155,8 @@ class AlumniProfilePage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 8),
-            const Align(
+            SizedBox(height: 8),
+            Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 'Passionate about building scalable systems and mentoring young minds. Available for guidance on career paths, interview prep, and industry insights.',
@@ -176,3 +173,5 @@ class AlumniProfilePage extends StatelessWidget {
     );
   }
 }
+
+

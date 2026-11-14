@@ -3,25 +3,25 @@ import '../../core/app_colors.dart';
 import '../mentee_list.dart';
 
 class ProfProfileTab extends StatelessWidget {
-  const ProfProfileTab({super.key});
+  ProfProfileTab({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
             child: Column(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 50,
                   backgroundColor: AppColors.primary,
                   child: Icon(Icons.person, size: 50, color: Colors.white),
                 ),
-                const SizedBox(height: 16),
-                const Text(
+                SizedBox(height: 16),
+                Text(
                   'Dr. A. Sharma',
                   style: TextStyle(
                     color: AppColors.textPrimary,
@@ -29,30 +29,30 @@ class ProfProfileTab extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 4),
-                const Text(
+                SizedBox(height: 4),
+                Text(
                   'Associate Professor • CSE Dept',
                   style: TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: 14,
                   ),
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.surface,
                     foregroundColor: AppColors.accent,
                   ),
-                  child: const Text('Edit Profile'),
+                  child: Text('Edit Profile'),
                 ),
                 TextButton.icon(
                   onPressed: () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => const MenteeListPage()),
+                    MaterialPageRoute(builder: (_) => MenteeListPage()),
                   ),
-                  icon: const Icon(Icons.people_outline),
-                  label: const Text('View Mentees'),
+                  icon: Icon(Icons.people_outline),
+                  label: Text('View Mentees'),
                   style: TextButton.styleFrom(
                     foregroundColor: AppColors.accent,
                   ),
@@ -60,9 +60,9 @@ class ProfProfileTab extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 30),
+          SizedBox(height: 30),
 
-          const Text(
+          Text(
             'Research Areas',
             style: TextStyle(
               color: AppColors.textPrimary,
@@ -70,7 +70,7 @@ class ProfProfileTab extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           Wrap(
             spacing: 10,
             runSpacing: 10,
@@ -80,9 +80,9 @@ class ProfProfileTab extends StatelessWidget {
               _buildChip('Data Science'),
             ],
           ),
-          const SizedBox(height: 30),
+          SizedBox(height: 30),
 
-          const Text(
+          Text(
             'Publications',
             style: TextStyle(
               color: AppColors.textPrimary,
@@ -90,7 +90,7 @@ class ProfProfileTab extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           _buildPublicationCard(
             'Deep Learning for Medical Imaging',
             'IEEE Transactions • 2023',
@@ -106,7 +106,7 @@ class ProfProfileTab extends StatelessWidget {
 
   Widget _buildChip(String label) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       decoration: BoxDecoration(
         color: AppColors.primary.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(20),
@@ -114,15 +114,15 @@ class ProfProfileTab extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: const TextStyle(color: AppColors.primary, fontSize: 13),
+        style: TextStyle(color: AppColors.primary, fontSize: 13),
       ),
     );
   }
 
   Widget _buildPublicationCard(String title, String journal) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
+      margin: EdgeInsets.only(bottom: 12),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(12),
@@ -132,19 +132,16 @@ class ProfProfileTab extends StatelessWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.textPrimary,
               fontSize: 15,
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: 4),
           Text(
             journal,
-            style: const TextStyle(
-              color: AppColors.textSecondary,
-              fontSize: 12,
-            ),
+            style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
           ),
         ],
       ),

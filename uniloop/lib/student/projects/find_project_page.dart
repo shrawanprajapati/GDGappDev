@@ -3,7 +3,7 @@ import '../../core/app_colors.dart';
 import 'project_list_page.dart';
 
 class FindProjectPage extends StatelessWidget {
-  const FindProjectPage({super.key});
+  FindProjectPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,16 +12,16 @@ class FindProjectPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 28.0),
+          padding: EdgeInsets.symmetric(horizontal: 28.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 40),
-              const Text(
+              SizedBox(height: 40),
+              Text(
                 'Find Project',
                 style: TextStyle(
                   fontSize: 36,
@@ -30,7 +30,7 @@ class FindProjectPage extends StatelessWidget {
                   letterSpacing: -1.0,
                 ),
               ),
-              const SizedBox(height: 50),
+              SizedBox(height: 50),
 
               // 1. Induction
               _buildCategoryCard(
@@ -44,13 +44,13 @@ class FindProjectPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          const ProjectListPage(category: 'Induction'),
+                          ProjectListPage(category: 'Induction'),
                     ),
                   );
                 },
               ),
 
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
 
               // 2. Industrial
               _buildCategoryCard(
@@ -64,13 +64,13 @@ class FindProjectPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          const ProjectListPage(category: 'Industrial'),
+                          ProjectListPage(category: 'Industrial'),
                     ),
                   );
                 },
               ),
 
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
 
               // 3. Professor
               _buildCategoryCard(
@@ -84,7 +84,7 @@ class FindProjectPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          const ProjectListPage(category: 'Professor'),
+                          ProjectListPage(category: 'Professor'),
                     ),
                   );
                 },
@@ -108,39 +108,39 @@ class FindProjectPage extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(16),
       child: Container(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: AppColors.surface,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+          border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
         ),
         child: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(12),
+              padding: EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: color.withValues(alpha: 0.15),
                 shape: BoxShape.circle,
               ),
               child: Icon(icon, color: color, size: 28),
             ),
-            const SizedBox(width: 16),
+            SizedBox(width: 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                       color: AppColors.textPrimary,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 13,
                       color: AppColors.textSecondary,
                     ),
@@ -148,7 +148,7 @@ class FindProjectPage extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(
+            Icon(
               Icons.arrow_forward_ios,
               color: AppColors.textSecondary,
               size: 16,
@@ -159,3 +159,5 @@ class FindProjectPage extends StatelessWidget {
     );
   }
 }
+
+

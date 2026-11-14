@@ -1,72 +1,87 @@
 import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
+import '../../core/data/mock_store.dart';
 
 class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({super.key});
+  EditProfilePage({super.key});
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  final _nameController = TextEditingController(text: 'Shrawan Prajapati');
-  final _bioController = TextEditingController(
-    text: 'B.Tech CSE • 2nd Year • IIT Indore',
-  );
-  final _githubController = TextEditingController(text: 'github.com/shrawan');
-  final _linkedinController = TextEditingController(
-    text: 'linkedin.com/in/shrawan',
-  );
+  late TextEditingController _nameController;
+  late TextEditingController _bioController;
+  late TextEditingController _aboutController;
+  late TextEditingController _githubController;
+  late TextEditingController _linkedinController;
 
-  // Skills list (State)
-  final List<String> _skills = ['Flutter', 'Dart', 'Python', 'UI/UX Design'];
-  final _newSkillController = TextEditingController();
+  late List<String> _skills;
+  late List<String> _interests;
+  late List<String> _clubs;
+  late List<String> _achievements;
+  late List<Map<String, dynamic>> _projects;
 
-  // Interests list (State)
-  final List<String> _interests = [
-    'Internship (Summer 2025)',
-    'Open Source Projects',
-  ];
-  final _newInterestController = TextEditingController();
+  final _addSkillCtrl = TextEditingController();
+  final _addInterestCtrl = TextEditingController();
+  final _addClubCtrl = TextEditingController();
+  final _addAchievementCtrl = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    final student = MockStore.instance.currentUser;
+
+    _nameController = TextEditingController(text: student?['name'] ?? '');
+    _bioController = TextEditingController(text: student?['bio'] ?? '');
+    _aboutController = TextEditingController(text: student?['about'] ?? '');
+    _githubController = TextEditingController(text: student?['github'] ?? '');
+    _linkedinController = TextEditingController(
+      text: student?['linkedin'] ?? '',
+    );
+
+    _skills = List<String>.from(student?['skills'] ?? []);
+    _interests = List<String>.from(student?['interests'] ?? []);
+    _clubs = List<String>.from(student?['clubs'] ?? []);
+    _achievements = List<String>.from(student?['achievements'] ?? []);
+    _projects = List<Map<String, dynamic>>.from(student?['projects'] ?? []);
+  }
 
   @override
   void dispose() {
     _nameController.dispose();
     _bioController.dispose();
+    _aboutController.dispose();
     _githubController.dispose();
     _linkedinController.dispose();
-    _newSkillController.dispose();
-    _newInterestController.dispose();
+    _addSkillCtrl.dispose();
+    _addInterestCtrl.dispose();
+    _addClubCtrl.dispose();
+    _addAchievementCtrl.dispose();
     super.dispose();
   }
 
-  void _addSkill() {
-    if (_newSkillController.text.isNotEmpty) {
-      setState(() {
-        _skills.add(_newSkillController.text.trim());
-        _newSkillController.clear();
-      });
-    }
-  }
-
-  void _addInterest() {
-    if (_newInterestController.text.isNotEmpty) {
-      setState(() {
-        _interests.add(_newInterestController.text.trim());
-        _newInterestController.clear();
-      });
-    }
-  }
-
   void _saveProfile() {
-    // TODO: Save to Database/API
+    MockStore.instance.updateCurrentUser({
+      'name': _nameController.text,
+      'bio': _bioController.text,
+      'about': _aboutController.text,
+      'github': _githubController.text,
+      'linkedin': _linkedinController.text,
+      'skills': _skills,
+      'interests': _interests,
+      'clubs': _clubs,
+      'achievements': _achievements,
+      'projects': _projects,
+    });
+
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
+      SnackBar(
         content: Text('Profile Updated Successfully!'),
         backgroundColor: AppColors.accent,
       ),
     );
-    Navigator.pop(context); // Go back to Profile Page
+    Navigator.pop(context);
   }
 
   @override
@@ -76,141 +91,116 @@ class _EditProfilePageState extends State<EditProfilePage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text(
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
+        title: Text(
           'Edit Profile',
           style: TextStyle(
             color: AppColors.textPrimary,
             fontWeight: FontWeight.bold,
           ),
         ),
+        actions: [
+          TextButton(
+            onPressed: _saveProfile,
+            child: Text(
+              'Save',
+              style: TextStyle(
+                color: AppColors.accent,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Profile Photo Section
-            Center(
-              child: Stack(
-                children: [
-                  Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: AppColors.primary, width: 3),
-                      image: const DecorationImage(
-                        image: NetworkImage('https://i.pravatar.cc/300?img=11'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: GestureDetector(
-                      onTap: () {
-                        // TODO: Image Picker
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: const BoxDecoration(
-                          color: AppColors.accent,
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Icons.camera_alt,
-                          size: 18,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 30),
-
-            // Basic Info
             _buildSectionTitle('Basic Info'),
             _buildTextField(_nameController, 'Full Name', Icons.person_outline),
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
             _buildTextField(
               _bioController,
               'Bio (Course, Year, College)',
               Icons.info_outline,
             ),
+            SizedBox(height: 12),
+            _buildTextField(
+              _aboutController,
+              'About Me (Short bio)',
+              Icons.description,
+              maxLines: 3,
+            ),
 
-            const SizedBox(height: 24),
-
-            // Social Links
+            SizedBox(height: 24),
             _buildSectionTitle('Social Links'),
-            _buildTextField(_githubController, 'GitHub URL', Icons.code),
-            const SizedBox(height: 12),
+            _buildTextField(
+              _githubController,
+              'GitHub URL (e.g., github.com/username)',
+              Icons.code,
+            ),
+            SizedBox(height: 12),
             _buildTextField(
               _linkedinController,
-              'LinkedIn URL',
+              'LinkedIn URL (e.g., linkedin.com/in/username)',
               Icons.work_outline,
             ),
 
-            const SizedBox(height: 24),
-
-            // Skills Section
+            SizedBox(height: 24),
             _buildSectionTitle('Skills'),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: _skills
-                  .map((skill) => _buildEditableChip(skill, _skills))
-                  .toList(),
-            ),
-            const SizedBox(height: 12),
-            _buildAddField(_newSkillController, 'Add new skill', _addSkill),
+            _buildDynamicStringList(_skills, _addSkillCtrl, 'Add a new skill'),
 
-            const SizedBox(height: 24),
-
-            // Interests Section
-            _buildSectionTitle('Interests & Job Preferences'),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: _interests
-                  .map((interest) => _buildEditableChip(interest, _interests))
-                  .toList(),
-            ),
-            const SizedBox(height: 12),
-            _buildAddField(
-              _newInterestController,
-              'Add new interest (e.g., Internship)',
-              _addInterest,
-            ),
-
-            const SizedBox(height: 40),
-
-            // Save Button
-            SizedBox(
-              width: double.infinity,
-              height: 54,
-              child: ElevatedButton(
-                onPressed: _saveProfile,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
+            SizedBox(height: 24),
+            _buildSectionTitle('Projects'),
+            ..._projects.map(
+              (p) => ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(
+                  p['title'] ?? '',
+                  style: TextStyle(color: AppColors.textPrimary),
                 ),
-                child: const Text(
-                  'Save Profile',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
+                subtitle: Text(
+                  p['desc'] ?? '',
+                  style: TextStyle(color: AppColors.textSecondary),
+                ),
+                trailing: IconButton(
+                  icon: Icon(Icons.delete, color: Colors.redAccent),
+                  onPressed: () => setState(() => _projects.remove(p)),
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            TextButton.icon(
+              onPressed: () => _showAddProjectDialog(),
+              icon: Icon(Icons.add, color: AppColors.accent),
+              label: Text(
+                'Add Project',
+                style: TextStyle(color: AppColors.accent),
+              ),
+            ),
+
+            SizedBox(height: 24),
+            _buildSectionTitle('Clubs & Councils'),
+            _buildDynamicStringList(_clubs, _addClubCtrl, 'Add a club name'),
+
+            SizedBox(height: 24),
+            _buildSectionTitle('Achievements'),
+            _buildDynamicStringList(
+              _achievements,
+              _addAchievementCtrl,
+              'Add an achievement',
+            ),
+
+            SizedBox(height: 24),
+            _buildSectionTitle('Interests'),
+            _buildDynamicStringList(
+              _interests,
+              _addInterestCtrl,
+              'Add an interest',
+            ),
+
+            SizedBox(height: 50),
           ],
         ),
       ),
@@ -219,10 +209,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   Widget _buildSectionTitle(String title) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12.0),
+      padding: EdgeInsets.only(bottom: 12.0),
       child: Text(
         title,
-        style: const TextStyle(
+        style: TextStyle(
           color: AppColors.textPrimary,
           fontSize: 18,
           fontWeight: FontWeight.w700,
@@ -234,14 +224,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget _buildTextField(
     TextEditingController controller,
     String hint,
-    IconData icon,
-  ) {
+    IconData icon, {
+    int maxLines = 1,
+  }) {
     return TextField(
       controller: controller,
-      style: const TextStyle(color: AppColors.textPrimary),
+      maxLines: maxLines,
+      style: TextStyle(color: AppColors.textPrimary),
       decoration: InputDecoration(
         hintText: hint,
-        hintStyle: const TextStyle(color: AppColors.textSecondary),
+        hintStyle: TextStyle(color: AppColors.textSecondary),
         prefixIcon: Icon(icon, color: AppColors.textSecondary, size: 20),
         filled: true,
         fillColor: AppColors.surface,
@@ -251,47 +243,116 @@ class _EditProfilePageState extends State<EditProfilePage> {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.primary),
+          borderSide: BorderSide(color: AppColors.primary),
         ),
       ),
     );
   }
 
-  Widget _buildAddField(
-    TextEditingController controller,
+  Widget _buildDynamicStringList(
+    List<String> list,
+    TextEditingController ctrl,
     String hint,
-    VoidCallback onAdd,
   ) {
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(child: _buildTextField(controller, hint, Icons.add)),
-        const SizedBox(width: 12),
-        IconButton(
-          onPressed: onAdd,
-          icon: const Icon(
-            Icons.check_circle,
-            color: AppColors.accent,
-            size: 32,
-          ),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: list
+              .map(
+                (item) => Chip(
+                  label: Text(
+                    item,
+                    style: TextStyle(color: AppColors.textPrimary),
+                  ),
+                  backgroundColor: AppColors.surface,
+                  deleteIcon: Icon(
+                    Icons.close,
+                    size: 16,
+                    color: Colors.redAccent,
+                  ),
+                  onDeleted: () => setState(() => list.remove(item)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: BorderSide(color: AppColors.textPrimary.withValues(alpha: 0.12)),
+                  ),
+                ),
+              )
+              .toList(),
+        ),
+        SizedBox(height: 12),
+        Row(
+          children: [
+            Expanded(child: _buildTextField(ctrl, hint, Icons.add)),
+            SizedBox(width: 12),
+            IconButton(
+              onPressed: () {
+                if (ctrl.text.isNotEmpty) {
+                  setState(() {
+                    list.add(ctrl.text.trim());
+                    ctrl.clear();
+                  });
+                }
+              },
+              icon: Icon(Icons.check_circle, color: AppColors.accent, size: 32),
+            ),
+          ],
         ),
       ],
     );
   }
 
-  Widget _buildEditableChip(String label, List<String> list) {
-    return Chip(
-      label: Text(label, style: const TextStyle(color: AppColors.textPrimary)),
-      backgroundColor: AppColors.surface,
-      deleteIcon: const Icon(Icons.close, size: 16, color: Colors.redAccent),
-      onDeleted: () {
-        setState(() {
-          list.remove(label);
-        });
-      },
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-        side: const BorderSide(color: Colors.white12),
+  void _showAddProjectDialog() {
+    final titleCtrl = TextEditingController();
+    final descCtrl = TextEditingController();
+    final techCtrl = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppColors.surface,
+        title: Text(
+          'Add Project',
+          style: TextStyle(color: AppColors.textPrimary),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _buildTextField(titleCtrl, 'Project Title', Icons.title),
+            SizedBox(height: 8),
+            _buildTextField(descCtrl, 'Short Description', Icons.description),
+            SizedBox(height: 8),
+            _buildTextField(techCtrl, 'Tech Stack (e.g., Flutter)', Icons.code),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(
+              'Cancel',
+              style: TextStyle(color: AppColors.textSecondary),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                _projects.add({
+                  'title': titleCtrl.text,
+                  'desc': descCtrl.text,
+                  'tech': techCtrl.text,
+                });
+              });
+              Navigator.pop(context);
+            },
+            style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary),
+            child: Text('Add', style: TextStyle(color: Colors.white)),
+          ),
+        ],
       ),
     );
   }
 }
+
+

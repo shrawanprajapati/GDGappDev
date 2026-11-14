@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 
 class PostProjectPage extends StatefulWidget {
-  const PostProjectPage({super.key});
+  PostProjectPage({super.key});
   @override
   State<PostProjectPage> createState() => _PostProjectPageState();
 }
@@ -32,7 +32,7 @@ class _PostProjectPageState extends State<PostProjectPage> {
     appBar: AppBar(
       backgroundColor: AppColors.background,
       elevation: 0,
-      title: const Text(
+      title: Text(
         'Post a Project',
         style: TextStyle(
           color: AppColors.textPrimary,
@@ -43,13 +43,13 @@ class _PostProjectPageState extends State<PostProjectPage> {
     body: Form(
       key: _formKey,
       child: ListView(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         children: [
-          const Text(
+          Text(
             'Share an opportunity with talented university students.',
             style: TextStyle(color: AppColors.textSecondary),
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
           _field(
             _titleController,
             'Project Title',
@@ -76,19 +76,19 @@ class _PostProjectPageState extends State<PostProjectPage> {
                   keyboardType: TextInputType.number,
                 ),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 12),
               Expanded(
                 child: _field(_timelineController, 'Timeline', 'e.g. 8 weeks'),
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           SizedBox(
             height: 52,
             child: ElevatedButton.icon(
               onPressed: _submit,
-              icon: const Icon(Icons.publish),
-              label: const Text('Publish Project'),
+              icon: Icon(Icons.publish),
+              label: Text('Publish Project'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
                 foregroundColor: AppColors.textPrimary,
@@ -110,26 +110,26 @@ class _PostProjectPageState extends State<PostProjectPage> {
     int maxLines = 1,
     TextInputType? keyboardType,
   }) => Padding(
-    padding: const EdgeInsets.only(bottom: 16),
+    padding: EdgeInsets.only(bottom: 16),
     child: TextFormField(
       controller: controller,
       maxLines: maxLines,
       keyboardType: keyboardType,
-      style: const TextStyle(color: AppColors.textPrimary),
+      style: TextStyle(color: AppColors.textPrimary),
       validator: (value) =>
           value == null || value.trim().isEmpty ? 'Required' : null,
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,
-        labelStyle: const TextStyle(color: AppColors.textSecondary),
-        hintStyle: const TextStyle(color: AppColors.textSecondary),
+        labelStyle: TextStyle(color: AppColors.textSecondary),
+        hintStyle: TextStyle(color: AppColors.textSecondary),
         filled: true,
         fillColor: AppColors.surface,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
         ),
-        focusedBorder: const OutlineInputBorder(
+        focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(12)),
           borderSide: BorderSide(color: AppColors.accent),
         ),

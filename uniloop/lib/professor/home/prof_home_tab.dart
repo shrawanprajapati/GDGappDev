@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 
 class ProfHomeTab extends StatelessWidget {
-  const ProfHomeTab({super.key});
+  ProfHomeTab({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Welcome, Dr. Sharma',
             style: TextStyle(
               color: AppColors.textPrimary,
@@ -19,28 +19,28 @@ class ProfHomeTab extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 4),
-          const Text(
+          SizedBox(height: 4),
+          Text(
             'Department of Computer Science',
             style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
           ),
-          const SizedBox(height: 30),
+          SizedBox(height: 30),
 
           // Stats
           Row(
             children: [
               _buildStatCard('Active Projects', '2', AppColors.primary),
-              const SizedBox(width: 12),
+              SizedBox(width: 12),
               _buildStatCard('Mentees', '5', AppColors.accent),
             ],
           ),
-          const SizedBox(height: 30),
+          SizedBox(height: 30),
 
           // Mentorship Requests
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Mentorship Requests',
                 style: TextStyle(
                   color: AppColors.textPrimary,
@@ -50,14 +50,14 @@ class ProfHomeTab extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {},
-                child: const Text(
+                child: Text(
                   'View All',
                   style: TextStyle(color: AppColors.accent),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10),
           _buildRequestCard(
             'Shrawan Prajapati',
             'Needs guidance on ML Research',
@@ -76,7 +76,7 @@ class ProfHomeTab extends StatelessWidget {
   Widget _buildStatCard(String title, String value, Color color) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: AppColors.surface,
           borderRadius: BorderRadius.circular(16),
@@ -92,13 +92,10 @@ class ProfHomeTab extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: 4),
             Text(
               title,
-              style: const TextStyle(
-                color: AppColors.textSecondary,
-                fontSize: 12,
-              ),
+              style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
             ),
           ],
         ),
@@ -108,8 +105,8 @@ class ProfHomeTab extends StatelessWidget {
 
   Widget _buildRequestCard(String name, String request, String year) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
+      margin: EdgeInsets.only(bottom: 12),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
@@ -122,7 +119,7 @@ class ProfHomeTab extends StatelessWidget {
             children: [
               Text(
                 name,
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -130,44 +127,38 @@ class ProfHomeTab extends StatelessWidget {
               ),
               Text(
                 year,
-                style: const TextStyle(
-                  color: AppColors.textSecondary,
-                  fontSize: 12,
-                ),
+                style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
               ),
             ],
           ),
-          const SizedBox(height: 6),
+          SizedBox(height: 6),
           Text(
             request,
-            style: const TextStyle(
-              color: AppColors.textSecondary,
-              fontSize: 13,
-            ),
+            style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           Row(
             children: [
               Expanded(
                 child: OutlinedButton(
                   onPressed: () {},
                   style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: Colors.redAccent),
+                    side: BorderSide(color: Colors.redAccent),
                   ),
-                  child: const Text(
+                  child: Text(
                     'Decline',
                     style: TextStyle(color: Colors.redAccent),
                   ),
                 ),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 12),
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.accent,
                   ),
-                  child: const Text(
+                  child: Text(
                     'Accept',
                     style: TextStyle(
                       color: Colors.black,

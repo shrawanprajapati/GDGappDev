@@ -3,7 +3,7 @@ import 'app_colors.dart';
 import 'session_service.dart';
 
 class RoleGuard extends StatelessWidget {
-  const RoleGuard({super.key, required this.allowedRole, required this.child});
+  RoleGuard({super.key, required this.allowedRole, required this.child});
   final String allowedRole;
   final Widget child;
   @override
@@ -15,12 +15,12 @@ class RoleGuard extends StatelessWidget {
           backgroundColor: AppColors.background,
           appBar: AppBar(
             backgroundColor: AppColors.background,
-            title: const Text(
+            title: Text(
               'Access restricted',
               style: TextStyle(color: AppColors.textPrimary),
             ),
           ),
-          body: const Center(
+          body: Center(
             child: Text(
               'This screen is not available for your role.',
               style: TextStyle(color: AppColors.textSecondary),

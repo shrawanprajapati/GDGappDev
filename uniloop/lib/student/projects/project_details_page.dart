@@ -5,7 +5,7 @@ import '../../core/session_service.dart';
 
 class ProjectDetailsPage extends StatelessWidget {
   final Map<String, dynamic> projectData;
-  const ProjectDetailsPage({super.key, required this.projectData});
+  ProjectDetailsPage({super.key, required this.projectData});
 
   @override
   Widget build(BuildContext context) {
@@ -14,40 +14,37 @@ class ProjectDetailsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               projectData['type'].toUpperCase(),
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppColors.accent,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               projectData['title'],
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 26,
                 fontWeight: FontWeight.w800,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               'Posted by ${projectData['postedBy']}',
-              style: const TextStyle(
-                color: AppColors.textSecondary,
-                fontSize: 14,
-              ),
+              style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
             ),
 
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,9 +68,9 @@ class ProjectDetailsPage extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 30),
+            SizedBox(height: 30),
 
-            const Text(
+            Text(
               'Project Description',
               style: TextStyle(
                 color: AppColors.textPrimary,
@@ -81,18 +78,18 @@ class ProjectDetailsPage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               projectData['desc'],
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppColors.textSecondary,
                 fontSize: 15,
                 height: 1.5,
               ),
             ),
 
-            const SizedBox(height: 24),
-            const Text(
+            SizedBox(height: 24),
+            Text(
               'Expected Deliverables',
               style: TextStyle(
                 color: AppColors.textPrimary,
@@ -100,14 +97,14 @@ class ProjectDetailsPage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 8),
-            const Text(
+            SizedBox(height: 8),
+            Text(
               'Working prototype, source code, documentation, and a short demo presentation.',
               style: TextStyle(color: AppColors.textSecondary, height: 1.5),
             ),
 
-            const SizedBox(height: 24),
-            const Text(
+            SizedBox(height: 24),
+            Text(
               'Timeline',
               style: TextStyle(
                 color: AppColors.textPrimary,
@@ -115,15 +112,15 @@ class ProjectDetailsPage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               projectData['duration'],
-              style: const TextStyle(color: AppColors.textSecondary),
+              style: TextStyle(color: AppColors.textSecondary),
             ),
 
-            const SizedBox(height: 30),
+            SizedBox(height: 30),
 
-            const Text(
+            Text(
               'Required Skills',
               style: TextStyle(
                 color: AppColors.textPrimary,
@@ -131,14 +128,14 @@ class ProjectDetailsPage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
             Wrap(
               spacing: 10,
               runSpacing: 10,
               children: (projectData['skills'] as List<String>)
                   .map(
                     (skill) => Container(
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                         horizontal: 14,
                         vertical: 8,
                       ),
@@ -151,7 +148,7 @@ class ProjectDetailsPage extends StatelessWidget {
                       ),
                       child: Text(
                         skill,
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: AppColors.primary,
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -162,7 +159,7 @@ class ProjectDetailsPage extends StatelessWidget {
                   .toList(),
             ),
 
-            const SizedBox(height: 40),
+            SizedBox(height: 40),
 
             SizedBox(
               width: double.infinity,
@@ -177,7 +174,7 @@ class ProjectDetailsPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                child: const Text(
+                child: Text(
                   'Apply for this Project',
                   style: TextStyle(
                     fontSize: 16,
@@ -187,7 +184,7 @@ class ProjectDetailsPage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
           ],
         ),
       ),
@@ -198,30 +195,28 @@ class ProjectDetailsPage extends StatelessWidget {
     String label,
     String value,
     IconData icon, {
-    Color color = AppColors.textPrimary,
+    Color? color,
   }) {
+    final iconColor = color ?? AppColors.textPrimary;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+        border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
       ),
       child: Column(
         children: [
-          Icon(icon, color: color, size: 20),
-          const SizedBox(height: 8),
+          Icon(icon, color: iconColor, size: 20),
+          SizedBox(height: 8),
           Text(
             label,
-            style: const TextStyle(
-              color: AppColors.textSecondary,
-              fontSize: 12,
-            ),
+            style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: 4),
           Text(
             value,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.textPrimary,
               fontSize: 14,
               fontWeight: FontWeight.bold,
@@ -237,7 +232,7 @@ class ProjectDetailsPage extends StatelessWidget {
       context: context,
       backgroundColor: AppColors.surface,
       isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
       builder: (context) {
@@ -252,7 +247,7 @@ class ProjectDetailsPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Submit Proposal',
                 style: TextStyle(
                   color: AppColors.textPrimary,
@@ -260,19 +255,19 @@ class ProjectDetailsPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 8),
-              const Text(
+              SizedBox(height: 8),
+              Text(
                 'Write a short cover letter or upload your team resume.',
                 style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
 
               Container(
                 decoration: BoxDecoration(
                   color: AppColors.background,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const TextField(
+                child: TextField(
                   maxLines: 4,
                   style: TextStyle(color: AppColors.textPrimary),
                   decoration: InputDecoration(
@@ -283,25 +278,25 @@ class ProjectDetailsPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
 
               OutlinedButton.icon(
                 onPressed: () {},
-                icon: const Icon(Icons.attach_file, color: AppColors.accent),
-                label: const Text(
+                icon: Icon(Icons.attach_file, color: AppColors.accent),
+                label: Text(
                   'Attach Resume / Portfolio',
                   style: TextStyle(color: AppColors.accent),
                 ),
                 style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: AppColors.accent),
+                  side: BorderSide(color: AppColors.accent),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  minimumSize: const Size(double.infinity, 50),
+                  padding: EdgeInsets.symmetric(vertical: 14),
+                  minimumSize: Size(double.infinity, 50),
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
               SizedBox(
                 width: double.infinity,
@@ -317,9 +312,16 @@ class ProjectDetailsPage extends StatelessWidget {
                       'coverNote':
                           'Interested in contributing to this project.',
                     });
+                    MockStore.instance.addReminder({
+                      'title': 'Follow up on application',
+                      'detail': projectData['title'],
+                      'date': 'In 3 days',
+                      'done': false,
+                      'kind': 'Form',
+                    });
                     Navigator.pop(context);
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
+                      SnackBar(
                         content: Text('Application Submitted Successfully!'),
                         backgroundColor: AppColors.accent,
                       ),
@@ -331,7 +333,7 @@ class ProjectDetailsPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                     ),
                   ),
-                  child: const Text(
+                  child: Text(
                     'Submit Application',
                     style: TextStyle(
                       fontSize: 16,
@@ -341,7 +343,7 @@ class ProjectDetailsPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: 30),
             ],
           ),
         );
@@ -349,3 +351,5 @@ class ProjectDetailsPage extends StatelessWidget {
     );
   }
 }
+
+

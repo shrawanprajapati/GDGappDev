@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 
 class ScholarshipPage extends StatelessWidget {
-  const ScholarshipPage({super.key});
+  ScholarshipPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +11,8 @@ class ScholarshipPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text(
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
+        title: Text(
           'Scholarships',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -21,7 +21,7 @@ class ScholarshipPage extends StatelessWidget {
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         children: [
           _buildScholarshipCard(
             'Merit-cum-Means Scholarship',
@@ -45,24 +45,24 @@ class ScholarshipPage extends StatelessWidget {
 
   Widget _buildScholarshipCard(String title, String desc, String deadline) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(16),
+      margin: EdgeInsets.only(bottom: 16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+        border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
       ),
       child: Row(
         children: [
-          const Icon(Icons.school, color: Colors.orangeAccent, size: 32),
-          const SizedBox(width: 16),
+          Icon(Icons.school, color: Colors.orangeAccent, size: 32),
+          SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
@@ -70,15 +70,15 @@ class ScholarshipPage extends StatelessWidget {
                 ),
                 Text(
                   desc,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: 13,
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4),
                 Text(
                   deadline,
-                  style: const TextStyle(color: Colors.redAccent, fontSize: 12),
+                  style: TextStyle(color: Colors.redAccent, fontSize: 12),
                 ),
               ],
             ),
@@ -88,3 +88,5 @@ class ScholarshipPage extends StatelessWidget {
     );
   }
 }
+
+

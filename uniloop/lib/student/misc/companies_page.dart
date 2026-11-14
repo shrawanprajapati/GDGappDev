@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 
 class CompaniesPage extends StatelessWidget {
-  const CompaniesPage({super.key});
+  CompaniesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +21,8 @@ class CompaniesPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text(
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
+        title: Text(
           'Companies',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -31,32 +31,32 @@ class CompaniesPage extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         itemCount: companies.length,
         itemBuilder: (context, index) {
           return Container(
-            margin: const EdgeInsets.only(bottom: 12),
+            margin: EdgeInsets.only(bottom: 12),
             decoration: BoxDecoration(
               color: AppColors.surface,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+              border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
             ),
             child: ListTile(
               leading: CircleAvatar(
                 backgroundColor: AppColors.background,
                 child: Text(
                   companies[index][0],
-                  style: const TextStyle(color: AppColors.textPrimary),
+                  style: TextStyle(color: AppColors.textPrimary),
                 ),
               ),
               title: Text(
                 companies[index],
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppColors.textPrimary,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              trailing: const Icon(
+              trailing: Icon(
                 Icons.arrow_forward_ios,
                 size: 14,
                 color: AppColors.textSecondary,
@@ -69,3 +69,5 @@ class CompaniesPage extends StatelessWidget {
     );
   }
 }
+
+

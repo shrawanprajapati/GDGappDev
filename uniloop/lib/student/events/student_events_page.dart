@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 
 class StudentEventsPage extends StatefulWidget {
-  const StudentEventsPage({super.key});
+  StudentEventsPage({super.key});
 
   @override
   State<StudentEventsPage> createState() => _StudentEventsPageState();
@@ -87,8 +87,8 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text(
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
+        title: Text(
           'Campus Events',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -101,18 +101,18 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
         children: [
           // Category Filters
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            padding: EdgeInsets.symmetric(vertical: 16.0),
             child: SizedBox(
               height: 40,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 itemCount: _filters.length,
                 itemBuilder: (context, index) {
                   final filter = _filters[index];
                   final isSelected = _selectedFilter == filter;
                   return Padding(
-                    padding: const EdgeInsets.only(right: 12.0),
+                    padding: EdgeInsets.only(right: 12.0),
                     child: ChoiceChip(
                       label: Text(filter),
                       selected: isSelected,
@@ -134,7 +134,7 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                       side: BorderSide(
                         color: isSelected
                             ? AppColors.primary
-                            : Colors.white.withValues(alpha: 0.05),
+                            : AppColors.textPrimary.withValues(alpha: 0.08),
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -149,7 +149,7 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
           // Events List
           Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               itemCount: filteredEvents.length,
               itemBuilder: (context, index) {
                 final event = filteredEvents[index];
@@ -166,34 +166,31 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
     return GestureDetector(
       onTap: () => _showEventDetails(context, event),
       child: Container(
-        margin: const EdgeInsets.only(bottom: 20),
+        margin: EdgeInsets.only(bottom: 20),
         decoration: BoxDecoration(
           color: AppColors.surface,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: event['isOngoing']
                 ? AppColors.primary.withValues(alpha: 0.5)
-                : Colors.white.withValues(alpha: 0.05),
+                : AppColors.textPrimary.withValues(alpha: 0.08),
           ),
           boxShadow: [
             if (event['isOngoing'])
               BoxShadow(
                 color: AppColors.primary.withValues(alpha: 0.1),
                 blurRadius: 15,
-                offset: const Offset(0, 5),
+                offset: Offset(0, 5),
               ),
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Row(
             children: [
               // Date Box (Left Side)
               Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 12,
-                  horizontal: 16,
-                ),
+                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                 decoration: BoxDecoration(
                   color: event['color'].withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12),
@@ -219,7 +216,7 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                   ],
                 ),
               ),
-              const SizedBox(width: 16),
+              SizedBox(width: 16),
 
               // Event Details (Right Side)
               Expanded(
@@ -229,7 +226,7 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                     Row(
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(
+                          padding: EdgeInsets.symmetric(
                             horizontal: 8,
                             vertical: 2,
                           ),
@@ -246,20 +243,20 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                             ),
                           ),
                         ),
-                        const Spacer(),
+                        Spacer(),
                         if (event['isOngoing'])
                           Row(
                             children: [
                               Container(
                                 width: 6,
                                 height: 6,
-                                decoration: const BoxDecoration(
+                                decoration: BoxDecoration(
                                   color: Colors.redAccent,
                                   shape: BoxShape.circle,
                                 ),
                               ),
-                              const SizedBox(width: 4),
-                              const Text(
+                              SizedBox(width: 4),
+                              Text(
                                 'Live',
                                 style: TextStyle(
                                   color: Colors.redAccent,
@@ -271,10 +268,10 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                           ),
                       ],
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8),
                     Text(
                       event['title'],
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColors.textPrimary,
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
@@ -282,43 +279,43 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4),
                     Text(
                       event['subtitle'],
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColors.textSecondary,
                         fontSize: 12,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10),
                     Row(
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.access_time,
                           size: 14,
                           color: AppColors.textSecondary,
                         ),
-                        const SizedBox(width: 4),
+                        SizedBox(width: 4),
                         Text(
                           event['time'],
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: AppColors.textSecondary,
                             fontSize: 12,
                           ),
                         ),
-                        const SizedBox(width: 12),
-                        const Icon(
+                        SizedBox(width: 12),
+                        Icon(
                           Icons.location_on_outlined,
                           size: 14,
                           color: AppColors.textSecondary,
                         ),
-                        const SizedBox(width: 4),
+                        SizedBox(width: 4),
                         Expanded(
                           child: Text(
                             event['location'],
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: AppColors.textSecondary,
                               fontSize: 12,
                             ),
@@ -343,12 +340,12 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
       context: context,
       backgroundColor: AppColors.surface,
       isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
       builder: (context) {
         return Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: EdgeInsets.all(24.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -359,41 +356,38 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                   width: 40,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.2),
+                    color: AppColors.textPrimary.withValues(alpha: 0.18),
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: 24),
 
               Text(
                 event['title'],
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: 24,
                   fontWeight: FontWeight.w800,
                 ),
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: 8),
               Text(
                 event['subtitle'],
-                style: const TextStyle(
-                  color: AppColors.textSecondary,
-                  fontSize: 16,
-                ),
+                style: TextStyle(color: AppColors.textSecondary, fontSize: 16),
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: 24),
 
               _buildDetailRow(
                 Icons.calendar_today_outlined,
                 '${event['date']} • ${event['time']}',
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               _buildDetailRow(Icons.location_on_outlined, event['location']),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               _buildDetailRow(Icons.group_outlined, 'Open to all students'),
 
-              const SizedBox(height: 32),
+              SizedBox(height: 32),
 
               // Action Button
               SizedBox(
@@ -402,7 +396,7 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
-                    gradient: const LinearGradient(
+                    gradient: LinearGradient(
                       colors: [AppColors.primary, AppColors.accent],
                     ),
                   ),
@@ -429,7 +423,7 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                       event['isOngoing']
                           ? 'Fill Induction Form'
                           : 'Register Now',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
@@ -438,7 +432,7 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
             ],
           ),
         );
@@ -450,12 +444,14 @@ class _StudentEventsPageState extends State<StudentEventsPage> {
     return Row(
       children: [
         Icon(icon, color: AppColors.accent, size: 20),
-        const SizedBox(width: 12),
+        SizedBox(width: 12),
         Text(
           text,
-          style: const TextStyle(color: AppColors.textPrimary, fontSize: 15),
+          style: TextStyle(color: AppColors.textPrimary, fontSize: 15),
         ),
       ],
     );
   }
 }
+
+

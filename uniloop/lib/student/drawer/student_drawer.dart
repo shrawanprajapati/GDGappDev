@@ -20,33 +20,36 @@ import '../misc/internship_page.dart';
 import '../misc/companies_page.dart';
 import '../misc/scholarship_page.dart';
 import '../misc/campus_map_page.dart';
+import '../misc/reminders_page.dart';
 import '../../common/logout_dialog.dart';
+import '../../core/data/mock_store.dart';
 
 class StudentDrawer extends StatelessWidget {
-  const StudentDrawer({super.key});
+  StudentDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final student = MockStore.instance.currentUser;
     return Drawer(
       backgroundColor: AppColors.surface,
       child: SafeArea(
         child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
           children: [
             // 1. Header
             Row(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 30,
                   backgroundColor: AppColors.primary,
                   child: Icon(Icons.person, size: 30, color: Colors.white),
                 ),
-                const SizedBox(width: 16),
+                SizedBox(width: 16),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
-                      'Shrawan Prajapati',
+                      student?['name'] ?? 'Student',
                       style: TextStyle(
                         color: AppColors.textPrimary,
                         fontSize: 18,
@@ -55,7 +58,7 @@ class StudentDrawer extends StatelessWidget {
                     ),
                     SizedBox(height: 4),
                     Text(
-                      'Student • CSE 2026',
+                      student?['bio'] ?? 'Student at IIT Indore',
                       style: TextStyle(
                         color: AppColors.textSecondary,
                         fontSize: 13,
@@ -65,8 +68,8 @@ class StudentDrawer extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 24),
-            const Divider(color: Colors.white12, thickness: 1),
+            SizedBox(height: 24),
+            Divider(color: AppColors.textPrimary.withValues(alpha: 0.12), thickness: 1),
 
             // 2. Main Options
             _drawerItem(
@@ -77,7 +80,7 @@ class StudentDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ProfilePage()),
+                  MaterialPageRoute(builder: (context) => ProfilePage()),
                 );
               },
             ),
@@ -89,9 +92,7 @@ class StudentDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const FindProjectPage(),
-                  ),
+                  MaterialPageRoute(builder: (context) => FindProjectPage()),
                 );
               },
             ),
@@ -103,9 +104,7 @@ class StudentDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const MyProjectsPage(),
-                  ),
+                  MaterialPageRoute(builder: (context) => MyProjectsPage()),
                 );
               },
             ),
@@ -113,7 +112,13 @@ class StudentDrawer extends StatelessWidget {
               context,
               Icons.class_outlined,
               'Reminder (classroom type)',
-              onTap: () => _showComingSoon(context, 'Classroom reminders'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => RemindersPage()),
+                );
+              },
             ),
             _drawerItem(
               context,
@@ -123,12 +128,12 @@ class StudentDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const CampusMapPage()),
+                  MaterialPageRoute(builder: (_) => CampusMapPage()),
                 );
               },
             ),
 
-            const Divider(color: Colors.white12, thickness: 1, height: 30),
+            Divider(color: AppColors.textPrimary.withValues(alpha: 0.12), thickness: 1, height: 30),
 
             // 3. College Clubs
             _drawerHeader('Know your College clubs'),
@@ -226,7 +231,7 @@ class StudentDrawer extends StatelessWidget {
               ],
             ),
 
-            const Divider(color: Colors.white12, thickness: 1, height: 30),
+            Divider(color: AppColors.textPrimary.withValues(alpha: 0.12), thickness: 1, height: 30),
 
             // 4. Connect Alumni
             _drawerHeader('Connect Alumni'),
@@ -238,9 +243,7 @@ class StudentDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const AlumniTalksPage(),
-                  ),
+                  MaterialPageRoute(builder: (context) => AlumniTalksPage()),
                 );
               },
             ),
@@ -252,9 +255,7 @@ class StudentDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const AlumniListPage(),
-                  ),
+                  MaterialPageRoute(builder: (context) => AlumniListPage()),
                 );
               },
             ),
@@ -272,14 +273,12 @@ class StudentDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const InternshipPage(),
-                  ),
+                  MaterialPageRoute(builder: (context) => InternshipPage()),
                 );
               },
             ),
 
-            const Divider(color: Colors.white12, thickness: 1, height: 30),
+            Divider(color: AppColors.textPrimary.withValues(alpha: 0.12), thickness: 1, height: 30),
 
             // 5. Placement
             _drawerHeader('Placement'),
@@ -291,9 +290,7 @@ class StudentDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const CompaniesPage(),
-                  ),
+                  MaterialPageRoute(builder: (context) => CompaniesPage()),
                 );
               },
             ),
@@ -305,14 +302,12 @@ class StudentDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const ScholarshipPage(),
-                  ),
+                  MaterialPageRoute(builder: (context) => ScholarshipPage()),
                 );
               },
             ),
 
-            const Divider(color: Colors.white12, thickness: 1, height: 30),
+            Divider(color: AppColors.textPrimary.withValues(alpha: 0.12), thickness: 1, height: 30),
 
             // 6. Others (Common)
             _drawerItem(
@@ -329,7 +324,7 @@ class StudentDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SettingsPage()),
+                  MaterialPageRoute(builder: (context) => SettingsPage()),
                 );
               },
             ),
@@ -350,12 +345,12 @@ class StudentDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const TermsPage()),
+                  MaterialPageRoute(builder: (context) => TermsPage()),
                 );
               },
             ),
 
-            const SizedBox(height: 30),
+            SizedBox(height: 30),
           ],
         ),
       ),
@@ -364,19 +359,19 @@ class StudentDrawer extends StatelessWidget {
 
   Widget _drawerHeader(String title) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
+      padding: EdgeInsets.only(bottom: 8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.accent,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const Icon(Icons.chevron_right, color: AppColors.accent, size: 20),
+          Icon(Icons.chevron_right, color: AppColors.accent, size: 20),
         ],
       ),
     );
@@ -396,11 +391,11 @@ class StudentDrawer extends StatelessWidget {
     VoidCallback? onTap,
   }) {
     return ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       leading: Icon(icon, color: AppColors.textSecondary, size: 22),
       title: Text(
         title,
-        style: const TextStyle(color: AppColors.textPrimary, fontSize: 15),
+        style: TextStyle(color: AppColors.textPrimary, fontSize: 15),
       ),
       onTap: onTap ?? () {},
     );
@@ -414,11 +409,11 @@ class StudentDrawer extends StatelessWidget {
     List<Map<String, dynamic>> clubs,
   ) {
     return ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       leading: Icon(icon, color: color, size: 22),
       title: Text(
         name,
-        style: const TextStyle(color: AppColors.textPrimary, fontSize: 15),
+        style: TextStyle(color: AppColors.textPrimary, fontSize: 15),
       ),
       onTap: () {
         Navigator.pop(context);
@@ -436,3 +431,5 @@ class StudentDrawer extends StatelessWidget {
     );
   }
 }
+
+

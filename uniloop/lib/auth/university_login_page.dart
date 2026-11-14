@@ -6,7 +6,7 @@ import '../professor/dashboard/professor_dashboard.dart';
 import 'signup_page.dart'; // 👈 Naya import add kiya
 
 class UniversityLoginPage extends StatefulWidget {
-  const UniversityLoginPage({super.key});
+  UniversityLoginPage({super.key});
 
   @override
   State<UniversityLoginPage> createState() => _UniversityLoginPageState();
@@ -38,13 +38,13 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
     if (_selectedRole == null) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('Please select your role')));
+      ).showSnackBar(SnackBar(content: Text('Please select your role')));
       return;
     }
 
     if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter email and password')),
+        SnackBar(content: Text('Please enter email and password')),
       );
       return;
     }
@@ -54,12 +54,12 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
     } else if (_selectedRole == 'Club') {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const ClubDashboard()),
+        MaterialPageRoute(builder: (context) => ClubDashboard()),
       );
     } else if (_selectedRole == 'Professor') {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const ProfessorDashboard()),
+        MaterialPageRoute(builder: (context) => ProfessorDashboard()),
       );
     } else if (_selectedRole == 'Industry/Company') {
       Navigator.pushReplacementNamed(context, AppRoutes.industryDashboard);
@@ -81,15 +81,15 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 28.0),
+          padding: EdgeInsets.symmetric(horizontal: 28.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'University Login',
                 style: TextStyle(
                   fontSize: 32,
@@ -97,10 +97,10 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                   color: AppColors.textPrimary,
                 ),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: 30),
 
               _buildDropdown(),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
               _buildTextField(
                 controller: _emailController,
@@ -108,7 +108,7 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                 icon: Icons.email_outlined,
                 keyboardType: TextInputType.emailAddress,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
               _buildTextField(
                 controller: _passwordController,
@@ -133,13 +133,13 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () {},
-                  child: const Text(
+                  child: Text(
                     'Forgot Password?',
                     style: TextStyle(color: AppColors.accent, fontSize: 14),
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: 24),
 
               SizedBox(
                 width: double.infinity,
@@ -147,14 +147,12 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
-                    gradient: const LinearGradient(
-                      colors: [AppColors.primary, AppColors.accent],
-                    ),
+                    gradient: AppColors.brandGradient,
                     boxShadow: [
                       BoxShadow(
                         color: AppColors.primary.withValues(alpha: 0.45),
                         blurRadius: 24,
-                        offset: const Offset(0, 10),
+                        offset: Offset(0, 10),
                       ),
                     ],
                   ),
@@ -167,7 +165,7 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                         borderRadius: BorderRadius.circular(18),
                       ),
                     ),
-                    child: const Text(
+                    child: Text(
                       'Log In',
                       style: TextStyle(
                         fontSize: 17,
@@ -179,7 +177,7 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                 ),
               ),
 
-              const SizedBox(height: 24),
+              SizedBox(height: 24),
 
               Row(
                 children: [
@@ -189,7 +187,7 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
                       'OR',
                       style: TextStyle(
@@ -205,19 +203,19 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                 ],
               ),
 
-              const SizedBox(height: 24),
+              SizedBox(height: 24),
 
               SizedBox(
                 width: double.infinity,
                 height: 54,
                 child: OutlinedButton.icon(
                   onPressed: () {},
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.g_mobiledata,
                     size: 32,
                     color: AppColors.textPrimary,
                   ),
-                  label: const Text(
+                  label: Text(
                     'Continue with Google',
                     style: TextStyle(
                       fontSize: 16,
@@ -227,7 +225,7 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                   ),
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(
-                      color: Colors.white.withValues(alpha: 0.2),
+                      color: AppColors.textPrimary.withValues(alpha: 0.18),
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
@@ -236,14 +234,14 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                 ),
               ),
 
-              const SizedBox(height: 30),
+              SizedBox(height: 30),
 
               // 👈 Yahan Signup ka link add kiya hai
               Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       "New here? ",
                       style: TextStyle(color: AppColors.textSecondary),
                     ),
@@ -252,12 +250,10 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                         // Navigate to Signup Page
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => const SignupPage(),
-                          ),
+                          MaterialPageRoute(builder: (context) => SignupPage()),
                         );
                       },
-                      child: const Text(
+                      child: Text(
                         "Create an account",
                         style: TextStyle(
                           color: AppColors.accent,
@@ -268,7 +264,7 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 40),
+              SizedBox(height: 40),
             ],
           ),
         ),
@@ -278,32 +274,26 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
 
   Widget _buildDropdown() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+        border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
           value: _selectedRole,
-          hint: const Text(
+          hint: Text(
             'Select your role',
             style: TextStyle(color: AppColors.textSecondary),
           ),
           dropdownColor: AppColors.surface,
-          icon: const Icon(
-            Icons.arrow_drop_down,
-            color: AppColors.textSecondary,
-          ),
+          icon: Icon(Icons.arrow_drop_down, color: AppColors.textSecondary),
           isExpanded: true,
           items: _roles.map((String role) {
             return DropdownMenuItem<String>(
               value: role,
-              child: Text(
-                role,
-                style: const TextStyle(color: AppColors.textPrimary),
-              ),
+              child: Text(role, style: TextStyle(color: AppColors.textPrimary)),
             );
           }).toList(),
           onChanged: (newValue) {
@@ -328,22 +318,24 @@ class _UniversityLoginPageState extends State<UniversityLoginPage> {
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+        border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
       ),
       child: TextField(
         controller: controller,
         obscureText: obscureText,
         keyboardType: keyboardType,
-        style: const TextStyle(color: AppColors.textPrimary),
+        style: TextStyle(color: AppColors.textPrimary),
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: const TextStyle(color: AppColors.textSecondary),
+          hintStyle: TextStyle(color: AppColors.textSecondary),
           prefixIcon: Icon(icon, color: AppColors.textSecondary, size: 20),
           suffixIcon: suffixIcon,
           border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(vertical: 18),
+          contentPadding: EdgeInsets.symmetric(vertical: 18),
         ),
       ),
     );
   }
 }
+
+

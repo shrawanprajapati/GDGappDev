@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 
 class InternshipPage extends StatelessWidget {
-  const InternshipPage({super.key});
+  InternshipPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +11,8 @@ class InternshipPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text(
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
+        title: Text(
           'Internships',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -21,7 +21,7 @@ class InternshipPage extends StatelessWidget {
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         children: [
           _buildInternshipCard(
             'Software Engineer Intern',
@@ -45,31 +45,31 @@ class InternshipPage extends StatelessWidget {
 
   Widget _buildInternshipCard(String role, String company, String stipend) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(16),
+      margin: EdgeInsets.only(bottom: 16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+        border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
       ),
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(12),
+            padding: EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: AppColors.primary.withValues(alpha: 0.15),
               shape: BoxShape.circle,
             ),
-            child: const Icon(Icons.work, color: AppColors.primary),
+            child: Icon(Icons.work, color: AppColors.primary),
           ),
-          const SizedBox(width: 16),
+          SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   role,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -77,12 +77,12 @@ class InternshipPage extends StatelessWidget {
                 ),
                 Text(
                   company,
-                  style: const TextStyle(color: AppColors.accent, fontSize: 13),
+                  style: TextStyle(color: AppColors.accent, fontSize: 13),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4),
                 Text(
                   stipend,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: 12,
                   ),
@@ -96,10 +96,12 @@ class InternshipPage extends StatelessWidget {
               backgroundColor: AppColors.surface,
               foregroundColor: AppColors.textPrimary,
             ),
-            child: const Text('Apply'),
+            child: Text('Apply'),
           ),
         ],
       ),
     );
   }
 }
+
+

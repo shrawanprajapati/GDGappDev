@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../core/app_colors.dart'; // Path update kiya
 
 class TermsPage extends StatelessWidget {
-  const TermsPage({super.key});
+  TermsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +11,8 @@ class TermsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text(
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
+        title: Text(
           'Terms & Conditions',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -20,7 +20,7 @@ class TermsPage extends StatelessWidget {
           ),
         ),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Text(
           '1. Acceptance of Terms\nBy using UniLoop, you agree to these terms.\n\n'

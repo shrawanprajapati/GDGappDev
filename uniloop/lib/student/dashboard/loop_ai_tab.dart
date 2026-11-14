@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
+import '../../core/data/mock_store.dart';
 
 class LoopAiTab extends StatelessWidget {
-  const LoopAiTab({super.key});
+  LoopAiTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,22 +14,19 @@ class LoopAiTab extends StatelessWidget {
           children: [
             // Header
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(20.0),
               child: Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(10),
+                    padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: AppColors.primary.withValues(alpha: 0.2),
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(
-                      Icons.auto_awesome,
-                      color: AppColors.primary,
-                    ),
+                    child: Icon(Icons.auto_awesome, color: AppColors.primary),
                   ),
-                  const SizedBox(width: 12),
-                  const Column(
+                  SizedBox(width: 12),
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
@@ -55,10 +53,10 @@ class LoopAiTab extends StatelessWidget {
             // Chat Area (Dummy)
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 children: [
                   _buildBotMessage(
-                    "Hi Shrawan! I'm Loop AI. How can I help you today? You can ask me about projects, clubs, or your schedule.",
+                    "Hi ${(MockStore.instance.currentUser?['name'] ?? 'there').toString().split(' ').first}! I'm Loop AI. How can I help you today? You can ask me about projects, clubs, or your schedule.",
                   ),
                   _buildUserMessage("Find me a project related to Flutter."),
                   _buildBotMessage(
@@ -70,22 +68,19 @@ class LoopAiTab extends StatelessWidget {
 
             // Input Field
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(20.0),
               child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 4,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 decoration: BoxDecoration(
                   color: AppColors.surface,
                   borderRadius: BorderRadius.circular(24),
                   border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.05),
+                    color: AppColors.textPrimary.withValues(alpha: 0.08),
                   ),
                 ),
                 child: Row(
                   children: [
-                    const Expanded(
+                    Expanded(
                       child: TextField(
                         style: TextStyle(color: AppColors.textPrimary),
                         decoration: InputDecoration(
@@ -96,7 +91,7 @@ class LoopAiTab extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      icon: const Icon(Icons.send, color: AppColors.primary),
+                      icon: Icon(Icons.send, color: AppColors.primary),
                       onPressed: () {},
                     ),
                   ],
@@ -113,11 +108,11 @@ class LoopAiTab extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 16),
-        padding: const EdgeInsets.all(16),
+        margin: EdgeInsets.only(bottom: 16),
+        padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: AppColors.surface,
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16),
             topRight: Radius.circular(16),
             bottomRight: Radius.circular(16),
@@ -127,7 +122,7 @@ class LoopAiTab extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: const TextStyle(
+          style: TextStyle(
             color: AppColors.textPrimary,
             fontSize: 14,
             height: 1.5,
@@ -141,9 +136,9 @@ class LoopAiTab extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 16),
-        padding: const EdgeInsets.all(16),
-        decoration: const BoxDecoration(
+        margin: EdgeInsets.only(bottom: 16),
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
           color: AppColors.primary,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16),
@@ -154,13 +149,11 @@ class LoopAiTab extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 14,
-            height: 1.5,
-          ),
+          style: TextStyle(color: Colors.white, fontSize: 14, height: 1.5),
         ),
       ),
     );
   }
 }
+
+

@@ -23,9 +23,7 @@ class GdgClubPage extends StatelessWidget {
             pinned: true,
             backgroundColor: GdgColors.surface,
             iconTheme: const IconThemeData(color: GdgColors.textPrimary),
-            flexibleSpace: FlexibleSpaceBar(
-              background: _buildHero(),
-            ),
+            flexibleSpace: FlexibleSpaceBar(background: _buildHero()),
             title: const Text(
               'GDG',
               style: TextStyle(
@@ -42,7 +40,8 @@ class GdgClubPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // 2. Featured event banner
-                if (data.events.isNotEmpty) _buildFeaturedEvent(data.events.first),
+                if (data.events.isNotEmpty)
+                  _buildFeaturedEvent(data.events.first),
 
                 // 3. About section
                 _buildAbout(),
@@ -262,9 +261,17 @@ class GdgClubPage extends StatelessWidget {
                   // Event info row (Date | Time | Venue)
                   Row(
                     children: [
-                      _eventInfoChip(Icons.calendar_today, event.date, GdgColors.blue),
+                      _eventInfoChip(
+                        Icons.calendar_today,
+                        event.date,
+                        GdgColors.blue,
+                      ),
                       const SizedBox(width: 8),
-                      _eventInfoChip(Icons.access_time, event.time, GdgColors.green),
+                      _eventInfoChip(
+                        Icons.access_time,
+                        event.time,
+                        GdgColors.green,
+                      ),
                       const SizedBox(width: 8),
                       _eventInfoChip(Icons.place, event.venue, GdgColors.red),
                     ],
@@ -369,11 +376,7 @@ class GdgClubPage extends StatelessWidget {
             children: [
               _statCard('${data.team.length}+', 'Members', GdgColors.blue),
               const SizedBox(width: 10),
-              _statCard(
-                '${data.events.length}',
-                'Events',
-                GdgColors.red,
-              ),
+              _statCard('${data.events.length}', 'Events', GdgColors.red),
               const SizedBox(width: 10),
               _statCard(
                 '${data.pastHighlights.length}',
@@ -680,16 +683,17 @@ class GdgClubPage extends StatelessWidget {
             spacing: 12,
             runSpacing: 12,
             children: data.socialLinks.entries.map((entry) {
-              final color =
-                  GdgColors.googleColors[entry.key.length % 4];
+              final color = GdgColors.googleColors[entry.key.length % 4];
               return InkWell(
                 onTap: () {
                   // TODO: Launch URL (url_launcher package)
                 },
                 borderRadius: BorderRadius.circular(4),
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 10,
+                  ),
                   decoration: BoxDecoration(
                     color: GdgColors.surface,
                     borderRadius: BorderRadius.circular(4),

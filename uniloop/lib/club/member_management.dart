@@ -15,14 +15,14 @@ class _MemberManagementPageState extends State<MemberManagementPage> {
   ];
   @override
   Widget build(BuildContext context) => Scaffold(
-    backgroundColor: AppColors.background,
+    backgroundColor: ClubColors.background,
     appBar: AppBar(
-      backgroundColor: AppColors.background,
+      backgroundColor: ClubColors.background,
       elevation: 0,
       title: const Text(
         'Manage Members',
         style: TextStyle(
-          color: AppColors.textPrimary,
+          color: ClubColors.textPrimary,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -31,7 +31,7 @@ class _MemberManagementPageState extends State<MemberManagementPage> {
         ? const Center(
             child: Text(
               'No club members found',
-              style: TextStyle(color: AppColors.textSecondary),
+              style: TextStyle(color: ClubColors.textSecondary),
             ),
           )
         : ListView(
@@ -40,30 +40,30 @@ class _MemberManagementPageState extends State<MemberManagementPage> {
           ),
   );
   Widget _memberTile(Map<String, String> member) => Card(
-    color: AppColors.surface,
+    color: ClubColors.surface,
     margin: const EdgeInsets.only(bottom: 12),
     child: ListTile(
       leading: const CircleAvatar(
-        backgroundColor: AppColors.primary,
-        child: Icon(Icons.person, color: AppColors.textPrimary),
+        backgroundColor: ClubColors.primary,
+        child: Icon(Icons.person, color: ClubColors.textPrimary),
       ),
       title: Text(
         member['name']!,
         style: const TextStyle(
-          color: AppColors.textPrimary,
+          color: ClubColors.textPrimary,
           fontWeight: FontWeight.w600,
         ),
       ),
       subtitle: Text(
         '${member['role']} · ${member['dept']}',
-        style: const TextStyle(color: AppColors.textSecondary),
+        style: const TextStyle(color: ClubColors.textSecondary),
       ),
       trailing: member['role'] == 'Head'
           ? null
           : IconButton(
               icon: const Icon(
                 Icons.remove_circle_outline,
-                color: AppColors.textSecondary,
+                color: ClubColors.textSecondary,
               ),
               onPressed: () {
                 setState(() => members.remove(member));

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 
 class AlumniTalksPage extends StatelessWidget {
-  const AlumniTalksPage({super.key});
+  AlumniTalksPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +11,8 @@ class AlumniTalksPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text(
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
+        title: Text(
           'Alumni Talks',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -21,7 +21,7 @@ class AlumniTalksPage extends StatelessWidget {
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         children: [
           _buildTalkCard(
             'How to crack FAANG interviews',
@@ -45,41 +45,40 @@ class AlumniTalksPage extends StatelessWidget {
 
   Widget _buildTalkCard(String title, String speaker, String time) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(16),
+      margin: EdgeInsets.only(bottom: 16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+        border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(Icons.mic, color: AppColors.accent),
-          const SizedBox(height: 12),
+          Icon(Icons.mic, color: AppColors.accent),
+          SizedBox(height: 12),
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.textPrimary,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           Text(
             speaker,
-            style: const TextStyle(
-              color: AppColors.textSecondary,
-              fontSize: 13,
-            ),
+            style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: 4),
           Text(
             time,
-            style: const TextStyle(color: Colors.orangeAccent, fontSize: 12),
+            style: TextStyle(color: Colors.orangeAccent, fontSize: 12),
           ),
         ],
       ),
     );
   }
 }
+
+

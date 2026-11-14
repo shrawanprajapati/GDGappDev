@@ -4,7 +4,7 @@ import '../core/app_colors.dart';
 import '../core/app_routes.dart'; // Import add kiya
 
 class OnboardingPage extends StatefulWidget {
-  const OnboardingPage({super.key});
+  OnboardingPage({super.key});
 
   @override
   State<OnboardingPage> createState() => _OnboardingPageState();
@@ -12,17 +12,12 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnboardingPage>
     with SingleTickerProviderStateMixin {
-  static const String _appName = 'Uniloop';
-  static const String _slogan = 'Your University,\nYour Loop';
-  static const String _subtitle = 'CONNECT · DISCOVER · BELONG';
-  static const String _ctaLabel = 'Get Started';
-  static const String _skipLabel = 'Skip for now';
-  static const List<String> _chips = [
-    'Events',
-    'Clubs',
-    'Students',
-    'Professors',
-  ];
+  static String _appName = 'Uniloop';
+  static String _slogan = 'Your University,\nYour Loop';
+  static String _subtitle = 'CONNECT · DISCOVER · BELONG';
+  static String _ctaLabel = 'Get Started';
+  static String _skipLabel = 'Skip for now';
+  static List<String> _chips = ['Events', 'Clubs', 'Students', 'Professors'];
 
   late final VideoPlayerController _video;
   late final AnimationController _anim;
@@ -35,7 +30,7 @@ class _OnboardingPageState extends State<OnboardingPage>
 
     _anim = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1000),
+      duration: Duration(milliseconds: 1000),
     )..forward();
   }
 
@@ -89,7 +84,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                   Colors.black.withValues(alpha: 0.15),
                   Colors.black.withValues(alpha: 0.85),
                 ],
-                stops: const [0.0, 0.45, 1.0],
+                stops: [0.0, 0.45, 1.0],
               ),
             ),
           ),
@@ -97,7 +92,7 @@ class _OnboardingPageState extends State<OnboardingPage>
           // Content
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(28, 20, 28, 28),
+              padding: EdgeInsets.fromLTRB(28, 20, 28, 28),
               child: FadeTransition(
                 opacity: _anim,
                 child: Column(
@@ -109,13 +104,13 @@ class _OnboardingPageState extends State<OnboardingPage>
                         Container(
                           width: 10,
                           height: 10,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             color: AppColors.accent,
                             shape: BoxShape.circle,
                           ),
                         ),
-                        const SizedBox(width: 10),
-                        const Text(
+                        SizedBox(width: 10),
+                        Text(
                           _appName,
                           style: TextStyle(
                             color: AppColors.textPrimary,
@@ -126,9 +121,9 @@ class _OnboardingPageState extends State<OnboardingPage>
                         ),
                       ],
                     ),
-                    const Spacer(flex: 3),
+                    Spacer(flex: 3),
                     // Slogan
-                    const Text(
+                    Text(
                       _slogan,
                       style: TextStyle(
                         fontSize: 44,
@@ -145,8 +140,8 @@ class _OnboardingPageState extends State<OnboardingPage>
                         ],
                       ),
                     ),
-                    const SizedBox(height: 14),
-                    const Text(
+                    SizedBox(height: 14),
+                    Text(
                       _subtitle,
                       style: TextStyle(
                         fontSize: 15,
@@ -154,7 +149,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                         letterSpacing: 3.0,
                       ),
                     ),
-                    const Spacer(flex: 2),
+                    Spacer(flex: 2),
                     // Feature chips
                     Wrap(
                       spacing: 10,
@@ -163,7 +158,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                           .map((label) => _Chip(label: label))
                           .toList(),
                     ),
-                    const SizedBox(height: 28),
+                    SizedBox(height: 28),
                     // Get Started Button
                     SizedBox(
                       width: double.infinity,
@@ -171,14 +166,12 @@ class _OnboardingPageState extends State<OnboardingPage>
                       child: DecoratedBox(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(18),
-                          gradient: const LinearGradient(
-                            colors: [AppColors.primary, AppColors.accent],
-                          ),
+                          gradient: AppColors.brandGradient,
                           boxShadow: [
                             BoxShadow(
                               color: AppColors.primary.withValues(alpha: 0.45),
                               blurRadius: 24,
-                              offset: const Offset(0, 10),
+                              offset: Offset(0, 10),
                             ),
                           ],
                         ),
@@ -196,7 +189,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                               borderRadius: BorderRadius.circular(18),
                             ),
                           ),
-                          child: const Text(
+                          child: Text(
                             _ctaLabel,
                             style: TextStyle(
                               fontSize: 17,
@@ -238,12 +231,12 @@ class _OnboardingPageState extends State<OnboardingPage>
 
 class _Chip extends StatelessWidget {
   final String label;
-  const _Chip({required this.label});
+  _Chip({required this.label});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       decoration: BoxDecoration(
         color: AppColors.textPrimary.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(30),
@@ -253,7 +246,7 @@ class _Chip extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: const TextStyle(
+        style: TextStyle(
           color: AppColors.textSecondary,
           fontSize: 12,
           letterSpacing: 0.5,

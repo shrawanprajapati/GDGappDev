@@ -3,16 +3,16 @@ import '../../core/app_colors.dart';
 import '../projects/find_project_page.dart'; // Direct projects pe le jane ke liye
 
 class MarketplaceTab extends StatelessWidget {
-  const MarketplaceTab({super.key});
+  MarketplaceTab({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(20.0),
+      padding: EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Marketplace',
             style: TextStyle(
               fontSize: 28,
@@ -20,12 +20,12 @@ class MarketplaceTab extends StatelessWidget {
               color: AppColors.textPrimary,
             ),
           ),
-          const SizedBox(height: 8),
-          const Text(
+          SizedBox(height: 8),
+          Text(
             'Explore projects, clubs merchandise, and student services.',
             style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
 
           // Categories
           Row(
@@ -39,9 +39,7 @@ class MarketplaceTab extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => const FindProjectPage(),
-                    ),
+                    MaterialPageRoute(builder: (context) => FindProjectPage()),
                   );
                 },
               ),
@@ -66,10 +64,10 @@ class MarketplaceTab extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 30),
+          SizedBox(height: 30),
 
           // Featured Section
-          const Text(
+          Text(
             'Featured Items',
             style: TextStyle(
               color: AppColors.textPrimary,
@@ -77,12 +75,12 @@ class MarketplaceTab extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
 
           // Grid of items
           GridView.count(
             shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             crossAxisCount: 2,
             crossAxisSpacing: 16,
             mainAxisSpacing: 16,
@@ -134,19 +132,19 @@ class MarketplaceTab extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: 100,
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: EdgeInsets.symmetric(vertical: 16),
         decoration: BoxDecoration(
           color: AppColors.surface,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+          border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
         ),
         child: Column(
           children: [
             Icon(icon, color: color, size: 28),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               title,
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
@@ -166,27 +164,27 @@ class MarketplaceTab extends StatelessWidget {
     required Color color,
   }) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+        border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.all(12),
+            padding: EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: color.withValues(alpha: 0.15),
               shape: BoxShape.circle,
             ),
             child: Icon(icon, color: color, size: 28),
           ),
-          const Spacer(),
+          Spacer(),
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.textPrimary,
               fontSize: 15,
               fontWeight: FontWeight.w700,
@@ -194,18 +192,15 @@ class MarketplaceTab extends StatelessWidget {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: 4),
           Text(
             seller,
-            style: const TextStyle(
-              color: AppColors.textSecondary,
-              fontSize: 12,
-            ),
+            style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           Text(
             price,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.accent,
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -216,3 +211,5 @@ class MarketplaceTab extends StatelessWidget {
     );
   }
 }
+
+

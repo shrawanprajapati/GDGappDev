@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
 
 class MenteeListPage extends StatefulWidget {
-  const MenteeListPage({super.key});
+  MenteeListPage({super.key});
   @override
   State<MenteeListPage> createState() => _MenteeListPageState();
 }
@@ -26,7 +26,7 @@ class _MenteeListPageState extends State<MenteeListPage> {
     appBar: AppBar(
       backgroundColor: AppColors.background,
       elevation: 0,
-      title: const Text(
+      title: Text(
         'My Mentees',
         style: TextStyle(
           color: AppColors.textPrimary,
@@ -35,45 +35,42 @@ class _MenteeListPageState extends State<MenteeListPage> {
       ),
     ),
     body: mentees.isEmpty
-        ? const Center(
+        ? Center(
             child: Text(
               'No mentees yet',
               style: TextStyle(color: AppColors.textSecondary),
             ),
           )
         : ListView(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(20),
             children: mentees.map(_menteeTile).toList(),
           ),
   );
   Widget _menteeTile(Map<String, String> mentee) => Card(
     color: AppColors.surface,
-    margin: const EdgeInsets.only(bottom: 12),
+    margin: EdgeInsets.only(bottom: 12),
     child: ListTile(
-      leading: const CircleAvatar(
+      leading: CircleAvatar(
         backgroundColor: AppColors.primary,
         child: Icon(Icons.person, color: AppColors.textPrimary),
       ),
       title: Text(
         mentee['name']!,
-        style: const TextStyle(
+        style: TextStyle(
           color: AppColors.textPrimary,
           fontWeight: FontWeight.w600,
         ),
       ),
       subtitle: Text(
         '${mentee['course']}\n${mentee['progress']}',
-        style: const TextStyle(color: AppColors.textSecondary),
+        style: TextStyle(color: AppColors.textSecondary),
       ),
       isThreeLine: true,
       trailing: TextButton(
         onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Progress details for ${mentee['name']}')),
         ),
-        child: const Text(
-          'View Progress',
-          style: TextStyle(color: AppColors.accent),
-        ),
+        child: Text('View Progress', style: TextStyle(color: AppColors.accent)),
       ),
     ),
   );

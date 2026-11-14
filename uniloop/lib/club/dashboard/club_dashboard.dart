@@ -17,44 +17,56 @@ class ClubDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: AppColors.surface,
+      backgroundColor: ClubColors.surface,
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
           const DrawerHeader(
-            decoration: BoxDecoration(color: AppColors.background),
+            decoration: BoxDecoration(color: ClubColors.background),
             child: Text(
               'Club Menu',
               style: TextStyle(
-                color: AppColors.textPrimary,
+                color: ClubColors.textPrimary,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.person, color: AppColors.textPrimary),
-            title: const Text('Profile',
-                style: TextStyle(color: AppColors.textPrimary)),
-            onTap: () {/* TODO: Open profile page */},
+            leading: const Icon(Icons.person, color: ClubColors.textPrimary),
+            title: const Text(
+              'Profile',
+              style: TextStyle(color: ClubColors.textPrimary),
+            ),
+            onTap: () {
+              /* TODO: Open profile page */
+            },
           ),
           ListTile(
-            leading: const Icon(Icons.settings, color: AppColors.textPrimary),
-            title: const Text('Settings',
-                style: TextStyle(color: AppColors.textPrimary)),
-            onTap: () {/* TODO: Open settings page */},
+            leading: const Icon(Icons.settings, color: ClubColors.textPrimary),
+            title: const Text(
+              'Settings',
+              style: TextStyle(color: ClubColors.textPrimary),
+            ),
+            onTap: () {
+              /* TODO: Open settings page */
+            },
           ),
           ListTile(
-            leading: const Icon(Icons.logout, color: AppColors.textPrimary),
-            title: const Text('Logout',
-                style: TextStyle(color: AppColors.textPrimary)),
+            leading: const Icon(Icons.logout, color: ClubColors.textPrimary),
+            title: const Text(
+              'Logout',
+              style: TextStyle(color: ClubColors.textPrimary),
+            ),
             onTap: () => Navigator.of(context).popUntil((r) => r.isFirst),
           ),
           const Divider(),
           ListTile(
-            leading: const Icon(Icons.event, color: AppColors.textPrimary),
-            title: const Text('Add Event',
-                style: TextStyle(color: AppColors.textPrimary)),
+            leading: const Icon(Icons.event, color: ClubColors.textPrimary),
+            title: const Text(
+              'Add Event',
+              style: TextStyle(color: ClubColors.textPrimary),
+            ),
             onTap: () {
               // First close the drawer
               Navigator.of(context).pop();
@@ -65,11 +77,17 @@ class ClubDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading:
-                const Icon(Icons.notifications, color: AppColors.textPrimary),
-            title: const Text('Release Notification to Students',
-                style: TextStyle(color: AppColors.textPrimary)),
-            onTap: () {/* TODO: Notification composer */},
+            leading: const Icon(
+              Icons.notifications,
+              color: ClubColors.textPrimary,
+            ),
+            title: const Text(
+              'Release Notification to Students',
+              style: TextStyle(color: ClubColors.textPrimary),
+            ),
+            onTap: () {
+              /* TODO: Notification composer */
+            },
           ),
         ],
       ),
@@ -101,17 +119,17 @@ class _ClubDashboardState extends State<ClubDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: ClubColors.background,
       drawer: const ClubDrawer(), // <- side drawer
 
       appBar: AppBar(
-        backgroundColor: AppColors.background,
+        backgroundColor: ClubColors.background,
         elevation: 0,
 
         // ----- LEFT‑HAND MENU (opens drawer) -----
         leading: Builder(
           builder: (innerContext) => IconButton(
-            icon: const Icon(Icons.menu, color: AppColors.textPrimary),
+            icon: const Icon(Icons.menu, color: ClubColors.textPrimary),
             onPressed: () => Scaffold.of(innerContext).openDrawer(),
           ),
         ),
@@ -120,7 +138,7 @@ class _ClubDashboardState extends State<ClubDashboard> {
         title: const Text(
           'Club Portal',
           style: TextStyle(
-            color: AppColors.textPrimary,
+            color: ClubColors.textPrimary,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -128,7 +146,7 @@ class _ClubDashboardState extends State<ClubDashboard> {
         // ----- RIGHT‑HAND ACTIONS (search) -----
         actions: [
           IconButton(
-            icon: const Icon(Icons.search, color: AppColors.textPrimary),
+            icon: const Icon(Icons.search, color: ClubColors.textPrimary),
             onPressed: () => _showSearch(context),
           ),
           const SizedBox(width: 8),
@@ -138,9 +156,9 @@ class _ClubDashboardState extends State<ClubDashboard> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
-        backgroundColor: AppColors.surface,
-        selectedItemColor: AppColors.accent,
-        unselectedItemColor: AppColors.textSecondary,
+        backgroundColor: ClubColors.surface,
+        selectedItemColor: ClubColors.accent,
+        unselectedItemColor: ClubColors.textSecondary,
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Home'),
@@ -151,13 +169,14 @@ class _ClubDashboardState extends State<ClubDashboard> {
       ),
     );
   }
-      void _showSearch(BuildContext context) {
-        showSearch(
-          context: context,
-          delegate: RoleSearchDelegate(
-            roleName: 'Club',
-            items: RoleMockData.clubItems,   // <-- role‑specific data
-          ),
-        );
-      }
+
+  void _showSearch(BuildContext context) {
+    showSearch(
+      context: context,
+      delegate: RoleSearchDelegate(
+        roleName: 'Club',
+        items: RoleMockData.clubItems, // <-- role‑specific data
+      ),
+    );
+  }
 }

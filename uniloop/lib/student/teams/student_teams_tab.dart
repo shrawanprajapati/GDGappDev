@@ -5,7 +5,7 @@ import 'team_profile.dart';
 import '../../core/data/mock_store.dart';
 
 class StudentTeamsTab extends StatefulWidget {
-  const StudentTeamsTab({super.key});
+  StudentTeamsTab({super.key});
 
   @override
   State<StudentTeamsTab> createState() => _StudentTeamsTabState();
@@ -60,7 +60,7 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
     }).toList();
 
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(20.0),
+      padding: EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -68,7 +68,7 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Project Teams',
                 style: TextStyle(
                   fontSize: 28,
@@ -83,16 +83,16 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
                     context: context,
                     backgroundColor: AppColors.surface,
                     isScrollControlled: true,
-                    shape: const RoundedRectangleBorder(
+                    shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.vertical(
                         top: Radius.circular(24),
                       ),
                     ),
-                    builder: (context) => const CreateTeamSheet(),
+                    builder: (context) => CreateTeamSheet(),
                   );
                 },
-                icon: const Icon(Icons.add, size: 18, color: Colors.white),
-                label: const Text('Create'),
+                icon: Icon(Icons.add, size: 18, color: Colors.white),
+                label: Text('Create'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   foregroundColor: Colors.white,
@@ -103,16 +103,16 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
               ),
             ],
           ),
-          const SizedBox(height: 8),
-          const Text(
+          SizedBox(height: 8),
+          Text(
             'Find teams matching your skills, or build your own.',
             style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
           ),
 
-          const SizedBox(height: 30),
+          SizedBox(height: 30),
 
           // 1. My Teams Section
-          const Text(
+          Text(
             'My Teams',
             style: TextStyle(
               color: AppColors.textPrimary,
@@ -120,10 +120,10 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
               fontWeight: FontWeight.w700,
             ),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
 
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: AppColors.surface,
               borderRadius: BorderRadius.circular(16),
@@ -137,7 +137,7 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       'Vishwakarma Award Team',
                       style: TextStyle(
                         color: AppColors.textPrimary,
@@ -149,14 +149,14 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
                       children: [
                         TextButton.icon(
                           onPressed: _showInviteDialog,
-                          icon: const Icon(Icons.person_add_alt_1, size: 16),
-                          label: const Text('Invite'),
+                          icon: Icon(Icons.person_add_alt_1, size: 16),
+                          label: Text('Invite'),
                           style: TextButton.styleFrom(
                             foregroundColor: AppColors.accent,
                           ),
                         ),
                         IconButton(
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.delete_outline,
                             color: AppColors.textSecondary,
                             size: 20,
@@ -167,8 +167,8 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 4),
-                const Text(
+                SizedBox(height: 4),
+                Text(
                   'Status: 3/4 Members • You are Leader',
                   style: TextStyle(
                     color: AppColors.accent,
@@ -176,29 +176,27 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
                 Row(
                   children: [
                     _buildTag(studentDept),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     _buildTag(studentYear),
                   ],
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
                 SizedBox(
                   width: double.infinity,
                   child: OutlinedButton.icon(
                     onPressed: () => Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (_) => const TeamProfilePage(),
-                      ),
+                      MaterialPageRoute(builder: (_) => TeamProfilePage()),
                     ),
-                    icon: const Icon(Icons.groups_outlined),
-                    label: const Text('View Team Profile'),
+                    icon: Icon(Icons.groups_outlined),
+                    label: Text('View Team Profile'),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: AppColors.accent,
-                      side: const BorderSide(color: AppColors.accent),
+                      side: BorderSide(color: AppColors.accent),
                     ),
                   ),
                 ),
@@ -206,10 +204,10 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
             ),
           ),
 
-          const SizedBox(height: 30),
+          SizedBox(height: 30),
 
           // 2. Discover Teams
-          const Text(
+          Text(
             'Recommended Teams (Skill Match)',
             style: TextStyle(
               color: AppColors.textPrimary,
@@ -217,15 +215,15 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
               fontWeight: FontWeight.w700,
             ),
           ),
-          const SizedBox(height: 4),
-          const Text(
+          SizedBox(height: 4),
+          Text(
             'Teams looking for members with your skills.',
             style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
 
           if (recommendedTeams.isEmpty)
-            const Center(
+            Center(
               child: Text(
                 "No matching teams found right now.",
                 style: TextStyle(color: AppColors.textSecondary),
@@ -234,7 +232,7 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
           else
             ...recommendedTeams.map(
               (team) => Padding(
-                padding: const EdgeInsets.only(bottom: 12),
+                padding: EdgeInsets.only(bottom: 12),
                 child: _buildTeamDiscoverCard(
                   title: team['name'],
                   project: team['project'],
@@ -251,14 +249,14 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
 
   Widget _buildTag(String text) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
         color: AppColors.background,
         borderRadius: BorderRadius.circular(6),
       ),
       child: Text(
         text,
-        style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+        style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
       ),
     );
   }
@@ -269,14 +267,14 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
       context: context,
       builder: (dialogContext) => AlertDialog(
         backgroundColor: AppColors.surface,
-        title: const Text(
+        title: Text(
           'Invite Student',
           style: TextStyle(color: AppColors.textPrimary),
         ),
         content: TextField(
           controller: controller,
-          style: const TextStyle(color: AppColors.textPrimary),
-          decoration: const InputDecoration(
+          style: TextStyle(color: AppColors.textPrimary),
+          decoration: InputDecoration(
             hintText: 'student@university.edu',
             hintStyle: TextStyle(color: AppColors.textSecondary),
           ),
@@ -284,7 +282,7 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(dialogContext),
-            child: const Text(
+            child: Text(
               'Cancel',
               style: TextStyle(color: AppColors.textSecondary),
             ),
@@ -313,7 +311,7 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
               backgroundColor: AppColors.primary,
               foregroundColor: AppColors.textPrimary,
             ),
-            child: const Text('Send Invite'),
+            child: Text('Send Invite'),
           ),
         ],
       ),
@@ -328,11 +326,11 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
     required List<String> tags,
   }) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+        border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -343,54 +341,51 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4),
                 Text(
                   'Project: $project',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: 13,
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8),
 
                 Row(
                   children: [
-                    const Icon(Icons.people, size: 14, color: AppColors.accent),
-                    const SizedBox(width: 4),
+                    Icon(Icons.people, size: 14, color: AppColors.accent),
+                    SizedBox(width: 4),
                     Text(
                       members,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColors.accent,
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12),
                     ...tags.map(
                       (t) => Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
+                        padding: EdgeInsets.only(right: 8.0),
                         child: _buildTag(t),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
 
                 Wrap(
                   spacing: 6,
                   children: skills.map((skill) {
                     final isMatch = studentSkills.contains(skill);
                     return Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 3,
-                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                       decoration: BoxDecoration(
                         color: isMatch
                             ? AppColors.accent.withValues(alpha: 0.15)
@@ -420,7 +415,7 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
               ],
             ),
           ),
-          const SizedBox(width: 10),
+          SizedBox(width: 10),
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
@@ -431,10 +426,12 @@ class _StudentTeamsTabState extends State<StudentTeamsTab> {
               ),
               elevation: 0,
             ),
-            child: const Text('Join'),
+            child: Text('Join'),
           ),
         ],
       ),
     );
   }
 }
+
+

@@ -5,7 +5,7 @@ import 'project_history_page.dart';
 
 class WorkspacePage extends StatefulWidget {
   final Map<String, dynamic> projectData;
-  const WorkspacePage({super.key, required this.projectData});
+  WorkspacePage({super.key, required this.projectData});
 
   @override
   State<WorkspacePage> createState() => _WorkspacePageState();
@@ -77,8 +77,8 @@ class _WorkspacePageState extends State<WorkspacePage>
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text(
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
+        title: Text(
           'Workspace',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -95,7 +95,7 @@ class _WorkspacePageState extends State<WorkspacePage>
                 ),
               ),
             ),
-            icon: const Icon(Icons.history, color: AppColors.textPrimary),
+            icon: Icon(Icons.history, color: AppColors.textPrimary),
           ),
         ],
         bottom: TabBar(
@@ -103,7 +103,7 @@ class _WorkspacePageState extends State<WorkspacePage>
           indicatorColor: AppColors.accent,
           labelColor: AppColors.accent,
           unselectedLabelColor: AppColors.textSecondary,
-          tabs: const [
+          tabs: [
             Tab(text: 'Project Tasks'),
             Tab(text: 'Milestones'),
             Tab(text: 'Kanban'),
@@ -115,30 +115,30 @@ class _WorkspacePageState extends State<WorkspacePage>
         children: [
           // --- TAB 1: TASKS & TEAM ---
           SingleChildScrollView(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   widget.projectData['title'],
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: 22,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8),
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.timer_outlined,
                       size: 16,
                       color: Colors.orangeAccent,
                     ),
-                    const SizedBox(width: 6),
+                    SizedBox(width: 6),
                     Text(
                       widget.projectData['deadline'],
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.orangeAccent,
                         fontSize: 13,
                         fontWeight: FontWeight.bold,
@@ -146,19 +146,19 @@ class _WorkspacePageState extends State<WorkspacePage>
                     ),
                   ],
                 ),
-                const SizedBox(height: 18),
+                SizedBox(height: 18),
                 OutlinedButton.icon(
                   onPressed: _showReportIssueSheet,
-                  icon: const Icon(Icons.report_problem_outlined),
-                  label: const Text('Report Issue'),
+                  icon: Icon(Icons.report_problem_outlined),
+                  label: Text('Report Issue'),
                   style: OutlinedButton.styleFrom(
                     foregroundColor: AppColors.accent,
-                    side: const BorderSide(color: AppColors.accent),
+                    side: BorderSide(color: AppColors.accent),
                   ),
                 ),
-                const SizedBox(height: 30),
+                SizedBox(height: 30),
 
-                const Text(
+                Text(
                   'Team Members',
                   style: TextStyle(
                     color: AppColors.textPrimary,
@@ -166,25 +166,25 @@ class _WorkspacePageState extends State<WorkspacePage>
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
                 Row(
                   children: [
                     _buildAvatar('You', AppColors.primary),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12),
                     _buildAvatar('Rahul', Colors.blueAccent),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12),
                     _buildAvatar('Amit', Colors.orangeAccent),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12),
                     _buildAvatar('Priya', Colors.pinkAccent),
                   ],
                 ),
 
-                const SizedBox(height: 30),
+                SizedBox(height: 30),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       'Tasks',
                       style: TextStyle(
                         color: AppColors.textPrimary,
@@ -194,12 +194,8 @@ class _WorkspacePageState extends State<WorkspacePage>
                     ),
                     TextButton.icon(
                       onPressed: _showAddTaskSheet,
-                      icon: const Icon(
-                        Icons.add,
-                        size: 16,
-                        color: AppColors.accent,
-                      ),
-                      label: const Text(
+                      icon: Icon(Icons.add, size: 16, color: AppColors.accent),
+                      label: Text(
                         'Add',
                         style: TextStyle(color: AppColors.accent, fontSize: 13),
                       ),
@@ -213,7 +209,7 @@ class _WorkspacePageState extends State<WorkspacePage>
 
           // --- TAB 2: MILESTONES ---
           ListView.builder(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             itemCount: milestones.length,
             itemBuilder: (context, index) {
               final milestone = milestones[index];
@@ -232,15 +228,15 @@ class _WorkspacePageState extends State<WorkspacePage>
             onPressed: _showAddTaskSheet,
             backgroundColor: AppColors.accent,
             foregroundColor: AppColors.background,
-            icon: const Icon(Icons.add_task),
-            label: const Text('Add Task'),
+            icon: Icon(Icons.add_task),
+            label: Text('Add Task'),
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 10),
           FloatingActionButton(
             heroTag: 'discussion',
             onPressed: () => _showDiscussionThread(context),
             backgroundColor: AppColors.primary,
-            child: const Icon(Icons.forum, color: AppColors.textPrimary),
+            child: Icon(Icons.forum, color: AppColors.textPrimary),
           ),
         ],
       ),
@@ -258,10 +254,10 @@ class _WorkspacePageState extends State<WorkspacePage>
             style: TextStyle(color: color, fontWeight: FontWeight.bold),
           ),
         ),
-        const SizedBox(height: 4),
+        SizedBox(height: 4),
         Text(
           name,
-          style: const TextStyle(color: AppColors.textSecondary, fontSize: 11),
+          style: TextStyle(color: AppColors.textSecondary, fontSize: 11),
         ),
       ],
     );
@@ -283,17 +279,17 @@ class _WorkspacePageState extends State<WorkspacePage>
     }
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
+      margin: EdgeInsets.only(bottom: 12),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+        border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
       ),
       child: Row(
         children: [
           Icon(statusIcon, color: statusColor, size: 24),
-          const SizedBox(width: 16),
+          SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -310,10 +306,10 @@ class _WorkspacePageState extends State<WorkspacePage>
                     decorationColor: AppColors.textSecondary,
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4),
                 Text(
                   'Assigned to: ${task['assignedTo']} • Due: ${task['due']}',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: 12,
                   ),
@@ -327,9 +323,9 @@ class _WorkspacePageState extends State<WorkspacePage>
   }
 
   Widget _buildKanbanBoard() {
-    const columns = ['To Do', 'In Progress', 'Review', 'Done'];
+    final columns = ['To Do', 'In Progress', 'Review', 'Done'];
     return ListView(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       scrollDirection: Axis.horizontal,
       children: columns.map((column) {
         final cards = tasks
@@ -345,8 +341,8 @@ class _WorkspacePageState extends State<WorkspacePage>
             .toList();
         return Container(
           width: 250,
-          margin: const EdgeInsets.only(right: 12),
-          padding: const EdgeInsets.all(12),
+          margin: EdgeInsets.only(right: 12),
+          padding: EdgeInsets.all(12),
           decoration: BoxDecoration(
             color: AppColors.surface,
             borderRadius: BorderRadius.circular(16),
@@ -356,14 +352,14 @@ class _WorkspacePageState extends State<WorkspacePage>
             children: [
               Text(
                 column,
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppColors.textPrimary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12),
               if (cards.isEmpty)
-                const Text(
+                Text(
                   'No tasks',
                   style: TextStyle(
                     color: AppColors.textSecondary,
@@ -382,11 +378,11 @@ class _WorkspacePageState extends State<WorkspacePage>
                   child: ListTile(
                     title: Text(
                       task['title'],
-                      style: const TextStyle(color: AppColors.textPrimary),
+                      style: TextStyle(color: AppColors.textPrimary),
                     ),
                     subtitle: Text(
                       '${task['assignedTo']} · ${task['due']}',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColors.textSecondary,
                         fontSize: 11,
                       ),
@@ -419,12 +415,12 @@ class _WorkspacePageState extends State<WorkspacePage>
     }
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(16),
+      margin: EdgeInsets.only(bottom: 16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+        border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -434,14 +430,14 @@ class _WorkspacePageState extends State<WorkspacePage>
             children: [
               Text(
                 milestone['title'],
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
                   color: statusColor.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(6),
@@ -458,9 +454,9 @@ class _WorkspacePageState extends State<WorkspacePage>
             ],
           ),
           if (milestone['feedback'].toString().isNotEmpty) ...[
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
             Container(
-              padding: const EdgeInsets.all(12),
+              padding: EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: AppColors.background,
                 borderRadius: BorderRadius.circular(8),
@@ -468,25 +464,25 @@ class _WorkspacePageState extends State<WorkspacePage>
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.feedback_outlined,
                     color: AppColors.textSecondary,
                     size: 16,
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'Client Feedback: "${milestone['feedback']}"',
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: AppColors.textSecondary,
                             fontSize: 12,
                             fontStyle: FontStyle.italic,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        SizedBox(height: 8),
                         Row(
                           children: List.generate(
                             5,
@@ -505,7 +501,7 @@ class _WorkspacePageState extends State<WorkspacePage>
             ),
           ],
           if (milestone['status'] == 'Upcoming') ...[
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -513,9 +509,9 @@ class _WorkspacePageState extends State<WorkspacePage>
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.surface,
                   foregroundColor: AppColors.textPrimary,
-                  side: const BorderSide(color: Colors.white12),
+                  side: BorderSide(color: AppColors.textPrimary.withValues(alpha: 0.12)),
                 ),
-                child: const Text('Submit Deliverable'),
+                child: Text('Submit Deliverable'),
               ),
             ),
           ],
@@ -545,7 +541,7 @@ class _WorkspacePageState extends State<WorkspacePage>
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Add Task',
                 style: TextStyle(
                   color: AppColors.textPrimary,
@@ -553,11 +549,11 @@ class _WorkspacePageState extends State<WorkspacePage>
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               TextField(
                 controller: titleController,
-                style: const TextStyle(color: AppColors.textPrimary),
-                decoration: const InputDecoration(
+                style: TextStyle(color: AppColors.textPrimary),
+                decoration: InputDecoration(
                   labelText: 'Task Title',
                   labelStyle: TextStyle(color: AppColors.textSecondary),
                 ),
@@ -565,8 +561,8 @@ class _WorkspacePageState extends State<WorkspacePage>
               DropdownButtonFormField<String>(
                 initialValue: assignee,
                 dropdownColor: AppColors.surface,
-                style: const TextStyle(color: AppColors.textPrimary),
-                decoration: const InputDecoration(
+                style: TextStyle(color: AppColors.textPrimary),
+                decoration: InputDecoration(
                   labelText: 'Assign To',
                   labelStyle: TextStyle(color: AppColors.textSecondary),
                 ),
@@ -581,8 +577,8 @@ class _WorkspacePageState extends State<WorkspacePage>
               DropdownButtonFormField<String>(
                 initialValue: priority,
                 dropdownColor: AppColors.surface,
-                style: const TextStyle(color: AppColors.textPrimary),
-                decoration: const InputDecoration(
+                style: TextStyle(color: AppColors.textPrimary),
+                decoration: InputDecoration(
                   labelText: 'Priority',
                   labelStyle: TextStyle(color: AppColors.textSecondary),
                 ),
@@ -600,23 +596,20 @@ class _WorkspacePageState extends State<WorkspacePage>
                   dueDate == null
                       ? 'Choose Due Date'
                       : '${dueDate!.day}/${dueDate!.month}/${dueDate!.year}',
-                  style: const TextStyle(color: AppColors.textPrimary),
+                  style: TextStyle(color: AppColors.textPrimary),
                 ),
-                leading: const Icon(
-                  Icons.calendar_today,
-                  color: AppColors.accent,
-                ),
+                leading: Icon(Icons.calendar_today, color: AppColors.accent),
                 onTap: () async {
                   final picked = await showDatePicker(
                     context: context,
                     firstDate: DateTime.now(),
-                    lastDate: DateTime.now().add(const Duration(days: 365)),
+                    lastDate: DateTime.now().add(Duration(days: 365)),
                     initialDate: DateTime.now(),
                   );
                   if (picked != null) setSheetState(() => dueDate = picked);
                 },
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -639,7 +632,7 @@ class _WorkspacePageState extends State<WorkspacePage>
                     backgroundColor: AppColors.primary,
                     foregroundColor: AppColors.textPrimary,
                   ),
-                  child: const Text('Create Task'),
+                  child: Text('Create Task'),
                 ),
               ),
             ],
@@ -666,7 +659,7 @@ class _WorkspacePageState extends State<WorkspacePage>
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'Submit Milestone',
               style: TextStyle(
                 color: AppColors.textPrimary,
@@ -674,19 +667,19 @@ class _WorkspacePageState extends State<WorkspacePage>
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 14),
+            SizedBox(height: 14),
             TextField(
               controller: controller,
               maxLines: 4,
-              style: const TextStyle(color: AppColors.textPrimary),
-              decoration: const InputDecoration(
+              style: TextStyle(color: AppColors.textPrimary),
+              decoration: InputDecoration(
                 hintText: 'Paste GitHub link or add submission notes',
                 hintStyle: TextStyle(color: AppColors.textSecondary),
                 filled: true,
                 fillColor: AppColors.background,
               ),
             ),
-            const SizedBox(height: 14),
+            SizedBox(height: 14),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -705,16 +698,14 @@ class _WorkspacePageState extends State<WorkspacePage>
                   MockStore.instance.addMilestone(milestone);
                   Navigator.pop(sheetContext);
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Milestone submitted for review.'),
-                    ),
+                    SnackBar(content: Text('Milestone submitted for review.')),
                   );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   foregroundColor: AppColors.textPrimary,
                 ),
-                child: const Text('Submit'),
+                child: Text('Submit'),
               ),
             ),
           ],
@@ -739,7 +730,7 @@ class _WorkspacePageState extends State<WorkspacePage>
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
+            Text(
               'Report an Issue',
               style: TextStyle(
                 color: AppColors.textPrimary,
@@ -747,19 +738,19 @@ class _WorkspacePageState extends State<WorkspacePage>
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 14),
+            SizedBox(height: 14),
             TextField(
               controller: controller,
               maxLines: 4,
-              style: const TextStyle(color: AppColors.textPrimary),
-              decoration: const InputDecoration(
+              style: TextStyle(color: AppColors.textPrimary),
+              decoration: InputDecoration(
                 hintText: 'Describe the issue',
                 hintStyle: TextStyle(color: AppColors.textSecondary),
                 filled: true,
                 fillColor: AppColors.background,
               ),
             ),
-            const SizedBox(height: 14),
+            SizedBox(height: 14),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -772,7 +763,7 @@ class _WorkspacePageState extends State<WorkspacePage>
                   });
                   Navigator.pop(sheetContext);
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
+                    SnackBar(
                       content: Text('Issue reported to the project team.'),
                     ),
                   );
@@ -781,7 +772,7 @@ class _WorkspacePageState extends State<WorkspacePage>
                   backgroundColor: AppColors.primary,
                   foregroundColor: AppColors.textPrimary,
                 ),
-                child: const Text('Send Report'),
+                child: Text('Send Report'),
               ),
             ),
           ],
@@ -796,7 +787,7 @@ class _WorkspacePageState extends State<WorkspacePage>
       context: context,
       backgroundColor: AppColors.surface,
       isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
       builder: (context) {
@@ -810,15 +801,15 @@ class _WorkspacePageState extends State<WorkspacePage>
               children: [
                 // Header
                 Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: const BoxDecoration(
-                    border: Border(bottom: BorderSide(color: Colors.white12)),
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    border: Border(bottom: BorderSide(color: AppColors.textPrimary.withValues(alpha: 0.12))),
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.forum, color: AppColors.accent),
-                      const SizedBox(width: 12),
-                      const Text(
+                      Icon(Icons.forum, color: AppColors.accent),
+                      SizedBox(width: 12),
+                      Text(
                         'Team Discussion',
                         style: TextStyle(
                           color: AppColors.textPrimary,
@@ -826,12 +817,9 @@ class _WorkspacePageState extends State<WorkspacePage>
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const Spacer(),
+                      Spacer(),
                       IconButton(
-                        icon: const Icon(
-                          Icons.close,
-                          color: AppColors.textSecondary,
-                        ),
+                        icon: Icon(Icons.close, color: AppColors.textSecondary),
                         onPressed: () => Navigator.pop(context),
                       ),
                     ],
@@ -841,7 +829,7 @@ class _WorkspacePageState extends State<WorkspacePage>
                 // Messages
                 Expanded(
                   child: ListView(
-                    padding: const EdgeInsets.all(20),
+                    padding: EdgeInsets.all(20),
                     children: [
                       _buildChatMessage(
                         'Rahul',
@@ -864,17 +852,17 @@ class _WorkspacePageState extends State<WorkspacePage>
 
                 // Input
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(16.0),
                   child: Row(
                     children: [
                       Expanded(
                         child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          padding: EdgeInsets.symmetric(horizontal: 16),
                           decoration: BoxDecoration(
                             color: AppColors.background,
                             borderRadius: BorderRadius.circular(24),
                           ),
-                          child: const TextField(
+                          child: TextField(
                             style: TextStyle(color: AppColors.textPrimary),
                             decoration: InputDecoration(
                               hintText: 'Type a message...',
@@ -886,15 +874,11 @@ class _WorkspacePageState extends State<WorkspacePage>
                           ),
                         ),
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8),
                       CircleAvatar(
                         backgroundColor: AppColors.primary,
                         child: IconButton(
-                          icon: const Icon(
-                            Icons.send,
-                            color: Colors.white,
-                            size: 20,
-                          ),
+                          icon: Icon(Icons.send, color: Colors.white, size: 20),
                           onPressed: () {},
                         ),
                       ),
@@ -913,20 +897,16 @@ class _WorkspacePageState extends State<WorkspacePage>
     return Align(
       alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 16),
-        constraints: const BoxConstraints(maxWidth: 250),
-        padding: const EdgeInsets.all(12),
+        margin: EdgeInsets.only(bottom: 16),
+        constraints: BoxConstraints(maxWidth: 250),
+        padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: isMe ? AppColors.primary : AppColors.background,
           borderRadius: BorderRadius.only(
-            topLeft: const Radius.circular(16),
-            topRight: const Radius.circular(16),
-            bottomRight: isMe
-                ? const Radius.circular(0)
-                : const Radius.circular(16),
-            bottomLeft: isMe
-                ? const Radius.circular(16)
-                : const Radius.circular(0),
+            topLeft: Radius.circular(16),
+            topRight: Radius.circular(16),
+            bottomRight: isMe ? Radius.circular(0) : Radius.circular(16),
+            bottomLeft: isMe ? Radius.circular(16) : Radius.circular(0),
           ),
         ),
         child: Column(
@@ -935,13 +915,13 @@ class _WorkspacePageState extends State<WorkspacePage>
             if (!isMe)
               Text(
                 sender,
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppColors.accent,
                   fontSize: 11,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            const SizedBox(height: 4),
+            SizedBox(height: 4),
             Text(
               message,
               style: TextStyle(
@@ -955,3 +935,5 @@ class _WorkspacePageState extends State<WorkspacePage>
     );
   }
 }
+
+

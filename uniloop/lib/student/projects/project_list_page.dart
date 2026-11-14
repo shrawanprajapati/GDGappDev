@@ -4,7 +4,7 @@ import 'project_details_page.dart';
 
 class ProjectListPage extends StatelessWidget {
   final String category;
-  const ProjectListPage({super.key, required this.category});
+  ProjectListPage({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -88,24 +88,24 @@ class ProjectListPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
         title: Text(
           category,
-          style: const TextStyle(
+          style: TextStyle(
             color: AppColors.textPrimary,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
       body: filteredProjects.isEmpty
-          ? const Center(
+          ? Center(
               child: Text(
                 "No projects found.",
                 style: TextStyle(color: AppColors.textSecondary),
               ),
             )
           : ListView.builder(
-              padding: const EdgeInsets.all(20),
+              padding: EdgeInsets.all(20),
               itemCount: filteredProjects.length,
               itemBuilder: (context, index) {
                 final project = filteredProjects[index];
@@ -135,12 +135,12 @@ class ProjectListPage extends StatelessWidget {
         );
       },
       child: Container(
-        margin: const EdgeInsets.only(bottom: 16),
-        padding: const EdgeInsets.all(20),
+        margin: EdgeInsets.only(bottom: 16),
+        padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: AppColors.surface,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+          border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,10 +149,7 @@ class ProjectListPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
                     color: typeColor.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(8),
@@ -168,15 +165,12 @@ class ProjectListPage extends StatelessWidget {
                 ),
                 if (project['status'] == 'Urgent')
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 2,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
                       color: Colors.redAccent.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(4),
                     ),
-                    child: const Text(
+                    child: Text(
                       'Urgent',
                       style: TextStyle(
                         color: Colors.redAccent,
@@ -187,29 +181,25 @@ class ProjectListPage extends StatelessWidget {
                   ),
               ],
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
             Text(
               project['title'],
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppColors.textPrimary,
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const SizedBox(height: 6),
+            SizedBox(height: 6),
 
             Row(
               children: [
-                const Icon(
-                  Icons.business,
-                  size: 14,
-                  color: AppColors.textSecondary,
-                ),
-                const SizedBox(width: 6),
+                Icon(Icons.business, size: 14, color: AppColors.textSecondary),
+                SizedBox(width: 6),
                 Expanded(
                   child: Text(
                     project['postedBy'],
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: 13,
                     ),
@@ -219,7 +209,7 @@ class ProjectListPage extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
 
             Wrap(
               spacing: 8,
@@ -227,7 +217,7 @@ class ProjectListPage extends StatelessWidget {
               children: (project['skills'] as List<String>)
                   .map(
                     (skill) => Container(
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                         horizontal: 10,
                         vertical: 4,
                       ),
@@ -235,12 +225,12 @@ class ProjectListPage extends StatelessWidget {
                         color: AppColors.background,
                         borderRadius: BorderRadius.circular(6),
                         border: Border.all(
-                          color: Colors.white.withValues(alpha: 0.05),
+                          color: AppColors.textPrimary.withValues(alpha: 0.08),
                         ),
                       ),
                       child: Text(
                         skill,
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: AppColors.textPrimary,
                           fontSize: 11,
                         ),
@@ -249,20 +239,20 @@ class ProjectListPage extends StatelessWidget {
                   )
                   .toList(),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   '${project['budget']} • ${project['duration']}',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const Text(
+                Text(
                   'View Details',
                   style: TextStyle(
                     color: AppColors.accent,
@@ -278,3 +268,5 @@ class ProjectListPage extends StatelessWidget {
     );
   }
 }
+
+

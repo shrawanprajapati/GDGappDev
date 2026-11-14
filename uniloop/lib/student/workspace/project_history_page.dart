@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 
 class ProjectHistoryPage extends StatelessWidget {
-  const ProjectHistoryPage({super.key, required this.projectTitle});
+  ProjectHistoryPage({super.key, required this.projectTitle});
   final String projectTitle;
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -10,7 +10,7 @@ class ProjectHistoryPage extends StatelessWidget {
     appBar: AppBar(
       backgroundColor: AppColors.background,
       elevation: 0,
-      title: const Text(
+      title: Text(
         'Project History',
         style: TextStyle(
           color: AppColors.textPrimary,
@@ -19,17 +19,17 @@ class ProjectHistoryPage extends StatelessWidget {
       ),
     ),
     body: ListView(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       children: [
         Text(
           projectTitle,
-          style: const TextStyle(
+          style: TextStyle(
             color: AppColors.textPrimary,
             fontSize: 22,
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: 20),
         _event(
           Icons.flag_outlined,
           'Project posted',
@@ -61,14 +61,11 @@ class ProjectHistoryPage extends StatelessWidget {
     ),
     title: Text(
       title,
-      style: const TextStyle(
+      style: TextStyle(
         color: AppColors.textPrimary,
         fontWeight: FontWeight.w600,
       ),
     ),
-    subtitle: Text(
-      detail,
-      style: const TextStyle(color: AppColors.textSecondary),
-    ),
+    subtitle: Text(detail, style: TextStyle(color: AppColors.textSecondary)),
   );
 }

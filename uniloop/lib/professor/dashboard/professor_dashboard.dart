@@ -5,7 +5,7 @@ import '../projects/prof_projects_tab.dart';
 import '../profile/prof_profile_tab.dart';
 
 class ProfessorDashboard extends StatefulWidget {
-  const ProfessorDashboard({super.key});
+  ProfessorDashboard({super.key});
 
   @override
   State<ProfessorDashboard> createState() => _ProfessorDashboardState();
@@ -15,9 +15,9 @@ class _ProfessorDashboardState extends State<ProfessorDashboard> {
   int _currentIndex = 0;
 
   final List<Widget> _tabs = [
-    const ProfHomeTab(),
-    const ProfProjectsTab(),
-    const ProfProfileTab(),
+    ProfHomeTab(),
+    ProfProjectsTab(),
+    ProfProfileTab(),
   ];
 
   @override
@@ -27,7 +27,7 @@ class _ProfessorDashboardState extends State<ProfessorDashboard> {
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
-        title: const Text(
+        title: Text(
           'Professor Portal',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -36,7 +36,7 @@ class _ProfessorDashboardState extends State<ProfessorDashboard> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.logout, color: AppColors.textPrimary),
+            icon: Icon(Icons.logout, color: AppColors.textPrimary),
             onPressed: () =>
                 Navigator.popUntil(context, (route) => route.isFirst),
           ),
@@ -50,7 +50,7 @@ class _ProfessorDashboardState extends State<ProfessorDashboard> {
         selectedItemColor: AppColors.accent,
         unselectedItemColor: AppColors.textSecondary,
         type: BottomNavigationBarType.fixed,
-        items: const [
+        items: [
           BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.work), label: 'Projects'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),

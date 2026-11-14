@@ -15,7 +15,7 @@ class ClubHomeTab extends StatelessWidget {
           const Text(
             'Welcome back, GDG Club',
             style: TextStyle(
-              color: AppColors.textPrimary,
+              color: ClubColors.textPrimary,
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
@@ -23,16 +23,16 @@ class ClubHomeTab extends StatelessWidget {
           const SizedBox(height: 20),
           Row(
             children: [
-              _buildStatCard('Active Events', '3', AppColors.primary),
+              _buildStatCard('Active Events', '3', ClubColors.primary),
               const SizedBox(width: 12),
-              _buildStatCard('Applications', '145', AppColors.accent),
+              _buildStatCard('Applications', '145', ClubColors.accent),
             ],
           ),
           const SizedBox(height: 30),
           const Text(
             'Recent Activity',
             style: TextStyle(
-              color: AppColors.textPrimary,
+              color: ClubColors.textPrimary,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -47,7 +47,7 @@ class ClubHomeTab extends StatelessWidget {
           const Text(
             'Quick Actions',
             style: TextStyle(
-              color: AppColors.textPrimary,
+              color: ClubColors.textPrimary,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
@@ -76,7 +76,7 @@ class ClubHomeTab extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: AppColors.surface,
+          color: ClubColors.surface,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: color.withValues(alpha: 0.3)),
         ),
@@ -94,7 +94,7 @@ class ClubHomeTab extends StatelessWidget {
             Text(
               title,
               style: const TextStyle(
-                color: AppColors.textSecondary,
+                color: ClubColors.textSecondary,
                 fontSize: 12,
               ),
             ),
@@ -109,14 +109,14 @@ class ClubHomeTab extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: ClubColors.surface,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
         children: [
           const Icon(
             Icons.notifications_active,
-            color: AppColors.accent,
+            color: ClubColors.accent,
             size: 20,
           ),
           const SizedBox(width: 12),
@@ -124,7 +124,7 @@ class ClubHomeTab extends StatelessWidget {
             child: Text(
               text,
               style: const TextStyle(
-                color: AppColors.textPrimary,
+                color: ClubColors.textPrimary,
                 fontSize: 14,
               ),
             ),
@@ -132,7 +132,7 @@ class ClubHomeTab extends StatelessWidget {
           Text(
             time,
             style: const TextStyle(
-              color: AppColors.textSecondary,
+              color: ClubColors.textSecondary,
               fontSize: 12,
             ),
           ),
@@ -152,17 +152,17 @@ class ClubHomeTab extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: AppColors.surface,
+          color: ClubColors.surface,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
           children: [
-            Icon(icon, color: AppColors.accent),
+            Icon(icon, color: ClubColors.accent),
             const SizedBox(width: 16),
             Text(
               title,
               style: const TextStyle(
-                color: AppColors.textPrimary,
+                color: ClubColors.textPrimary,
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
@@ -170,7 +170,7 @@ class ClubHomeTab extends StatelessWidget {
             const Spacer(),
             const Icon(
               Icons.arrow_forward_ios,
-              color: AppColors.textSecondary,
+              color: ClubColors.textSecondary,
               size: 16,
             ),
           ],

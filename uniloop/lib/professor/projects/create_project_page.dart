@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 
 class CreateProjectPage extends StatelessWidget {
-  const CreateProjectPage({super.key});
+  CreateProjectPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +11,8 @@ class CreateProjectPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text(
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
+        title: Text(
           'Post Research Project',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -21,22 +21,22 @@ class CreateProjectPage extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         child: Column(
           children: [
             _buildInputField('Project Title'),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             _buildInputField('Required Skills'),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             _buildInputField('Project Description', maxLines: 4),
-            const SizedBox(height: 30),
+            SizedBox(height: 30),
             SizedBox(
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
+                    SnackBar(
                       content: Text('Project Published!'),
                       backgroundColor: AppColors.accent,
                     ),
@@ -49,7 +49,7 @@ class CreateProjectPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: const Text(
+                child: Text(
                   'Publish Project',
                   style: TextStyle(
                     color: Colors.white,
@@ -67,10 +67,10 @@ class CreateProjectPage extends StatelessWidget {
   Widget _buildInputField(String hint, {int maxLines = 1}) {
     return TextField(
       maxLines: maxLines,
-      style: const TextStyle(color: AppColors.textPrimary),
+      style: TextStyle(color: AppColors.textPrimary),
       decoration: InputDecoration(
         hintText: hint,
-        hintStyle: const TextStyle(color: AppColors.textSecondary),
+        hintStyle: TextStyle(color: AppColors.textSecondary),
         filled: true,
         fillColor: AppColors.surface,
         border: OutlineInputBorder(

@@ -3,7 +3,7 @@ import '../../core/app_colors.dart';
 import 'workspace_page.dart';
 
 class MyProjectsPage extends StatelessWidget {
-  const MyProjectsPage({super.key});
+  MyProjectsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +43,8 @@ class MyProjectsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.textPrimary),
-        title: const Text(
+        iconTheme: IconThemeData(color: AppColors.textPrimary),
+        title: Text(
           'My Projects',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -53,7 +53,7 @@ class MyProjectsPage extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         itemCount: myProjects.length,
         itemBuilder: (context, index) {
           final project = myProjects[index];
@@ -80,12 +80,12 @@ class MyProjectsPage extends StatelessWidget {
       child: Opacity(
         opacity: isRejected ? 0.5 : 1.0,
         child: Container(
-          margin: const EdgeInsets.only(bottom: 16),
-          padding: const EdgeInsets.all(20),
+          margin: EdgeInsets.only(bottom: 16),
+          padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: AppColors.surface,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+            border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,10 +94,7 @@ class MyProjectsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 4,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
                       color: project['color'].withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(8),
@@ -125,16 +122,16 @@ class MyProjectsPage extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12),
               Text(
                 project['title'],
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
 
               if (!isRejected) ...[
                 // Progress Bar
@@ -151,10 +148,10 @@ class MyProjectsPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    SizedBox(width: 12),
                     Text(
                       '${(project['progress'] * 100).toInt()}%',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColors.textSecondary,
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
@@ -162,21 +159,21 @@ class MyProjectsPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.people,
                           size: 16,
                           color: AppColors.textSecondary,
                         ),
-                        const SizedBox(width: 4),
+                        SizedBox(width: 4),
                         Text(
                           'Team of ${project['teamSize']}',
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: AppColors.textSecondary,
                             fontSize: 12,
                           ),
@@ -196,7 +193,7 @@ class MyProjectsPage extends StatelessWidget {
                   ],
                 ),
               ] else ...[
-                const Text(
+                Text(
                   'Your application was not shortlisted.',
                   style: TextStyle(
                     color: AppColors.textSecondary,
@@ -211,3 +208,5 @@ class MyProjectsPage extends StatelessWidget {
     );
   }
 }
+
+

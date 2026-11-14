@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../core/app_colors.dart';
 
 class AlumniDashboard extends StatefulWidget {
-  const AlumniDashboard({super.key});
+  AlumniDashboard({super.key});
   @override
   State<AlumniDashboard> createState() => _AlumniDashboardState();
 }
@@ -34,7 +34,7 @@ class _AlumniDashboardState extends State<AlumniDashboard> {
           'Mentorship Requests',
           'Profile',
         ][tab],
-        style: const TextStyle(
+        style: TextStyle(
           color: AppColors.textPrimary,
           fontWeight: FontWeight.bold,
         ),
@@ -54,7 +54,7 @@ class _AlumniDashboardState extends State<AlumniDashboard> {
       selectedItemColor: AppColors.accent,
       unselectedItemColor: AppColors.textSecondary,
       type: BottomNavigationBarType.fixed,
-      items: const [
+      items: [
         BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Home'),
         BottomNavigationBarItem(
           icon: Icon(Icons.add_business_outlined),
@@ -72,9 +72,9 @@ class _AlumniDashboardState extends State<AlumniDashboard> {
     ),
   );
   Widget _home() => ListView(
-    padding: const EdgeInsets.all(20),
+    padding: EdgeInsets.all(20),
     children: [
-      const Text(
+      Text(
         'Give back to your university community.',
         style: TextStyle(
           color: AppColors.textPrimary,
@@ -82,16 +82,16 @@ class _AlumniDashboardState extends State<AlumniDashboard> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      const SizedBox(height: 8),
-      const Text(
+      SizedBox(height: 8),
+      Text(
         'Share opportunities and mentor the next generation.',
         style: TextStyle(color: AppColors.textSecondary),
       ),
-      const SizedBox(height: 24),
+      SizedBox(height: 24),
       Row(
         children: [
           _stat('Opportunities', jobs.length.toString(), Icons.work_outline),
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
           _stat(
             'Requests',
             mentees.length.toString(),
@@ -99,18 +99,18 @@ class _AlumniDashboardState extends State<AlumniDashboard> {
           ),
         ],
       ),
-      const SizedBox(height: 24),
+      SizedBox(height: 24),
       ...jobs.map(
         (job) => Card(
           color: AppColors.surface,
           child: ListTile(
             title: Text(
               job['title']!,
-              style: const TextStyle(color: AppColors.textPrimary),
+              style: TextStyle(color: AppColors.textPrimary),
             ),
             subtitle: Text(
               job['company']!,
-              style: const TextStyle(color: AppColors.textSecondary),
+              style: TextStyle(color: AppColors.textSecondary),
             ),
           ),
         ),
@@ -118,37 +118,37 @@ class _AlumniDashboardState extends State<AlumniDashboard> {
     ],
   );
   Widget _mentees() => ListView(
-    padding: const EdgeInsets.all(20),
+    padding: EdgeInsets.all(20),
     children: [
-      const Text(
+      Text(
         'Students seeking your guidance',
         style: TextStyle(color: AppColors.textSecondary),
       ),
-      const SizedBox(height: 16),
+      SizedBox(height: 16),
       ...mentees.map(
         (mentee) => Card(
           color: AppColors.surface,
           child: ListTile(
             title: Text(
               mentee['name']!,
-              style: const TextStyle(color: AppColors.textPrimary),
+              style: TextStyle(color: AppColors.textPrimary),
             ),
             subtitle: Text(
               mentee['course']!,
-              style: const TextStyle(color: AppColors.textSecondary),
+              style: TextStyle(color: AppColors.textSecondary),
             ),
             trailing: decisions[mentee['name']] == null
                 ? TextButton(
                     onPressed: () =>
                         setState(() => decisions[mentee['name']!] = 'Accepted'),
-                    child: const Text(
+                    child: Text(
                       'Accept',
                       style: TextStyle(color: AppColors.accent),
                     ),
                   )
                 : Text(
                     decisions[mentee['name']]!,
-                    style: const TextStyle(color: AppColors.accent),
+                    style: TextStyle(color: AppColors.accent),
                   ),
           ),
         ),
@@ -162,21 +162,21 @@ class _AlumniDashboardState extends State<AlumniDashboard> {
         tab = 0;
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Opportunity posted successfully.')),
+        SnackBar(content: Text('Opportunity posted successfully.')),
       );
     },
   );
 
   Widget _profile() => ListView(
-    padding: const EdgeInsets.all(20),
+    padding: EdgeInsets.all(20),
     children: [
-      const CircleAvatar(
+      CircleAvatar(
         radius: 42,
         backgroundColor: AppColors.primary,
         child: Icon(Icons.person, color: AppColors.textPrimary, size: 38),
       ),
-      const SizedBox(height: 14),
-      const Center(
+      SizedBox(height: 14),
+      Center(
         child: Text(
           'Ananya Verma',
           style: TextStyle(
@@ -186,31 +186,28 @@ class _AlumniDashboardState extends State<AlumniDashboard> {
           ),
         ),
       ),
-      const Center(
+      Center(
         child: Text(
           'Product Manager · Acme Labs',
           style: TextStyle(color: AppColors.textSecondary),
         ),
       ),
-      const SizedBox(height: 24),
+      SizedBox(height: 24),
       ListTile(
-        leading: const Icon(Icons.email_outlined, color: AppColors.accent),
-        title: const Text(
-          'Email',
-          style: TextStyle(color: AppColors.textSecondary),
-        ),
-        subtitle: const Text(
+        leading: Icon(Icons.email_outlined, color: AppColors.accent),
+        title: Text('Email', style: TextStyle(color: AppColors.textSecondary)),
+        subtitle: Text(
           'alumni@loop.edu',
           style: TextStyle(color: AppColors.textPrimary),
         ),
       ),
       ListTile(
-        leading: const Icon(Icons.school_outlined, color: AppColors.accent),
-        title: const Text(
+        leading: Icon(Icons.school_outlined, color: AppColors.accent),
+        title: Text(
           'Alma Mater',
           style: TextStyle(color: AppColors.textSecondary),
         ),
-        subtitle: const Text(
+        subtitle: Text(
           'UniLoop University · CSE 2022',
           style: TextStyle(color: AppColors.textPrimary),
         ),
@@ -219,7 +216,7 @@ class _AlumniDashboardState extends State<AlumniDashboard> {
   );
   Widget _stat(String label, String value, IconData icon) => Expanded(
     child: Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
@@ -230,13 +227,13 @@ class _AlumniDashboardState extends State<AlumniDashboard> {
           Icon(icon, color: AppColors.accent),
           Text(
             value,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.textPrimary,
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Text(label, style: const TextStyle(color: AppColors.textSecondary)),
+          Text(label, style: TextStyle(color: AppColors.textSecondary)),
         ],
       ),
     ),
@@ -244,7 +241,7 @@ class _AlumniDashboardState extends State<AlumniDashboard> {
 }
 
 class _JobForm extends StatefulWidget {
-  const _JobForm({required this.onSubmit});
+  _JobForm({required this.onSubmit});
   final ValueChanged<Map<String, String>> onSubmit;
   @override
   State<_JobForm> createState() => _JobFormState();
@@ -264,14 +261,14 @@ class _JobFormState extends State<_JobForm> {
 
   @override
   Widget build(BuildContext context) => ListView(
-    padding: const EdgeInsets.all(20),
+    padding: EdgeInsets.all(20),
     children: [
       _field(title, 'Job / Internship Title'),
       _field(company, 'Company'),
       _field(link, 'Apply Link'),
       Container(
         height: 52,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(14)),
           gradient: LinearGradient(
             colors: [AppColors.primary, AppColors.accent],
@@ -284,22 +281,22 @@ class _JobFormState extends State<_JobForm> {
             shadowColor: Colors.transparent,
             foregroundColor: AppColors.textPrimary,
           ),
-          child: const Text('Post Opportunity'),
+          child: Text('Post Opportunity'),
         ),
       ),
     ],
   );
   Widget _field(TextEditingController controller, String label) => Padding(
-    padding: const EdgeInsets.only(bottom: 16),
+    padding: EdgeInsets.only(bottom: 16),
     child: TextField(
       controller: controller,
-      style: const TextStyle(color: AppColors.textPrimary),
+      style: TextStyle(color: AppColors.textPrimary),
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: const TextStyle(color: AppColors.textSecondary),
+        labelStyle: TextStyle(color: AppColors.textSecondary),
         filled: true,
         fillColor: AppColors.surface,
-        border: const OutlineInputBorder(borderSide: BorderSide.none),
+        border: OutlineInputBorder(borderSide: BorderSide.none),
       ),
     ),
   );
@@ -309,9 +306,9 @@ class _JobFormState extends State<_JobForm> {
       company,
       link,
     ].any((controller) => controller.text.trim().isEmpty)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please complete all fields.')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Please complete all fields.')));
       return;
     }
     widget.onSubmit({

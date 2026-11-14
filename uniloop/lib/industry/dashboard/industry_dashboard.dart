@@ -7,7 +7,7 @@ import '../hiring_pipeline.dart';
 import '../review_applicants.dart';
 
 class IndustryDashboard extends StatefulWidget {
-  const IndustryDashboard({super.key});
+  IndustryDashboard({super.key});
 
   @override
   State<IndustryDashboard> createState() => _IndustryDashboardState();
@@ -68,7 +68,7 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
               : _currentIndex == 1
               ? 'Your Projects'
               : 'Company Profile',
-          style: const TextStyle(
+          style: TextStyle(
             color: AppColors.textPrimary,
             fontWeight: FontWeight.bold,
           ),
@@ -76,10 +76,7 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(
-              Icons.notifications_none,
-              color: AppColors.textPrimary,
-            ),
+            icon: Icon(Icons.notifications_none, color: AppColors.textPrimary),
           ),
         ],
       ),
@@ -89,8 +86,8 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
               backgroundColor: AppColors.primary,
               foregroundColor: AppColors.textPrimary,
               onPressed: _openPostProject,
-              icon: const Icon(Icons.add),
-              label: const Text('Post Project'),
+              icon: Icon(Icons.add),
+              label: Text('Post Project'),
             )
           : null,
       bottomNavigationBar: BottomNavigationBar(
@@ -100,7 +97,7 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
         selectedItemColor: AppColors.accent,
         unselectedItemColor: AppColors.textSecondary,
         type: BottomNavigationBarType.fixed,
-        items: const [
+        items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.dashboard_outlined),
             activeIcon: Icon(Icons.dashboard),
@@ -122,9 +119,9 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
   }
 
   Widget _buildHome() => ListView(
-    padding: const EdgeInsets.all(20),
+    padding: EdgeInsets.all(20),
     children: [
-      const Text(
+      Text(
         'Good morning, Acme Labs',
         style: TextStyle(
           color: AppColors.textPrimary,
@@ -132,12 +129,12 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      const SizedBox(height: 6),
-      const Text(
+      SizedBox(height: 6),
+      Text(
         'Track your university partnerships at a glance.',
         style: TextStyle(color: AppColors.textSecondary),
       ),
-      const SizedBox(height: 24),
+      SizedBox(height: 24),
       Row(
         children: [
           _statCard(
@@ -145,17 +142,17 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
             '${_projects.where((p) => p['status'] == 'Active').length}',
             Icons.rocket_launch_outlined,
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
           _statCard('Total Applicants', '29', Icons.groups_outlined),
         ],
       ),
-      const SizedBox(height: 28),
+      SizedBox(height: 28),
       _sectionTitle('Recent Activity'),
-      const SizedBox(height: 12),
+      SizedBox(height: 12),
       ..._activities.map((activity) => _activityTile(activity)),
-      const SizedBox(height: 20),
+      SizedBox(height: 20),
       _sectionTitle('Quick Actions'),
-      const SizedBox(height: 12),
+      SizedBox(height: 12),
       _actionTile(
         Icons.add_circle_outline,
         'Post a new project',
@@ -174,20 +171,20 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
         'Move candidates through your hiring stages',
         () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (_) => const HiringPipelinePage()),
+          MaterialPageRoute(builder: (_) => HiringPipelinePage()),
         ),
       ),
     ],
   );
 
   Widget _buildProjects() => ListView(
-    padding: const EdgeInsets.fromLTRB(20, 8, 20, 100),
+    padding: EdgeInsets.fromLTRB(20, 8, 20, 100),
     children: [
-      const Text(
+      Text(
         'Manage opportunities and review student applications.',
         style: TextStyle(color: AppColors.textSecondary),
       ),
-      const SizedBox(height: 18),
+      SizedBox(height: 18),
       ..._projects.asMap().entries.map(
         (entry) => _projectCard(entry.value, entry.key),
       ),
@@ -195,21 +192,17 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
   );
 
   Widget _buildProfile() => ListView(
-    padding: const EdgeInsets.all(20),
+    padding: EdgeInsets.all(20),
     children: [
       Center(
         child: CircleAvatar(
           radius: 38,
           backgroundColor: AppColors.primary,
-          child: const Icon(
-            Icons.business,
-            color: AppColors.textPrimary,
-            size: 34,
-          ),
+          child: Icon(Icons.business, color: AppColors.textPrimary, size: 34),
         ),
       ),
-      const SizedBox(height: 14),
-      const Center(
+      SizedBox(height: 14),
+      Center(
         child: Text(
           'Acme Labs',
           style: TextStyle(
@@ -219,13 +212,13 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
           ),
         ),
       ),
-      const Center(
+      Center(
         child: Text(
           'Technology & Innovation',
           style: TextStyle(color: AppColors.textSecondary),
         ),
       ),
-      const SizedBox(height: 28),
+      SizedBox(height: 28),
       _profileRow(
         Icons.email_outlined,
         'Email',
@@ -234,15 +227,15 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
       _profileRow(Icons.phone_outlined, 'Phone', '+91 98765 43210'),
       _profileRow(Icons.location_on_outlined, 'Location', 'Bengaluru, India'),
       _profileRow(Icons.language_outlined, 'Website', 'www.acmelabs.example'),
-      const SizedBox(height: 20),
+      SizedBox(height: 20),
       OutlinedButton.icon(
         onPressed: () {},
-        icon: const Icon(Icons.edit_outlined),
-        label: const Text('Edit Company Details'),
+        icon: Icon(Icons.edit_outlined),
+        label: Text('Edit Company Details'),
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.accent,
-          side: const BorderSide(color: AppColors.accent),
-          padding: const EdgeInsets.all(15),
+          side: BorderSide(color: AppColors.accent),
+          padding: EdgeInsets.all(15),
         ),
       ),
     ],
@@ -250,7 +243,7 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
 
   Widget _statCard(String label, String value, IconData icon) => Expanded(
     child: Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
@@ -259,10 +252,10 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(icon, color: AppColors.accent),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           Text(
             value,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.textPrimary,
               fontSize: 26,
               fontWeight: FontWeight.bold,
@@ -270,10 +263,7 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
           ),
           Text(
             label,
-            style: const TextStyle(
-              color: AppColors.textSecondary,
-              fontSize: 12,
-            ),
+            style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
           ),
         ],
       ),
@@ -282,7 +272,7 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
 
   Widget _sectionTitle(String title) => Text(
     title,
-    style: const TextStyle(
+    style: TextStyle(
       color: AppColors.textPrimary,
       fontSize: 18,
       fontWeight: FontWeight.bold,
@@ -291,20 +281,20 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
 
   Widget _activityTile(Map<String, String> activity) => ListTile(
     contentPadding: EdgeInsets.zero,
-    leading: const CircleAvatar(
+    leading: CircleAvatar(
       backgroundColor: AppColors.surface,
       child: Icon(Icons.bolt, color: AppColors.accent),
     ),
     title: Text(
       activity['title']!,
-      style: const TextStyle(
+      style: TextStyle(
         color: AppColors.textPrimary,
         fontWeight: FontWeight.w600,
       ),
     ),
     subtitle: Text(
       activity['subtitle']!,
-      style: const TextStyle(color: AppColors.textSecondary),
+      style: TextStyle(color: AppColors.textSecondary),
     ),
   );
 
@@ -315,33 +305,33 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
     VoidCallback onTap,
   ) => Card(
     color: AppColors.surface,
-    margin: const EdgeInsets.only(bottom: 10),
+    margin: EdgeInsets.only(bottom: 10),
     child: ListTile(
       onTap: onTap,
       leading: Icon(icon, color: AppColors.accent),
       title: Text(
         title,
-        style: const TextStyle(
+        style: TextStyle(
           color: AppColors.textPrimary,
           fontWeight: FontWeight.w600,
         ),
       ),
       subtitle: Text(
         subtitle,
-        style: const TextStyle(color: AppColors.textSecondary),
+        style: TextStyle(color: AppColors.textSecondary),
       ),
-      trailing: const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+      trailing: Icon(Icons.chevron_right, color: AppColors.textSecondary),
     ),
   );
 
   Widget _projectCard(Map<String, dynamic> project, int index) => Card(
     color: AppColors.surface,
-    margin: const EdgeInsets.only(bottom: 14),
+    margin: EdgeInsets.only(bottom: 14),
     child: InkWell(
       onTap: () => _showApplicants(project),
       borderRadius: BorderRadius.circular(14),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -350,7 +340,7 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
                 Expanded(
                   child: Text(
                     project['title'],
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: AppColors.textPrimary,
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
@@ -360,12 +350,12 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
                 _statusChip(project['status']),
               ],
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               project['description'],
-              style: const TextStyle(color: AppColors.textSecondary),
+              style: TextStyle(color: AppColors.textSecondary),
             ),
-            const SizedBox(height: 14),
+            SizedBox(height: 14),
             Wrap(
               spacing: 6,
               children: (project['skills'] as List<String>)
@@ -373,10 +363,7 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
                     (skill) => Chip(
                       label: Text(
                         skill,
-                        style: const TextStyle(
-                          color: AppColors.accent,
-                          fontSize: 11,
-                        ),
+                        style: TextStyle(color: AppColors.accent, fontSize: 11),
                       ),
                       backgroundColor: AppColors.background,
                       side: BorderSide.none,
@@ -385,34 +372,34 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
                   )
                   .toList(),
             ),
-            const Divider(color: AppColors.background),
+            Divider(color: AppColors.background),
             Row(
               children: [
-                const Icon(
+                Icon(
                   Icons.payments_outlined,
                   size: 17,
                   color: AppColors.accent,
                 ),
-                const SizedBox(width: 5),
+                SizedBox(width: 5),
                 Text(
                   project['budget'],
-                  style: const TextStyle(color: AppColors.textPrimary),
+                  style: TextStyle(color: AppColors.textPrimary),
                 ),
-                const SizedBox(width: 18),
-                const Icon(
+                SizedBox(width: 18),
+                Icon(
                   Icons.schedule_outlined,
                   size: 17,
                   color: AppColors.accent,
                 ),
-                const SizedBox(width: 5),
+                SizedBox(width: 5),
                 Text(
                   project['timeline'],
-                  style: const TextStyle(color: AppColors.textPrimary),
+                  style: TextStyle(color: AppColors.textPrimary),
                 ),
-                const Spacer(),
+                Spacer(),
                 Text(
                   '${project['applicants']} applicants',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.textSecondary,
                     fontSize: 12,
                   ),
@@ -426,14 +413,14 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
   );
 
   Widget _statusChip(String status) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+    padding: EdgeInsets.symmetric(horizontal: 9, vertical: 5),
     decoration: BoxDecoration(
       color: AppColors.accent.withValues(alpha: 0.12),
       borderRadius: BorderRadius.circular(20),
     ),
     child: Text(
       status,
-      style: const TextStyle(
+      style: TextStyle(
         color: AppColors.accent,
         fontSize: 11,
         fontWeight: FontWeight.bold,
@@ -446,18 +433,18 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
     leading: Icon(icon, color: AppColors.accent),
     title: Text(
       label,
-      style: const TextStyle(color: AppColors.textSecondary, fontSize: 12),
+      style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
     ),
     subtitle: Text(
       value,
-      style: const TextStyle(color: AppColors.textPrimary, fontSize: 15),
+      style: TextStyle(color: AppColors.textPrimary, fontSize: 15),
     ),
   );
 
   void _openPostProject() async {
     final project = await Navigator.push<Map<String, dynamic>>(
       context,
-      MaterialPageRoute(builder: (_) => const PostProjectPage()),
+      MaterialPageRoute(builder: (_) => PostProjectPage()),
     );
     if (project != null) {
       final projectWithId = {
@@ -495,7 +482,7 @@ class _IndustryDashboardState extends State<IndustryDashboard> {
 }
 
 class _ApplicantsSheet extends StatefulWidget {
-  const _ApplicantsSheet({required this.project, required this.applicants});
+  _ApplicantsSheet({required this.project, required this.applicants});
   final Map<String, dynamic> project;
   final List<Map<String, String>> applicants;
   @override
@@ -507,7 +494,7 @@ class _ApplicantsSheetState extends State<_ApplicantsSheet> {
   @override
   Widget build(BuildContext context) => SafeArea(
     child: Padding(
-      padding: const EdgeInsets.fromLTRB(20, 18, 20, 12),
+      padding: EdgeInsets.fromLTRB(20, 18, 20, 12),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -517,7 +504,7 @@ class _ApplicantsSheetState extends State<_ApplicantsSheet> {
               Expanded(
                 child: Text(
                   'Applicants · ${widget.project['title']}',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -526,11 +513,11 @@ class _ApplicantsSheetState extends State<_ApplicantsSheet> {
               ),
               IconButton(
                 onPressed: () => Navigator.pop(context),
-                icon: const Icon(Icons.close, color: AppColors.textSecondary),
+                icon: Icon(Icons.close, color: AppColors.textSecondary),
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           ...widget.applicants.map(_applicantTile),
         ],
       ),
@@ -542,29 +529,26 @@ class _ApplicantsSheetState extends State<_ApplicantsSheet> {
     return Card(
       color: AppColors.background,
       child: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               applicant['name']!,
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppColors.textPrimary,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
               applicant['course']!,
-              style: const TextStyle(
-                color: AppColors.textSecondary,
-                fontSize: 12,
-              ),
+              style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
             ),
             Text(
               applicant['skills']!,
-              style: const TextStyle(color: AppColors.accent, fontSize: 12),
+              style: TextStyle(color: AppColors.accent, fontSize: 12),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             if (decision == null)
               Row(
                 children: [
@@ -588,7 +572,7 @@ class _ApplicantsSheetState extends State<_ApplicantsSheet> {
             else
               Text(
                 decision,
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppColors.accent,
                   fontWeight: FontWeight.bold,
                 ),
@@ -601,15 +585,15 @@ class _ApplicantsSheetState extends State<_ApplicantsSheet> {
 
   Widget _decisionButton(String label, Color color, String name) => Expanded(
     child: Padding(
-      padding: const EdgeInsets.only(right: 6),
+      padding: EdgeInsets.only(right: 6),
       child: OutlinedButton(
         onPressed: () => setState(() => _decisions[name] = label),
         style: OutlinedButton.styleFrom(
           foregroundColor: color,
           side: BorderSide(color: color),
-          padding: const EdgeInsets.symmetric(vertical: 8),
+          padding: EdgeInsets.symmetric(vertical: 8),
         ),
-        child: Text(label, style: const TextStyle(fontSize: 11)),
+        child: Text(label, style: TextStyle(fontSize: 11)),
       ),
     ),
   );

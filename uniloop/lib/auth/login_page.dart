@@ -3,7 +3,7 @@ import '../core/app_colors.dart';
 import '../core/app_routes.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,14 +11,14 @@ class LoginPage extends StatelessWidget {
       backgroundColor: AppColors.background,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 28.0),
+          padding: EdgeInsets.symmetric(horizontal: 28.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 60),
+              SizedBox(height: 60),
 
               // Heading
-              const Text(
+              Text(
                 'Get Started with',
                 style: TextStyle(
                   fontSize: 36,
@@ -28,7 +28,7 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 60),
+              SizedBox(height: 60),
 
               // University member option
               _buildRoleOption(
@@ -41,7 +41,7 @@ class LoginPage extends StatelessWidget {
                 },
               ),
 
-              const SizedBox(height: 24),
+              SizedBox(height: 24),
 
               // Industry/company option
               _buildRoleOption(
@@ -69,26 +69,26 @@ class LoginPage extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(16),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         decoration: BoxDecoration(
           color: AppColors.surface,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.white.withValues(alpha: 0.05)),
+          border: Border.all(color: AppColors.textPrimary.withValues(alpha: 0.08)),
         ),
         child: Row(
           children: [
             Icon(icon, size: 28, color: AppColors.accent),
-            const SizedBox(width: 16),
+            SizedBox(width: 16),
             Text(
               title,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
                 color: AppColors.textPrimary,
               ),
             ),
-            const Spacer(),
-            const Icon(
+            Spacer(),
+            Icon(
               Icons.arrow_forward_ios,
               size: 16,
               color: AppColors.textSecondary,
@@ -99,3 +99,5 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+
+

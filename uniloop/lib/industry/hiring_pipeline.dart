@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/app_colors.dart';
 
 class HiringPipelinePage extends StatefulWidget {
-  const HiringPipelinePage({super.key});
+  HiringPipelinePage({super.key});
 
   @override
   State<HiringPipelinePage> createState() => _HiringPipelinePageState();
@@ -37,7 +37,7 @@ class _HiringPipelinePageState extends State<HiringPipelinePage> {
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
-        title: const Text(
+        title: Text(
           'Hiring Pipeline',
           style: TextStyle(
             color: AppColors.textPrimary,
@@ -46,7 +46,7 @@ class _HiringPipelinePageState extends State<HiringPipelinePage> {
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(16),
         scrollDirection: Axis.horizontal,
         children: stages.map(_stageColumn).toList(),
       ),
@@ -59,8 +59,8 @@ class _HiringPipelinePageState extends State<HiringPipelinePage> {
         .toList();
     return Container(
       width: 230,
-      margin: const EdgeInsets.only(right: 12),
-      padding: const EdgeInsets.all(12),
+      margin: EdgeInsets.only(right: 12),
+      padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
@@ -70,14 +70,14 @@ class _HiringPipelinePageState extends State<HiringPipelinePage> {
         children: [
           Text(
             stage,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.textPrimary,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           if (items.isEmpty)
-            const Text(
+            Text(
               'No candidates',
               style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
             ),
@@ -90,31 +90,28 @@ class _HiringPipelinePageState extends State<HiringPipelinePage> {
   Widget _candidateCard(Map<String, dynamic> candidate) => Card(
     color: AppColors.background,
     child: Padding(
-      padding: const EdgeInsets.all(12),
+      padding: EdgeInsets.all(12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             candidate['name'],
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.textPrimary,
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 6),
+          SizedBox(height: 6),
           Text(
             candidate['skills'],
-            style: const TextStyle(
-              color: AppColors.textSecondary,
-              fontSize: 11,
-            ),
+            style: TextStyle(color: AppColors.textSecondary, fontSize: 11),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           DropdownButton<String>(
             isExpanded: true,
             value: candidate['stage'],
             dropdownColor: AppColors.surface,
-            style: const TextStyle(color: AppColors.accent, fontSize: 12),
+            style: TextStyle(color: AppColors.accent, fontSize: 12),
             items: stages
                 .map(
                   (stage) => DropdownMenuItem(value: stage, child: Text(stage)),
